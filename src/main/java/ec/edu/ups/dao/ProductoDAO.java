@@ -1,4 +1,4 @@
-package ec.edu.ups.controlador;
+package ec.edu.ups.dao;
 
 public class ProductoDAO {
 
