@@ -1,4 +1,4 @@
-package ec.edu.ups.entidades;
+package com.megajaen.entidades;
 
 import java.util.Date;
 

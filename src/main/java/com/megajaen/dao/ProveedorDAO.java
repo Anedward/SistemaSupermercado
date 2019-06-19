@@ -1,4 +1,4 @@
-package ec.edu.ups.dao;
+package com.megajaen.dao;
 
 public class ProveedorDAO {
 
