@@ -1,9 +1,16 @@
 
 package com.megajaen.entidades;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+
+@Entity
 public class CategoriaEN {
 
+	@Id
 	private int codigo;
+	@NotNull
 	private String descripcion;
 
 	public int getCodigo() {
