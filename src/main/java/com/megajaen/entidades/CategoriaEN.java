@@ -1,6 +1,7 @@
 
 package com.megajaen.entidades;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
@@ -9,8 +10,11 @@ import javax.validation.constraints.NotNull;
 public class CategoriaEN {
 
 	@Id
+	@Column(name="cat_codigo")
 	private int codigo;
+
 	@NotNull
+	@Column(name="cat_descripcion")
 	private String descripcion;
 
 	public int getCodigo() {
@@ -29,4 +33,9 @@ public class CategoriaEN {
 		this.descripcion = descripcion;
 	}
 
+	@Override
+	public String toString() {
+		return "CategoriaEN [codigo=" + codigo + ", descripcion=" + descripcion + "]";
+	}
+	
 }
