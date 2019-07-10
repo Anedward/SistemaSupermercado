@@ -8,7 +8,6 @@ import javax.persistence.Id;
 @Entity
 
 public class FacturaEN {
-
 	@Id
 	private String codigo;
 	private Date fechaEmision;
