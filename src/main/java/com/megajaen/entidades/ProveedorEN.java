@@ -1,7 +1,11 @@
 package com.megajaen.entidades;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class ProveedorEN {
-	
+	@Id
 	private int codigo;
 	private String razonSocial;
 	private String ruc;
