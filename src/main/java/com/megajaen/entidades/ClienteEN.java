@@ -10,7 +10,6 @@ import javax.persistence.Id;
 public class ClienteEN {
 	
 	@Id
-
 	private int codigo;
 	private String cedula;
 	private String nombre;
