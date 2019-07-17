@@ -13,6 +13,7 @@ public class ProveedorEN {
 	private String telefono;
 	private String email;
 	private boolean estado;
+	private String nombre;
 	
 	public ProveedorEN() {
 		
