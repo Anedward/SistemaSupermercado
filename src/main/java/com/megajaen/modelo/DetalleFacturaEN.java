@@ -1,4 +1,4 @@
-package com.megajaen.entidades;
+package com.megajaen.modelo;
 
 
 

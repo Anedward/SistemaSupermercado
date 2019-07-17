@@ -1,0 +1,23 @@
+package com.megajaen.resources;
+
+import javax.enterprise.context.RequestScoped;
+import javax.enterprise.inject.Produces;
+
+import javax.faces.context.FacesContext;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+public class Recursos {
+	
+	
+	@Produces
+	@PersistenceContext
+	private EntityManager em;
+	
+	@Produces
+	@RequestScoped
+	public FacesContext produceFC() {
+		return FacesContext.getCurrentInstance();
+	}
+
+}

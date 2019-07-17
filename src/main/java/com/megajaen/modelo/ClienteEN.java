@@ -1,29 +1,61 @@
-package com.megajaen.entidades;
+package com.megajaen.modelo;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
-public class ClienteEN {
+@Table(name="clienteEN")
+public class ClienteEN{
 
 	@Id
+	@Column(name="cli_codigo")
 	private int codigo;
+	
+	@Column(name="cli_cedula")
 	private String cedula;
+	
+	@Column(name="cli_nombre")
 	private String nombre;
+	
+	@Column(name="cli_apellido")
 	private String apellido;
+	
+	@Column(name="cli_fechaNacimiento")
 	private Date fechaNacimiento;
+	
+	@Column(name="cli_fechaRegistro")
 	private Date fechaRegistro;
-	private String email;
-	private String contrasenia;
+		
+	@Column(name="cli_telefono")
 	private String telefono;
+	
+	@Column(name="cli_direccion")
 	private String direccion;
+	
+	@Column(name="cli_sexo")
 	private String sexo;
+	
+	@OneToOne(mappedBy = )
+	private UsuarioEN user;
 
 	public ClienteEN() {
 
 	}
+
+	public UsuarioEN getUser() {
+		return user;
+	}
+
+
+	public void setUser(UsuarioEN user) {
+		this.user = user;
+	}
+
 
 	public int getCodigo() {
 		return codigo;
@@ -71,22 +103,6 @@ public class ClienteEN {
 
 	public void setFechaRegistro(Date fechaRegistro) {
 		this.fechaRegistro = fechaRegistro;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getContrasenia() {
-		return contrasenia;
-	}
-
-	public void setContrasenia(String contrasenia) {
-		this.contrasenia = contrasenia;
 	}
 
 	public String getTelefono() {
