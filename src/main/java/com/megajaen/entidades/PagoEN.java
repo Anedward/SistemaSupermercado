@@ -1,7 +1,12 @@
 package com.megajaen.entidades;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class PagoEN {
 
+	@Id
 	private int codigo;
 	private String descripcion;
 
