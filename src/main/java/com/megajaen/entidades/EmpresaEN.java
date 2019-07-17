@@ -1,11 +1,31 @@
 package com.megajaen.entidades;
 
-public class EmpresaEN {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
+@Entity
+public class EmpresaEN {
+	
+	@Id
+	@Column(name="emp_codigo")
 	private int codigo;
+	
+	@Column(name="emp_razonsocial")
+	@NotNull
 	private String razonSocial;
+	
+	@Column(name="emp_ruc")
+	@NotNull
 	private String ruc;
+	
+	@Column(name="emp_direccion")
+	@NotNull
 	private String direccion;
+	
+	@Column(name="emp_anioCreacion")
+	private String anioCreacion;
 
 	public int getCodigo() {
 		return codigo;
@@ -39,23 +59,17 @@ public class EmpresaEN {
 		this.direccion = direccion;
 	}
 
-	public int getAnioCreacion() {
+	public String getAnioCreacion() {
 		return anioCreacion;
 	}
 
-	public void setAnioCreacion(int anioCreacion) {
+	public void setAnioCreacion(String anioCreacion) {
 		this.anioCreacion = anioCreacion;
 	}
 
-	public String getLogo() {
-		return logo;
+	@Override
+	public String toString() {
+		return "EmpresaEN [codigo=" + codigo + ", razonSocial=" + razonSocial + ", ruc=" + ruc + ", direccion="
+				+ direccion + ", anioCreacion=" + anioCreacion + "]";
 	}
-
-	public void setLogo(String logo) {
-		this.logo = logo;
-	}
-
-	private int anioCreacion;
-	private String logo;
-
 }

@@ -2,8 +2,13 @@ package com.megajaen.entidades;
 
 import java.util.Date;
 
-public class FacturaEN {
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Entity
+
+public class FacturaEN {
+	@Id
 	private String codigo;
 	private Date fechaEmision;
 	private double iva;
