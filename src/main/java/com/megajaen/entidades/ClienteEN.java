@@ -6,9 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-
 public class ClienteEN {
-	
 	@Id
 	private int codigo;
 	private String cedula;
