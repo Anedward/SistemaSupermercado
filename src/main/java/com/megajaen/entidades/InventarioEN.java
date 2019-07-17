@@ -2,8 +2,13 @@ package com.megajaen.entidades;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class InventarioEN {
 	
+	@Id
 	private int codigo;
 	private String descripcion;
 	private Date fecha;
