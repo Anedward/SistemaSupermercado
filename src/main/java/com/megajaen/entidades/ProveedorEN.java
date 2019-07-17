@@ -13,10 +13,6 @@ public class ProveedorEN {
 	private String telefono;
 	private String email;
 	private boolean estado;
-	
-	public ProveedorEN() {
-		
-	}
 
 	public int getCodigo() {
 		return codigo;
