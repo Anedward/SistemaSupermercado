@@ -2,8 +2,13 @@ package com.megajaen.entidades;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class ClienteEN {
 
+	@Id
 	private int codigo;
 	private String cedula;
 	private String nombre;
