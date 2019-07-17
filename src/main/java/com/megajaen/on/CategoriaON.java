@@ -21,7 +21,7 @@ public class CategoriaON {
 	}
 
 	public List<CategoriaEN> listaCategorias() {
-		return catdao.listaCategoria();
+		return catdao.getCategoria2();
 	}
 
 	public void borrar(int codigo) throws Exception {
@@ -33,7 +33,7 @@ public class CategoriaON {
 	}
 
 	public CategoriaEN getCategoria(int codigo) {
-		CategoriaEN auxcat = catdao.read(codigo);
+		CategoriaEN auxcat = catdao.read3(codigo);
 		return auxcat;
 	}
 }
