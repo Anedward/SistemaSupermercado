@@ -6,7 +6,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import com.megajaen.dao.ClienteDAO;
-import com.megajaen.modelo.ClienteEN;
+import com.megajaen.entidades.ClienteEN;
 
 
 @Stateless

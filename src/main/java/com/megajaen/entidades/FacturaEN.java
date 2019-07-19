@@ -1,4 +1,4 @@
-package com.megajaen.modelo;
+package com.megajaen.entidades;
 
 import java.util.Date;
 

@@ -1,4 +1,4 @@
-package com.megajaen.modelo;
+package com.megajaen.entidades;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

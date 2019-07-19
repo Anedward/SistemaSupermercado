@@ -7,8 +7,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
-import com.megajaen.modelo.ClienteEN;
-import com.megajaen.modelo.UsuarioEN;
+import com.megajaen.entidades.ClienteEN;
+import com.megajaen.entidades.UsuarioEN;
 import com.megajaen.on.ClienteON;
 
 

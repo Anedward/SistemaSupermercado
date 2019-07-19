@@ -7,7 +7,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-import com.megajaen.modelo.ClienteEN;
+import com.megajaen.entidades.ClienteEN;
 
 @Stateless
 public class ClienteDAO {
