@@ -8,7 +8,7 @@ import javax.persistence.Id;
 @Entity
 public class ClienteEN {
 	@Id
-	private int codigo;
+	private int codigo1;
 	private String cedula;
 	private String nombre;
 	private String apellido;
@@ -24,12 +24,12 @@ public class ClienteEN {
 
 	}
 
-	public int getCodigo() {
-		return codigo;
+	public int getCodigo1s() {
+		return codigo1;
 	}
 
-	public void setCodigo(int codigo) {
-		this.codigo = codigo;
+	public void setCodigo1(int codigo1) {
+		this.codigo1 = codigo1;
 	}
 
 	public String getCedula() {
