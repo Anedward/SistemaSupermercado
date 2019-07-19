@@ -7,7 +7,7 @@ import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-public class Resources {
+public class Resource {
 	
 	
 	@Produces
