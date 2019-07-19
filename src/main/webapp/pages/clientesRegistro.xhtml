@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+<f:metadata>
+		<f:viewParam name="id" value="#{clienteMB.id}"></f:viewParam>
+		<f:viewAction action="#{clienteMB.loadData()}"/>
+	</f:metadata>
+</h:head>
+<body>
+	<h:form>
+		<h:panelGrid columns="3">
+			<h:outputLabel value="Nombre" />
+			<h:inputText value="#{clienteMB.cliente.nombre}" id="txtNombre" />
+			<h:message for="txtNombre" />
+
+			<h:outputLabel value="Apellido" />
+			<h:inputText value="#{clienteMB.cliente.apellido}" id="txtApellido" />
+			<h:message for="txtApellido" />
+
+			<h:outputLabel value="Sexo" />
+			<h:selectOneRadio value="#{clienteMB.cliente.sexo}">
+				<f:selectItem itemValue="Hombre" itemLabel="Hombre" />
+				<f:selectItem itemValue="Mujer" itemLabel="Mujer" />
+			</h:selectOneRadio>
+			<br></br>
+
+			<h:outputLabel value="Direccion" />
+			<h:inputText value="#{clienteMB.cliente.direccion}" id="txtDireccion" />
+			<h:message for="txtDireccion" />
+
+			<h:outputLabel value="Telefono" />
+			<h:inputText value="#{clienteMB.cliente.telefono}" id="txtTelefono" />
+			<h:message for="txtTelefono" />
+
+			<h:outputLabel value="Fecha Registro" />
+			<h:inputText value="#{clienteMB.cliente.fechaRegistro}"
+				id="txtfechaRegistro" />
+			<h:message for="txtfechaRegistro" />
+
+			<h:outputLabel value="Email" />
+			<h:inputText value="#{clienteMB.cliente.usuario.email}"
+				id="txtUserEmail" />
+			<h:message for="txtUserEmail" />
+
+			<h:outputLabel value="Contraseña" />
+			<h:inputText value="#{clienteMB.cliente.usuario.contrasenia}"
+				id="txtUserPwd" />
+			<h:message for="txtUserPwd" />
+
+
+			<h:commandButton action="#{clienteMB.cargarDatos()}" value="Guardar" />
+			<h:commandButton action="#{clienteMB.listado()}" value="Listar" />
+		</h:panelGrid>
+
+	</h:form>
+
+</body>
+</html>
