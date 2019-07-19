@@ -7,16 +7,15 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-import modelo.Cliente;
+import com.megajaen.modelo.ClienteEN;
 
 @Stateless
-
 public class ClienteDAO {
 
 	@Inject
 	private EntityManager em;
 
-	public void save(Cliente c) {
+	public void save(ClienteEN c) {
 
 		if (this.read(c.getCodigo()) != null)
 			this.update(c);
@@ -26,74 +25,74 @@ public class ClienteDAO {
 
 	}
 
-	public void create(Cliente c) {
+	public void create(ClienteEN c) {
 		em.persist(c);
 
 	}
 
-	public Cliente read(int id) {
-		return em.find(Cliente.class, id);
+	public ClienteEN read(int id) {
+		return em.find(ClienteEN.class, id);
 
 	}
 
-	public Cliente read2(int id) {
-		Cliente c = em.find(Cliente.class, id);
+	public ClienteEN read2(int id) {
+		ClienteEN c = em.find(ClienteEN.class, id);
 		return c;
 
 	}
 
-	public Cliente read3(int id) {
+	public ClienteEN read3(int id) {
 
-		String jpql = "SELECT c " + "	 FROM Cliente c " + "		  JOIN FETCH c.facturas f "
+		String jpql = "SELECT c " + "	 FROM ClienteEN c " + "		  JOIN FETCH c.facturas f "
 				+ " WHERE c.codigo = :a";
 
-		Query q = em.createQuery(jpql, Cliente.class);
+		Query q = em.createQuery(jpql, ClienteEN.class);
 		q.setParameter("a", id);
-		Cliente c = (Cliente) q.getSingleResult();
+		ClienteEN c = (ClienteEN) q.getSingleResult();
 
 		return c;
 
 	}
 
-	public void update(Cliente c) {
+	public void update(ClienteEN c) {
 		em.merge(c);
 
 	}
 
 	public void delete(int id) {
-		Cliente c = read(id);
+		ClienteEN c = read(id);
 		em.remove(c);
 	}
 
-	public List<Cliente> getClientes() {
-		String jpql = "SELECT p FROM Cliente p";
+	public List<ClienteEN> getClientes() {
+		String jpql = "SELECT c FROM ClienteEN c";
 
-		Query q = em.createQuery(jpql, Cliente.class);
-		List<Cliente> clientes = q.getResultList();
+		Query q = em.createQuery(jpql, ClienteEN.class);
+		List<ClienteEN> clientes = q.getResultList();
 		return clientes;
 
 	}
 
-	public List<Cliente> getClientes2() {
-		String jpql = "SELECT p FROM Cliente p";
+	public List<ClienteEN> getClientes2() {
+		String jpql = "SELECT c FROM ClienteEN c";
 
-		Query q = em.createQuery(jpql, Cliente.class);
+		Query q = em.createQuery(jpql, ClienteEN.class);
 
-		List<Cliente> clientes = q.getResultList();
-		for (Cliente c : clientes) {
-			c.getFacturas().size();
-		}
+		List<ClienteEN> clientes = q.getResultList();
+		// for (ClienteEN c : clientes) {
+		// c.getFacturas().size();
+		// }
 		return clientes;
 
 	}
 
-	public List<Cliente> getClientesPorNombre(String filtroBusqueda) {
-		String jpql = "SELECT c FROM Cliente c" + "WHERE c.codigo LIKE :filtro";
+	public List<ClienteEN> getClientesPorNombre(String filtroBusqueda) {
+		String jpql = "SELECT c FROM ClienteEN c" + "WHERE c.codigo LIKE :filtro";
 
-		Query q = em.createQuery(jpql, Cliente.class);
+		Query q = em.createQuery(jpql, ClienteEN.class);
 		q.setParameter("filtro", "%" + filtroBusqueda + "%");
 
-		List<Cliente> clientes = q.getResultList();
+		List<ClienteEN> clientes = q.getResultList();
 		return clientes;
 
 	}

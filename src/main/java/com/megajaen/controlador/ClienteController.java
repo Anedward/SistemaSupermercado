@@ -1,69 +1,45 @@
 package com.megajaen.controlador;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
-import bussines.ClienteON;
-import bussines.instalacion;
+import com.megajaen.modelo.ClienteEN;
+import com.megajaen.modelo.UsuarioEN;
+import com.megajaen.on.ClienteON;
 
-import modelo.Cliente;
-import modelo.Factura;
-import modelo.TipoFactura;
 
-@ManagedBean
+@ManagedBean(name = "clienteMB")
 @ViewScoped
 public class ClienteController {
 
-	private Cliente cliente = new Cliente();
-	private TipoFactura fa = new TipoFactura();
+	private ClienteEN cliente = new ClienteEN();
 
-	private List<Cliente> listadoClientes;
-	private List<TipoFactura> tipFac;
-	private List<String> listaP;
-	private List<Integer> au;
+	private List<ClienteEN> listadoClientes;
+	
 	private int id;
 
 	@Inject
 	private ClienteON pON;
-	@Inject
-	private instalacion iON;
+	
 
-	public Cliente getCliente() {
+	public ClienteEN getCliente() {
 		return cliente;
 	}
 
-	public void setCliente(Cliente cliente) {
+	public void setCliente(ClienteEN cliente) {
 		this.cliente = cliente;
 	}
 
-	public List<Cliente> getListadoClientes() {
+	public List<ClienteEN> getListadoClientes() {
 		return listadoClientes;
 	}
 
-	public void setListadoClientes(List<Cliente> listadoClientes) {
+	public void setListadoClientes(List<ClienteEN> listadoClientes) {
 		this.listadoClientes = listadoClientes;
-	}
-
-	public List<TipoFactura> getTipFac() {
-		return tipFac;
-	}
-
-	public TipoFactura getFa() {
-		return fa;
-	}
-
-	public void setFa(TipoFactura fa) {
-		this.fa = fa;
-	}
-
-	public void setTipFac(List<TipoFactura> tipFac) {
-		this.tipFac = tipFac;
 	}
 
 	public int getId() {
@@ -74,19 +50,10 @@ public class ClienteController {
 		this.id = id;
 	}
 
-	public List<String> getListaP() {
-		return listaP;
-	}
-
-	public void setListaP(List<String> listaP) {
-		this.listaP = listaP;
-	}
-
 	@PostConstruct
 	public void init() {
-		cliente = new Cliente();
-		cliente.addFactura(new Factura());
-		fa = new TipoFactura();
+		cliente = new ClienteEN();
+		cliente.agregarUsuario(new UsuarioEN());
 		listadoClientes = pON.getListadoClientes();
 	}
 
@@ -96,11 +63,6 @@ public class ClienteController {
 			return;
 		cliente = pON.getCliente(id);
 		System.out.println(cliente.getCodigo() + " " + cliente.getNombre());
-		// System.out.println("#facturas: " + " " + cliente.size());
-		for (Factura c : cliente.getFacturas()) {
-			System.out.println("\t " + c);
-
-		}
 
 	}
 
@@ -109,7 +71,6 @@ public class ClienteController {
 			pON.guardar(cliente);
 			init();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
@@ -136,41 +97,20 @@ public class ClienteController {
 
 	}
 
-	public void addFactura() {
-		cliente.addFactura(new Factura());
-		System.out.println("Facturas" + cliente.getFacturas().size());
-
-	}
-
 	public String nuevo() {
-		cliente = new Cliente();
-
-		return "cliente";
+		cliente = new ClienteEN();
+		return "clientesRegistro";
 
 	}
 
 	public String listado() {
-
-		return "listadoClientes";
-
-	}
-
-	public List<String> fac1() {
-		tipFac = iON.getFact();
-		listaP = new ArrayList<>();
-
-		for (TipoFactura tp1 : tipFac) {
-
-			listaP.add(tp1.getDescripcion());
-		}
-		return listaP;
+		return "listarClientes";
 
 	}
 
 	public String buscar() {
 		pON.getListadoNombre(cliente);
 		return null;
-
 	}
 
 }

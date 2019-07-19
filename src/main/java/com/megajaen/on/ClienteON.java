@@ -5,47 +5,33 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
-import dao.ClienteDAO;
-import modelo.Cliente;
-import modelo.Factura;
-import modelo.TipoFactura;
+import com.megajaen.dao.ClienteDAO;
+import com.megajaen.modelo.ClienteEN;
+
 
 @Stateless
-
 public class ClienteON {
 
 	@Inject
 	private ClienteDAO dao; // lo q tenga el servidor
 
-	@Inject
-	private instalacion init; // lo q tenga el servidor
+	//@Inject
+	//private instalacion init; // lo q tenga el servidor
 
-	public void guardar(Cliente c) throws Exception {
+	public void guardar(ClienteEN c) throws Exception {
 
-		if (c.getNombre().length() < 5)
-			throw new Exception("Dimension corta");
-		List<TipoFactura> tipos = init.getFact();
-		for (Factura cli : c.getFacturas()) {
-			for (TipoFactura tf : tipos) {
-				if (cli.getIdTipo() == tf.getCodigo()) {
-					cli.setTipo(tf);
-
-				}
-
-			}
-
-		}
-
+		if (c.getNombre() == null)
+			throw new Exception("Error: No puede ir campos vacios");
 		dao.save(c);
 
 	}
 
-	public List<Cliente> getListadoClientes() {
+	public List<ClienteEN> getListadoClientes() {
 		return dao.getClientes2();
 
 	}
 
-	public List<Cliente> getListadoNombre(Cliente c) {
+	public List<ClienteEN> getListadoNombre(ClienteEN c) {
 		return dao.getClientesPorNombre(c.getNombre());
 	}
 
@@ -58,9 +44,9 @@ public class ClienteON {
 
 	}
 
-	public Cliente getCliente(int codigo) {
+	public ClienteEN getCliente(int codigo) {
 
-		Cliente aux = dao.read3(codigo);
+		ClienteEN aux = dao.read3(codigo);
 
 		return aux;
 	}

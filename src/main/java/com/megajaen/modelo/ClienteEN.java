@@ -1,61 +1,48 @@
 package com.megajaen.modelo;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="clienteEN")
-public class ClienteEN{
+@Table(name = "CLIENTEEN")
+public class ClienteEN {
 
 	@Id
-	@Column(name="cli_codigo")
+	@GeneratedValue
+	@Column(name = "cli_codigo")
 	private int codigo;
-	
-	@Column(name="cli_cedula")
-	private String cedula;
-	
-	@Column(name="cli_nombre")
+
+	@Column(name = "cli_nombre")
 	private String nombre;
 	
 	@Column(name="cli_apellido")
 	private String apellido;
+
+	@Column(name = "cli_fechaRegistro")
+	private String fechaRegistro;
 	
-	@Column(name="cli_fechaNacimiento")
-	private Date fechaNacimiento;
+	@Column(name="cli_sexo")
+	private String sexo;
 	
-	@Column(name="cli_fechaRegistro")
-	private Date fechaRegistro;
-		
 	@Column(name="cli_telefono")
 	private String telefono;
 	
 	@Column(name="cli_direccion")
 	private String direccion;
 	
-	@Column(name="cli_sexo")
-	private String sexo;
-	
-	@OneToOne(mappedBy = )
-	private UsuarioEN user;
 
-	public ClienteEN() {
-
-	}
-
-	public UsuarioEN getUser() {
-		return user;
-	}
-
-
-	public void setUser(UsuarioEN user) {
-		this.user = user;
-	}
-
+	@JoinColumn(name = "usr_codigo", unique = true)
+	@OneToOne(cascade = CascadeType.ALL)
+	private UsuarioEN usuario;
 
 	public int getCodigo() {
 		return codigo;
@@ -63,14 +50,6 @@ public class ClienteEN{
 
 	public void setCodigo(int codigo) {
 		this.codigo = codigo;
-	}
-
-	public String getCedula() {
-		return cedula;
-	}
-
-	public void setCedula(String cedula) {
-		this.cedula = cedula;
 	}
 
 	public String getNombre() {
@@ -81,6 +60,17 @@ public class ClienteEN{
 		this.nombre = nombre;
 	}
 
+	public String getFechaRegistro() {
+		
+	return new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+	
+	}
+
+	public void setFechaRegistro(String fechaRegistro) {
+		this.fechaRegistro = fechaRegistro;
+	}
+
+	
 	public String getApellido() {
 		return apellido;
 	}
@@ -89,20 +79,12 @@ public class ClienteEN{
 		this.apellido = apellido;
 	}
 
-	public Date getFechaNacimiento() {
-		return fechaNacimiento;
+	public String getSexo() {
+		return sexo;
 	}
 
-	public void setFechaNacimiento(Date fechaNacimiento) {
-		this.fechaNacimiento = fechaNacimiento;
-	}
-
-	public Date getFechaRegistro() {
-		return fechaRegistro;
-	}
-
-	public void setFechaRegistro(Date fechaRegistro) {
-		this.fechaRegistro = fechaRegistro;
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
 	}
 
 	public String getTelefono() {
@@ -121,12 +103,28 @@ public class ClienteEN{
 		this.direccion = direccion;
 	}
 
-	public String getSexo() {
-		return sexo;
+	public UsuarioEN getUsuario() {
+		return usuario;
 	}
 
-	public void setSexo(String sexo) {
-		this.sexo = sexo;
+	public void setUsuario(UsuarioEN usuario) {
+		this.usuario = usuario;
 	}
+
+	@Override
+	public String toString() {
+		return "ClienteEN [codigo=" + codigo + ", nombre=" + nombre + ", fechaRegistro=" + fechaRegistro + ", usuario="
+				+ usuario + "]";
+	}
+
+	public void agregarUsuario(UsuarioEN user) {
+		if (usuario == null) {
+			usuario = new UsuarioEN();
+		}
+		this.usuario = user;
+	}
+
+}
+
 
 }
