@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+	<f:metadata>
+		<f:viewParam name="id" value="#{proveedorMB.id}"></f:viewParam>
+		<f:viewAction action="#{proveedorMB.loadData()}" />
+	</f:metadata>
+
+<body> 
+
+<h1>REGISTRO DE PROVEEDORES</h1>
+
+	<h:form>
+		<h:panelGrid columns="3">
+			<h:outputLabel value="Codigo" />
+			<h:inputText value="#{proveedorMB.proveedor.codigo}"
+				id="txtCodigo" />
+			<h:message for="txtCodigo" />
+
+			<h:outputLabel value="Nombre" />
+			<h:inputText value="#{proveedorMB.proveedor.razonSocial}"
+				id="txtNombre" />
+			<h:message for="txtNombre" />
+
+			<h:outputLabel value="RUC" />
+			<h:inputText value="#{proveedorMB.proveedor.ruc}" id="txtRUC" />
+			<h:message for="txtRUC" />
+
+			<h:outputLabel value="Direccion" />
+			<h:inputText value="#{proveedorMB.proveedor.direccion}"
+				id="txtDireccion" />
+			<h:message for="txtDireccion" />
+
+			<h:outputLabel value="Telefono:" />
+			<h:inputText value="#{proveedorMB.proveedor.telefono}"
+				id="txtTelefono" />
+			<h:message for="txtTelefono" />
+
+			<h:outputLabel value="Email" />
+			<h:inputText value="#{proveedorMB.proveedor.email}"
+				id="txtEmail" />
+			<h:message for="txtEmail" />
+			
+			</h:panelGrid>
+		<h:commandButton action="#{proveedorMB.cargarDatos()}" value="Guardar" />
+		<h:commandButton action="#{proveedorMB.nuevo()}" immediate="true" value="Nuevo" />
+		<h:commandButton action="#{proveedorMB.nuevo()}" immediate="true" value="Limpiar" />
+		<h:commandButton action="proveedor" immediate="true" value="Principal" />
+			</h:form>
+			
+			<h:form>
+	<h1>LISTADO DE PROVEEDORES</h1>
+	<h:dataTable value="#{proveedorMB.listadoProveedor}" var="proveedor" border="1">
+		<h:column>
+			<f:facet name="header">Codigo</f:facet>
+			#{proveedor.codigo}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Nombre</f:facet>
+			#{proveedor.razonSocial}
+		</h:column>
+		<h:column>
+			<f:facet name="header">RUC</f:facet>
+			#{proveedor.ruc}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Direccion</f:facet>
+			#{proveedor.direccion}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Telefono</f:facet>
+			#{proveedor.telefono}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Email</f:facet>
+			#{proveedor.email}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Acciones</f:facet>
+			<h:commandButton action="#{proveedorMB.editar(proveedor.codigo)}" immediate="true" value="Editar" />
+			<h:commandButton action="#{proveedorMB.borrar(proveedor.codigo)}" immediate="true" value="Borrar" />
+			
+		</h:column>
+	
+	</h:dataTable>
+
+	
+	
+
+</h:form>
+			
+
+
+
+</body> 
+</html>

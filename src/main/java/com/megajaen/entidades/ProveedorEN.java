@@ -1,24 +1,26 @@
 package com.megajaen.entidades;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
 public class ProveedorEN {
 	@Id
+	@Column(name="prov_codigo")
 	private int codigo;
+	@Column(name="prov_razon")
 	private String razonSocial;
+	@Column(name="prov_ruc")
 	private String ruc;
+	@Column(name="prov_direccion")
 	private String direccion;
+	@Column(name="prov_telefono")
 	private String telefono;
+	@Column(name="prov_email")
 	private String email;
-	private boolean estado;
-	private String nombre;
 	
-	public ProveedorEN() {
-		
-	}
-
+	
 	public int getCodigo() {
 		return codigo;
 	}
@@ -67,13 +69,14 @@ public class ProveedorEN {
 		this.email = email;
 	}
 
-	public boolean isEstado() {
-		return estado;
+	@Override
+	public String toString() {
+		return "ProveedorEN [codigo=" + codigo + ", razonSocial=" + razonSocial + ", ruc=" + ruc + ", direccion="
+				+ direccion + ", telefono=" + telefono + ", email=" + email + "]";
 	}
+	
+	
 
-	public void setEstado(boolean estado) {
-		this.estado = estado;
-	}
 	
 	
 }
