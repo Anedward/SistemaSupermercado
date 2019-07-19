@@ -10,8 +10,9 @@
 </h:head>
 
 <body class="fondo">
+<center class="fondoLogin">
 <h1 class="tema">MEGAJAEN SUPERMERCADO</h1>
-	<center class="fondoLogin">
+	
 
 		<h1>Login</h1>
 
@@ -23,8 +24,12 @@
 				<h:message for="txtUsuario" />
 
 				<h:outputLabel value="Contraseña" />
-				<h:inputText value="1" id="txtContrasenia" />
+				<h:inputSecret value="" id="txtContrasenia"/>
 				<h:message for="txtContrasenia" />
+				
+				<h:commandButton action="proveedor" immediate="true" value="Iniciar Session" />
+				<h:commandButton action="proveedor" immediate="true" value="Cancelar" />
+				
 			</h:panelGrid>
 		</h:form>
 	</center>
