@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+	<f:metadata>
+		<f:viewParam name="id" value="#{productoController.id}"></f:viewParam>
+		<f:viewAction action="#{productoController.loadData()}"/>
+	</f:metadata>
+
+</h:head> 
+
+<body> 
+
+<h:form>
+	<h1>LISTADO DE PRODUCTOS</h1>
+	<h:dataTable value="#{productoController.listaProductos}" var="producto" border="1">
+		<h:column>
+			<f:facet name="header">Código</f:facet>
+			#{producto.codigo}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Nombre</f:facet>
+			#{producto.nombre}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Descripcion</f:facet>
+			#{producto.descripcion}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Precio de Compra</f:facet>
+			#{producto.precioCompra}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Precio de Venta</f:facet>
+			#{producto.precioVenta}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Stock</f:facet>
+			#{producto.stock}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Estado</f:facet>
+			#{producto.estado}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Calificacion</f:facet>
+			#{producto.calificacion}
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">Acciones</f:facet>
+			<h:commandButton action="#{productoController.editar(producto.codigo)}" immediate="true" value="Editar" />
+			<h:commandButton action="#{productoController.borrar(producto.codigo)}" immediate="true" value="Borrar" />
+			
+		</h:column>
+	
+	</h:dataTable>
+
+	<h:commandButton action="#{productoController.nuevo()}" immediate="true" value="Nuevo" />
+	<h:commandButton action="productos" immediate="true" value="Principal" />
+
+</h:form>
+
+
+</body>  
+</html>
