@@ -1,5 +1,5 @@
 /target/
-
+MANIFEST.MF
 /.settings/
 .classpath
 pom.xml.tag
