@@ -3,12 +3,12 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"> 
-
+<head>
 	<f:metadata>
 		<f:viewParam name="id" value="#{proveedorMB.id}"></f:viewParam>
 		<f:viewAction action="#{proveedorMB.loadData()}" />
 	</f:metadata>
-
+</head>
 <body> 
 
 <h1>REGISTRO DE PROVEEDORES</h1>
@@ -43,6 +43,8 @@
 			<h:inputText value="#{proveedorMB.proveedor.email}"
 				id="txtEmail" />
 			<h:message for="txtEmail" />
+			
+			<h:inputText value="" />
 			
 			</h:panelGrid>
 		<h:commandButton action="#{proveedorMB.cargarDatos()}" value="Guardar" />
