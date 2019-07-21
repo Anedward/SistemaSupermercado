@@ -1,15 +1,21 @@
 package com.megajaen.controlador;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import com.megajaen.entidades.CategoriaEN;
+import com.megajaen.entidades.ProductoEN;
 import com.megajaen.on.CategoriaON;
 
+@ManagedBean
+@ViewScoped
 public class CategoriaController {
 
 	private CategoriaEN categoria = new CategoriaEN();
@@ -17,6 +23,7 @@ public class CategoriaController {
 	private int id;
 
 	private List<CategoriaEN> listaCategorias;
+	private List<String> listaCat;
 
 	@Inject
 	private FacesContext fc;
@@ -91,6 +98,28 @@ public class CategoriaController {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	public void addProducto() {
+		categoria.addProducto(new ProductoEN());
+		System.out.println("Productos" + categoria.getProducto().size());
+	}
+	
+	public List<String> comboCat(){
+		listaCategorias = catON.listaCategorias();
+		listaCat= new ArrayList<>();
+		
+		for (CategoriaEN cate : listaCategorias) {
+			listaCat.add(cate.getDescripcion());
+			System.out.println(cate.getCodigo());
+		}
+		return listaCat;
+		
+	}
+	
+	public String nuevo() {
+		categoria = new CategoriaEN();
+		return "categoria";
 	}
 
 }
