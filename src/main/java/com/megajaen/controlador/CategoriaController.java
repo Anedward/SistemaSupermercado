@@ -146,7 +146,7 @@ public class CategoriaController {
 		listaProveedores=provON.getListadoProveedor();
 		listaProv=new ArrayList<>();
 		for (ProveedorEN prove : listaProveedores) {
-			listaCat.add(prove.getRazonSocial());
+			listaProv.add(prove.getRazonSocial());
 			System.out.println(prove.getCodigo());
 			
 		}
@@ -157,6 +157,16 @@ public class CategoriaController {
 	public String nuevo() {
 		categoria = new CategoriaEN();
 		return "categoria";
+	}
+	
+	public String nuevoProveedor() {
+		//proveedor = new ProveedorEN();
+		return "proveedor";
+	}
+	
+	public String nuevoPrincipal() {
+		//proveedor = new ProveedorEN();
+		return "productos";
 	}
 
 }
