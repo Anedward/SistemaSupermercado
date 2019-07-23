@@ -1,40 +1,37 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
 
 <h:head>
-	<title>LOGIN</title>
-	<link href="css/estilos.css" type="text/css" rel="stylesheet" />
-</h:head>
 
-<body class="fondo">
-	
-			<center class="fondoLogin">
-				<h1 class="tema">MEGAJAEN SUPERMERCADO</h1>
+</h:head> 
+
+<body> 
+<h1>Iniciar Sesion</h1>
+
+<h:form>
+
+ <p:messages id="messages" />
+ 
+<p:panelGrid columns="3">
+
+<p:outputLabel value="Mail:" />
+<p:inputText value="#{usuarioControlador.nombreusuario}" id="nomb" />
+<p:message for="nomb"/>
 
 
-				<h1>Login</h1>
+<p:outputLabel value="PASSWORD:" />
+<p:password value="#{usuarioControlador.password}" id="pass" />
+<p:message for="pass"/>
 
-				<h:form>
-					<h:panelGrid columns="3">
+<p:commandButton icon="ui-icon-star" action="#{usuarioControlador.Iniciar()}" value="Iniciar" />
+</p:panelGrid>
 
-						<h:outputLabel value="Usuario" />
-						<h:inputText value="1" id="txtUsuario" />
-						<h:message for="txtUsuario" />
+</h:form>
 
-						<h:outputLabel value="Contraseña" />
-						<h:inputSecret value="" id="txtContrasenia" />
-						<h:message for="txtContrasenia" />
-
-						<h:commandButton action="proveedor" immediate="true"
-							value="Iniciar Session" />
-						<h:commandButton action="proveedor" immediate="true"
-							value="Cancelar" />
-
-					</h:panelGrid>
-				</h:form>
-			</center>
-</body>
+</body> 
 </html>
