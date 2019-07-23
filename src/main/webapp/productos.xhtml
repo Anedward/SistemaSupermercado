@@ -18,6 +18,12 @@
 						  <f:selectItems itemValue="" value="#{categoriaController.comboCat()}"  /> 
 						
 						</h:selectOneMenu>
+						
+		<h:selectOneMenu value="#{categoriaController.proveedor.razonSocial}">
+						<f:selectItem itemValue=""  itemLabel="Seleccionar" />
+						  <f:selectItems itemValue="" value="#{categoriaController.comboProv()}"  /> 
+						
+						</h:selectOneMenu>
 						 
 		
 	    <h:commandButton action="#{categoriaController.nuevo()}" immediate="true" value="Nuevo" />
