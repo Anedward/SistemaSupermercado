@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
@@ -7,30 +6,33 @@
       xmlns:p="http://primefaces.org/ui"> 
 
 <h:head>
-
+<link rel="stylesheet" type="text/css" href="css/registration.css" />
+	<link rel="stylesheet" type="text/css" href="../css/main.css" />
 </h:head> 
 
-<body> 
+<body  align="center" > 
+
+<h:graphicImage value = "/images/logoMJ1.png"/> 
 <h1>Iniciar Sesion</h1>
 
-<h:form>
+<h:form align="center"  >
 
  <p:messages id="messages" />
  
-<p:panelGrid columns="3">
+<p:panelGrid columns="3" >
 
 <p:outputLabel value="Mail:" />
 <p:inputText value="#{usuarioControlador.nombreusuario}" id="nomb" />
 <p:message for="nomb"/>
 
 
-<p:outputLabel value="PASSWORD:" />
+<p:outputLabel value="Contraseña:" />
 <p:password value="#{usuarioControlador.password}" id="pass" />
 <p:message for="pass"/>
 
-<p:commandButton icon="ui-icon-star" action="#{usuarioControlador.Iniciar()}" value="Iniciar" />
-</p:panelGrid>
 
+</p:panelGrid>
+<p:commandButton icon="ui-icon-star" action="#{usuarioControlador.Iniciar()}" value="Iniciar" />
 </h:form>
 
 </body> 
