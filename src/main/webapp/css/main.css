@@ -1,0 +1,42 @@
+* {
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+	box-sizing: border-box;
+}
+
+#cabecera {
+	border: 1px;
+	background-color: #008000;
+	display: block;
+	display: flex;
+	color: white;
+	min-height: 105px;
+	text-align: center;
+	border: 1px solid #ffff;
+}
+
+#pie {
+	border: 1px;
+	background-color: #008000;
+	display: block;
+	display: flex;
+	color: white;
+	min-height: 98px;
+	text-align: center;
+	border: 1px solid #ffff;
+}
+
+h2 {
+	font-family: "Stencil";
+	color: white;
+}
+
+p {
+	margin: auto;
+	font-family: "Georgia";
+	font-size: 15px;
+	font-style: oblique;
+	font-weight: bold;
+	font-style: oblique;
+}
