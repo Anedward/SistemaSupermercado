@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+<f:metadata>
+	<f:viewParam name="id" value="#{categoriaController.id}"></f:viewParam>
+	<f:viewAction action="#{categoriaController.loadData()}"></f:viewAction>
+	</f:metadata>
+</h:head>
+<body>
+
+	<h:form>
+		<center>
+			<h1>LISTADO DE CATEGORÍAS</h1>
+			<h:dataTable value="#{categoriaController.listaCategorias}"
+				var="categoria" border="1">
+				<h:column>
+					<f:facet name="header">Código</f:facet>
+			#{categoria.codigo}
+		</h:column>
+				<h:column>
+					<f:facet name="header">Descripción</f:facet>
+			#{categoria.descripcion}
+		</h:column>
+
+				<h:column>
+					<f:facet name="header">Acciones</f:facet>
+					<h:commandButton
+						action="#{categoriaController.editar(categoria.codigo)}"
+						immediate="true" value="Editar" />
+					<h:commandButton
+						action="#{categoriaController.borrar(categoria.codigo)}"
+						immediate="true" value="Borrar" />
+				</h:column>
+
+			</h:dataTable>
+			<br/>
+			
+			<h:commandButton action="#{categoriaController.nuevo()}"
+				immediate="true" value="Nuevo" /><br/><br/>
+				
+			<h:commandButton action="categoria" immediate="true"
+				value="Regresar" />
+				
+
+		</center>
+	</h:form>
+
+</body>
+</html>
+

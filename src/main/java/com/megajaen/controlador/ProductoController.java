@@ -30,6 +30,7 @@ public class ProductoController {
 
 	@PostConstruct
 	public void init() {
+		producto = new ProductoEN();
 		System.out.println("init " + producto);
 		listaProductos = prodON.listaProductos();
 	}

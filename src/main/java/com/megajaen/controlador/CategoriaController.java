@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.inject.New;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -33,6 +34,7 @@ public class CategoriaController {
 
 	@PostConstruct
 	public void init() {
+		categoria = new CategoriaEN();
 		System.out.println("init " + categoria);
 		listaCategorias = catON.listaCategorias();
 	}
@@ -75,7 +77,8 @@ public class CategoriaController {
 		if (id == 0)
 			return;
 		System.out.println("codigo editar " + this.id);
-		categoria = catON.getCategoria(this.id);
+		categoria = catON.getCategoria(id);
+		System.out.println(categoria);
 		if (categoria == null) {
 			categoria = new CategoriaEN();
 			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "El Registro no Existe", "Información");
@@ -85,7 +88,8 @@ public class CategoriaController {
 	}
 
 	public String editar(int codigo) {
-		return "categorias?faces-redirect=true&id=" + codigo;
+		
+		return "categoria?faces-redirect=true&id=" + codigo;
 	}
 
 	public String borrar(int codigo) {
@@ -111,7 +115,6 @@ public class CategoriaController {
 		
 		for (CategoriaEN cate : listaCategorias) {
 			listaCat.add(cate.getDescripcion());
-			System.out.println(cate.getCodigo());
 		}
 		return listaCat;
 		
@@ -120,6 +123,10 @@ public class CategoriaController {
 	public String nuevo() {
 		categoria = new CategoriaEN();
 		return "categoria";
+	}
+	
+	public String listado() {
+		return "listaCategoria";
 	}
 
 }
