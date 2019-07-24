@@ -33,7 +33,7 @@ public class CategoriaON {
 	}
 
 	public CategoriaEN getCategoria(int codigo) {
-		CategoriaEN auxcat = catdao.read3(codigo);
+		CategoriaEN auxcat = catdao.read(codigo);
 		return auxcat;
 	}
 }
