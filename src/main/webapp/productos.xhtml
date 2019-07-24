@@ -1,15 +1,106 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 
-	<h:head>
-	
-	</h:head>
-	
-	<body>
-	
-	</body>
+<h:head>
+
+</h:head>
+
+<body>
+
+	<h1>Productos</h1>
+	<h:form>
+		<center>
+
+			<h:panelGrid columns="3">
+
+				<!-- <h:selectOneMenu value="#{categoriaController.categoria.descripcion}">
+						<f:selectItem itemValue=""  itemLabel="Seleccionar" />
+						  <f:selectItems itemValue="" value="#{categoriaController.comboCat()}"  /> 
+						
+						</h:selectOneMenu> -->
+
+
+				<h:commandButton action="#{categoriaController.nuevo()}"
+					immediate="true" value="Nuevo" />
+
+
+				<h:outputLabel value="Productos" />
+				<h:dataTable value="#{categoriaController.categoria.producto}"
+					var="productos">
+					<h:column>
+						<f:facet name="header">Código</f:facet>
+						<h:inputText value="#{productos.codigo}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Nombre</f:facet>
+						<h:inputText value="#{productos.nombre}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Descripcion</f:facet>
+						<h:inputText value="#{productos.descripcion}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">PrecioCompra</f:facet>
+						<h:inputText value="#{productos.precioCompra}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">PrecioVenta</f:facet>
+						<h:inputText value="#{productos.precioVenta}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Stock</f:facet>
+						<h:inputText value="#{productos.stock}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Estado</f:facet>
+						<h:inputText value="#{productos.estado}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Calificacion</f:facet>
+						<h:inputText value="#{productos.calificacion}" />
+					</h:column>
+
+				</h:dataTable>
+
+
+				<h:commandButton action="#{categoriaController.addProducto()}"
+					value="+ productos" />
+
+				<h:commandButton action="#{productoController.cargarDatos()}"
+					value="Guardar" />
+			</h:panelGrid>
+
+
+			<h:commandButton action="#{productoController.nuevo()}"
+				immediate="true" value="Nuevo" />
+
+			<h:commandButton action="#{productoController.listado()}"
+				immediate="true" value="Listado" />
+		</center>
+	</h:form>
+
+	<!-- <h2>Seleccionar imagen del Producto</h2>
+		
+			Shows the error or success message
+			<h:outputText value="#{fileUploadMBean.message}"
+				rendered="#{!empty fileUploadMBean.message}"></h:outputText>
+			notice the enctype for file upload
+			<h:form prependid="false" enctype="multipart/form-data">
+				<h:panelGrid>
+					input for files
+					<h:inputFile value="#{fileUploadMBean.file1}"></h:inputFile>
+					action which is responsible for uploading file(s)
+					<h:commandButton action="#{fileUploadMBean.uploadFile()}"
+						value="Upload"></h:commandButton>
+				</h:panelGrid>
+			</h:form>
+	 -->
+
+</body>
 </html>
