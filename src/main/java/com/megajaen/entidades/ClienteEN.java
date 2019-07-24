@@ -62,7 +62,7 @@ public class ClienteEN {
 
 	public String getFechaRegistro() {
 		
-	return new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+	return new SimpleDateFormat("dd-MMMM-yyyy").format(new Date());
 	
 	}
 

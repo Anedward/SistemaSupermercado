@@ -3,41 +3,44 @@ package com.megajaen.entidades;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name="USUARIOEN")
+@Table(name="usuarioen")
 public class UsuarioEN {
-
+	
+	
 	@Id
-	@GeneratedValue
-	@Column(name="usr_codigo")
-	private int codigo;
-
+	@Column(name="usu_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	
+	@Column(name="usu_emailusuario")
 	@NotNull
-	@Column(name = "usr_email")
-	private String email;
-
+	private String emailusuario;
+	
+	@Column(name="usu_contrasenia")
 	@NotNull
-	@Column(name = "usr_password")
 	private String contrasenia;
 
-	public int getCodigo() {
-		return codigo;
+	public int getId() {
+		return id;
 	}
 
-	public void setCodigo(int codigo) {
-		this.codigo = codigo;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public String getEmail() {
-		return email;
+	
+	public String getEmailusuario() {
+		return emailusuario;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setEmailusuario(String emailusuario) {
+		this.emailusuario = emailusuario;
 	}
 
 	public String getContrasenia() {
@@ -47,10 +50,8 @@ public class UsuarioEN {
 	public void setContrasenia(String contrasenia) {
 		this.contrasenia = contrasenia;
 	}
-
-	@Override
-	public String toString() {
-		return "UsuarioEN [codigo=" + codigo + ", email=" + email + ", contrasenia=" + contrasenia  + "]";
-	}
-
+	
+	
+	
+	
 }

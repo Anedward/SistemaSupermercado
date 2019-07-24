@@ -8,7 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import com.megajaen.entidades.ClienteEN;
-
+import com.megajaen.entidades.UsuarioEN;
 @Stateless
 public class ClienteDAO {
 
@@ -95,6 +95,15 @@ public class ClienteDAO {
 		List<ClienteEN> clientes = q.getResultList();
 		return clientes;
 
+	}
+	
+	public List<UsuarioEN> listadousuarioLog(String un, String pass) {
+		String  jpql = "SELECT u FROM UsuarioEN u WHERE u.emailusuario=:un AND u.contrasenia=:pass";
+		Query query = em.createQuery(jpql, UsuarioEN.class);
+		query.setParameter("un", un);
+		query.setParameter("pass", pass);
+		List<UsuarioEN> listado = query.getResultList();
+		return listado;
 	}
 
 }
