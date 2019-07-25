@@ -2,17 +2,14 @@ package com.megajaen.dao;
 
 import java.util.List;
 
-import javax.ejb.Startup;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import com.megajaen.entidades.CategoriaEN;
-import com.megajaen.entidades.ProductoEN;
 
 @Stateless
-@Startup
 public class CategoriaDAO {
 
 	@Inject
@@ -33,17 +30,24 @@ public class CategoriaDAO {
 		return em.find(CategoriaEN.class, id);
 	}
 	
+	public CategoriaEN readNombre(String nombre) {
+		return em.find(CategoriaEN.class, nombre);
+	}
+
+	public CategoriaEN read2(int id) {
+		CategoriaEN cat = em.find(CategoriaEN.class, id);
+		cat.getProducto().size();
+		return cat;
+	}
+
 	public CategoriaEN read3(int id) {
-		String jpql= "SELECT cat "
-				+"      FROM CategoriaEN cat "
-				+ "        JOIN FETCH cat.producto p "
-				+"   WHERE cat.codigo = :codigo";
-		Query q= em.createQuery(jpql, CategoriaEN.class);
-		q.setParameter("codigo", id);
-		
-		CategoriaEN c= (CategoriaEN) q.getSingleResult();
-		
-		return c;
+		String jpql = "SELECT cat " + "	 FROM CategoriaEN cat " + "		  JOIN FETCH cat.producto p "
+				+ " WHERE cat.codigo = :a";
+		Query q = em.createQuery(jpql, CategoriaEN.class);
+		q.setParameter("a", id);
+		CategoriaEN cat = (CategoriaEN) q.getSingleResult();
+
+		return cat;
 	}
 
 	public void update(CategoriaEN cat) {
@@ -55,31 +59,30 @@ public class CategoriaDAO {
 		em.remove(cat);
 	}
 
-	public List<CategoriaEN> listaCategoria() {
-		String jpql = "SELECT cat FROM CategoriaEN cat";
+	public List<CategoriaEN> getCategoria() {
+		String jpql = "SELECT cat FROM CategoriaEN cat ";
 		Query q = em.createQuery(jpql, CategoriaEN.class);
 		List<CategoriaEN> categorias = q.getResultList();
 		return categorias;
 	}
 
-	public List<CategoriaEN> listaCategoriaPorNombre(String filtroBusqueda) {
-		String jpql = "SELECT cat FROM CategoriaEN cat " + "	WHERE cat.descripcion LIKE :filtro ";
-		Query q = em.createQuery(jpql, CategoriaEN.class);
-		q.setParameter("filtro", "%" + filtroBusqueda + "%");
-		List<CategoriaEN> categorias = q.getResultList();
-		return categorias;
-	}
-	
-	public List<CategoriaEN> getCategoria2(){
+	public List<CategoriaEN> getCategoria2() {
 		String jpql = "SELECT cat FROM CategoriaEN cat ";
-		
 		Query q = em.createQuery(jpql, CategoriaEN.class);
-		
 		List<CategoriaEN> categorias = q.getResultList();
-		
-		for(CategoriaEN cat: categorias) {
+		for (CategoriaEN cat : categorias) {
 			cat.getProducto().size();
 		}
+
 		return categorias;
 	}
+
+	public List<CategoriaEN> getCategoriaDescripcion(String filtroBusqued) {
+		String jpql = "SELECT cat FROM CategoriaEN cat " + "	WHERE cat.descripcion LIKE :filtro ";
+		Query q = em.createQuery(jpql, CategoriaEN.class);
+		q.setParameter("filtro", "%" + filtroBusqued + "%");
+		List<CategoriaEN> categorias = q.getResultList();
+		return categorias;
+	}
+
 }

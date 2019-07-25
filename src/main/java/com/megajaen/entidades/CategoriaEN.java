@@ -12,11 +12,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
-//import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 public class CategoriaEN {
-
+	
 	@Id
 	@Column(name="cat_codigo")
 	private int codigo;
@@ -27,6 +28,7 @@ public class CategoriaEN {
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name="cat_producto")
+	@JsonIgnore
 	private List<ProductoEN> producto;
 
 	public int getCodigo() {
@@ -52,12 +54,10 @@ public class CategoriaEN {
 	public void setProducto(List<ProductoEN> producto) {
 		this.producto = producto;
 	}
-
-	
 	
 	@Override
 	public String toString() {
-		return "CategoriaEN [codigo=" + codigo + ", descripcion=" + descripcion + ", producto=" + producto + "]";
+		return "CategoriaEN [codigo=" + codigo + ", descripcion=" + descripcion + "]";
 	}
 
 	public void addProducto(ProductoEN prod) {
@@ -66,5 +66,5 @@ public class CategoriaEN {
 		}
 		this.producto.add(prod);
 	}
-		
+	
 }

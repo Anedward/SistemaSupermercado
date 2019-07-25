@@ -9,32 +9,38 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.UploadedFile;
+
+import com.megajaen.entidades.CategoriaEN;
 import com.megajaen.entidades.ProductoEN;
+import com.megajaen.on.CategoriaON;
 import com.megajaen.on.ProductoON;
+
 
 @ManagedBean
 @ViewScoped
 public class ProductoController {
 	
-	private ProductoEN producto = new ProductoEN();
+private ProductoEN producto;
+private UploadedFile file;
+private List<CategoriaEN> listaCategorias;
 
-	private String id;
-
-	private List<ProductoEN> listaProductos;
-
+@Inject
+private CategoriaON catON;
+	
+	@Inject
+	private ProductoON prodON; 
+	
 	@Inject
 	private FacesContext fc;
-
-	@Inject
-	private ProductoON prodON;
-
+	
 	@PostConstruct
 	public void init() {
 		producto = new ProductoEN();
-		System.out.println("init " + producto);
-		listaProductos = prodON.listaProductos();
+		listaCategorias=catON.getListadoCategorias();
 	}
-
+	
 	public ProductoEN getProducto() {
 		return producto;
 	}
@@ -43,69 +49,59 @@ public class ProductoController {
 		this.producto = producto;
 	}
 
-	public String getId() {
-		return id;
+	public List<CategoriaEN> getListaCategorias() {
+		return listaCategorias;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setListaCategorias(List<CategoriaEN> listaCategorias) {
+		this.listaCategorias = listaCategorias;
 	}
 
-	public List<ProductoEN> getListaProductos() {
-		return listaProductos;
-	}
-
-	public void setListaProductos(List<ProductoEN> listaProductos) {
-		this.listaProductos = listaProductos;
-	}
-
-	public String cargarDatos() {
-		try {
-			prodON.guardar(producto);
-			init();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-
-	public void loadData() {
-		if (id == " ")
-			return;
-		System.out.println("codigo editar " + this.id);
-		producto = prodON.getProducto(this.id);
-		if (producto == null) {
-			producto = new ProductoEN();
-			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "El Registro no Existe", "Información");
-			fc.addMessage(null, msg);
-		}
+	public String guardarDatos() {
+		prodON.guardarProducto(producto);
 		System.out.println(producto);
-	}
-
-	public String editar(String codigo) {
-		return "productos?faces-redirect=true&id=" + codigo;
-	}
-
-	public String borrar(String codigo) {
-		System.out.println("Codigo borrar " + codigo);
-		try {
-			prodON.borrar(codigo);
-			init();
-		} catch (Exception e) {
-			System.out.println("Error " + e.getMessage());
-			e.printStackTrace();
-		}
-		return null;
-	}
-	
-	public String nuevo() {
-		producto = new ProductoEN();
 		return "productos";
 	}
-
-	public String listado() {
-		return "listaProductos";
+	
+	
+	public void consultarCategoria() {
+		
+		CategoriaEN cat;
+		try {
+			cat = prodON.consultaCategoria(producto.getIdCategoriaTemp());
+			producto.setCategoria(cat);
+		} catch (Exception e) {
+			producto.setCategoria(null);
+			// TODO Auto-generated catch block
+			FacesMessage msg =  new FacesMessage(FacesMessage.SEVERITY_ERROR, 
+					e.getMessage(), "Error");
+			fc.addMessage("txtCategoria", msg);
+			
+			e.printStackTrace();
+		}
+		
 	}
-
+	
+	
+	 
+    public UploadedFile getFile() {
+        return file;
+    }
+ 
+    public void setFile(UploadedFile file) {
+        this.file = file;
+    }
+     
+    public void upload() {
+        if(file != null) {
+            FacesMessage message = new FacesMessage("Succesful", file.getFileName() + " is uploaded.");
+            FacesContext.getCurrentInstance().addMessage(null, message);
+        }
+    }
+     
+    public void handleFileUpload(FileUploadEvent event) {
+        FacesMessage msg = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
 
 }
