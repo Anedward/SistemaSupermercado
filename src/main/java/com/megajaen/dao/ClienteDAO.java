@@ -117,5 +117,16 @@ public class ClienteDAO {
 		return listado;
 	}
 	
+	/**public List<UsuarioEN> ingresoLogin(String email) {
+		String jpql="SELECT u.usu_emailusuario FROM UsuarioEN u WHERE u.usu_emailusuario LIKE :filtro";
+		
+		Query query = em.createNativeQuery(jpql, UsuarioEN.class);
+		query.setParameter("filtro", email);
+		List<UsuarioEN> usuario=query.getSingleResult();
+		return  usuario;
+		
+	}**/
+	
+	
 
 }
