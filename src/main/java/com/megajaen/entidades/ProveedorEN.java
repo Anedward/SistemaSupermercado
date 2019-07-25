@@ -31,7 +31,7 @@ public class ProveedorEN {
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name="prove_producto")
-	@JsonIgnore
+
 	private List<ProductoEN> producto;
 	
 	

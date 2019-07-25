@@ -54,7 +54,7 @@ public class ProductoEN {
 	
 	@OneToOne
 	@JoinColumn(name="prove_producto")
-	@JsonIgnore
+	//@JsonIgnore
 	private ProveedorEN proveedor;
 
 	@Transient

@@ -78,7 +78,7 @@ public class ProveedorDAO {
 	}
 
 	public List<ProveedorEN> getProveedorNombre(String filtroBusqued) {
-		String jpql = "SELECT prov FROM ProveedorEN prov " + "	WHERE prov.descripcion LIKE :filtro ";
+		String jpql = "SELECT prov FROM ProveedorEN prov " + "	WHERE prov.razonsocial LIKE :filtro ";
 		Query q = em.createQuery(jpql, ProveedorEN.class);
 		q.setParameter("filtro", "%" + filtroBusqued + "%");
 		List<ProveedorEN> proveedores = q.getResultList();
