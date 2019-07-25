@@ -7,5 +7,71 @@
 <h:head></h:head> 
 <body> 
 
+
+<h:form>
+		<center>
+			<h2>Lista de Productos</h2>
+		</center>
+
+		<h:dataTable value="#{productoController.listaProductos}" var="producs"
+			border="1">
+			
+			<h:column>
+				<f:facet name="header">CODIGO</f:facet>
+			#{producs.codigo}
+		</h:column>
+
+			<h:column>
+				<f:facet name="header">Nombre</f:facet>
+			#{producs.nombre}
+		</h:column>
+
+
+			<h:column>
+
+				<f:facet name="header">Precio Venta</f:facet>
+			#{producs.precioVenta}
+		</h:column>
+		
+		<h:column>
+
+				<f:facet name="header">Precio Compra</f:facet>
+			#{producs.precioCompra}
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">Descripcion</f:facet>
+			#{producs.descripcion}
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">Stock</f:facet>
+			#{producs.stock}
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">Calificacion</f:facet>
+			#{producs.calificacion}
+		</h:column>
+		
+
+			<h:column>
+
+				<f:facet name="header">Acciones</f:facet>
+
+
+				<h:commandButton action="#{shopcartMB.orderBy(producs)}"
+					immediate="true" value="Agregar al Carrito  " />
+
+
+			</h:column>
+
+		</h:dataTable>
+
+		
+
+	</h:form>
+
+
 </body> 
 </html>

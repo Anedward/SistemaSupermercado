@@ -1,5 +1,7 @@
 package com.megajaen.on;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -48,6 +50,34 @@ public ProveedorEN consultaProveedor(int codigoProveedor) throws Exception {
 		
 		return prov;
 	}
+
+public List<ProductoEN> getListadoProductos() {
+	return daoCategoria.getProductos2();
+
+}
+
+public ProductoEN getProducto(int codigo) {
+
+	ProductoEN aux = daoCategoria.read33(codigo);
+
+	return aux;
+}
+
+public void borrar(int codigo) throws Exception {
+	try {
+		daoCategoria.deletePro(codigo);
+	} catch (Exception e) {
+		throw new Exception("error al borrar " + e.getMessage());
+	}
+
+}
+
+public List<ProductoEN> getListadoNombre(ProductoEN prod) {
+	return daoCategoria.getProductosPorNombre(prod.getNombre());
+}
+
+
+
 	
 
 }

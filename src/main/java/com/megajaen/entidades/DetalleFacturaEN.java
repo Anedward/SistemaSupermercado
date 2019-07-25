@@ -1,17 +1,41 @@
 package com.megajaen.entidades;
 
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
+@Entity
 public class DetalleFacturaEN {
-		
+	@Id
+	@Column(name="detFac_codigo")
 	private int codigo;
-	private int cantidad;
-	private double precioUnitario;
-	private double precioTotal;
 	
-	public DetalleFacturaEN() {
+	@Column(name="detFac_cantidad")
+	private int cantidad;
 
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
+	@JoinColumn(name="fac_codigo", unique = true)
+	private FacturaEN factura;
+	
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
+	@JoinColumn(name="prod_codigo", unique = true)
+	private ProductoEN producto = new ProductoEN();
+
+	
+	
+	public FacturaEN getFactura() {
+		return factura;
 	}
+
+	public void setFactura(FacturaEN factura) {
+		this.factura = factura;
+	}
+
 
 	public int getCodigo() {
 		return codigo;
@@ -29,21 +53,30 @@ public class DetalleFacturaEN {
 		this.cantidad = cantidad;
 	}
 
-	public double getPrecioUnitario() {
-		return precioUnitario;
+	public ProductoEN getProducto() {
+		return producto;
 	}
 
-	public void setPrecioUnitario(double precioUnitario) {
-		this.precioUnitario = precioUnitario;
+	public void setProducto(ProductoEN producto) {
+		this.producto = producto;
 	}
 
-	public double getPrecioTotal() {
-		return precioTotal;
-	}
-
-	public void setPrecioTotal(double precioTotal) {
-		this.precioTotal = precioTotal;
+	public DetalleFacturaEN(ProductoEN producto, int cantidad) {
+		super();
+		this.producto = producto;
+		this.cantidad = cantidad;
 	}
 	
+	public DetalleFacturaEN() {
+		
+	}
+
 	
+	
+	
+	
+	
+
+	
+
 }

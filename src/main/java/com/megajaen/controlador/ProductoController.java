@@ -1,6 +1,8 @@
 package com.megajaen.controlador;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -28,6 +30,7 @@ private ProductoEN producto;
 private UploadedFile file;
 private List<CategoriaEN> listaCategorias;
 private List<ProveedorEN> listaProveedores;
+private List<ProductoEN> listaProductos;
 
 @Inject
 private CategoriaON catON;
@@ -46,6 +49,7 @@ private CategoriaON catON;
 		producto = new ProductoEN();
 		listaCategorias=catON.getListadoCategorias();
 		listaProveedores=provON.getListadoProveedor();
+		listaProductos=prodON.getListadoProductos();
 	}
 	
 	public ProductoEN getProducto() {
@@ -80,6 +84,15 @@ private CategoriaON catON;
 	}
 	
 	
+	
+	public List<ProductoEN> getListaProductos() {
+		return listaProductos;
+	}
+
+	public void setListaProductos(List<ProductoEN> listaProductos) {
+		this.listaProductos = listaProductos;
+	}
+
 	public void consultarCategoria() {
 		
 		CategoriaEN cat;
@@ -137,5 +150,20 @@ public void consultarProveedor() {
         FacesMessage msg = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
+    
+	public Map<ProductoEN, Integer> getContenidoCarrito() {
+		Map<ProductoEN, Integer> contenidoCarrito = new HashMap<>();
+		for (ProductoEN obj : listaProductos) {
+			if (contenidoCarrito.containsKey(obj)) {
+				contenidoCarrito.put(obj, contenidoCarrito.get(obj) + 1);
+			} else {
+				contenidoCarrito.put(obj, 1);
+			}
+		}
+		return contenidoCarrito;
+
+	}
+
+    
 
 }

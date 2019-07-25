@@ -1,12 +1,16 @@
 package com.megajaen.entidades;
 
 import java.util.Arrays;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
@@ -46,6 +50,8 @@ public class ProductoEN {
 	@Lob
 	private Byte[] imagen;
 	
+	@OneToMany(mappedBy = "producto", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<DetalleFacturaEN> items;
 	
 	@OneToOne
 	@JoinColumn(name="cat_producto")
@@ -192,16 +198,31 @@ public class ProductoEN {
 	public void setProveedor(ProveedorEN proveedor) {
 		this.proveedor = proveedor;
 	}
+	
+	
+
+
+	public List<DetalleFacturaEN> getItems() {
+		return items;
+	}
+
+
+	public void setItems(List<DetalleFacturaEN> items) {
+		this.items = items;
+	}
 
 
 	@Override
 	public String toString() {
 		return "ProductoEN [codigo=" + codigo + ", nombre=" + nombre + ", descripcion=" + descripcion
 				+ ", precioCompra=" + precioCompra + ", precioVenta=" + precioVenta + ", stock=" + stock
-				+ ", calificacion=" + calificacion + ", imagen=" + Arrays.toString(imagen) + ", categoria=" + categoria
-				+ ", proveedor=" + proveedor + ", idCategoriaTemp=" + idCategoriaTemp + ", idProveedorTemp="
-				+ idProveedorTemp + ", nomCategoriaTemp=" + nomCategoriaTemp + "]";
+				+ ", calificacion=" + calificacion + ", imagen=" + Arrays.toString(imagen) + ", items=" + items
+				+ ", categoria=" + categoria + ", proveedor=" + proveedor + ", idCategoriaTemp=" + idCategoriaTemp
+				+ ", idProveedorTemp=" + idProveedorTemp + ", nomCategoriaTemp=" + nomCategoriaTemp + "]";
 	}
+
+
+
 
 
 

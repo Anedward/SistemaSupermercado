@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head></h:head> 
+<body> 
+
+<h2>Mi Carito MEGAJAEN - Funciona!!</h2>
+	<h:form>
+		<h:dataTable var="it" value="#{shopcartMB.cart}">
+
+			<h:column>
+				<f:facet name="header">Opcion</f:facet>
+				<h:commandLink action="#{shopcartMB.delete(it)}" value="Borrar" onclick="return confirm('Estas seguro?')" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">id</f:facet>
+				<h:outputText value="#{it.producto.codigo}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Nombre</f:facet>
+				<h:outputText value="#{it.producto.nombre}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Precio</f:facet>
+				<h:outputText value="#{it.producto.precioVenta}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Cantidad</f:facet>
+				<h:outputText value="#{it.cantidad}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">SubTotal</f:facet>
+				<h:outputText value="#{it.producto.precioVenta * it.cantidad}" />
+			</h:column>
+			
+		</h:dataTable>
+	</h:form>
+	
+	<br></br>
+	sum:#{shopcartMB.sum()}
+	<br></br>
+	<h:link value="Continuar comprando" outcome="listarProductos"></h:link>
+
+
+</body> 
+</html>
