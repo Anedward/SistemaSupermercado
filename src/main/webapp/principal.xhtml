@@ -6,7 +6,8 @@
 
 <h:head></h:head> 
 <body> 
-
+<ui:composition template="/index.xhtml">
+		<ui:define name="body">
 <h:form>
 
 <h1>Mega Jaen</h1>
@@ -15,6 +16,10 @@
 <h:commandButton action="proveedor" value="Proveedor" />
 
 </h:form>
+
+</ui:define>
+
+	</ui:composition>
 
 </body> 
 </html>

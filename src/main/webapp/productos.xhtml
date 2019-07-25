@@ -12,6 +12,9 @@
 
 <body> 
 
+<ui:composition template="/index.xhtml">
+		<ui:define name="body">
+
 <h:form enctype="multipart/form-data">
   <p:growl id="messages" showDetail="true" />
   
@@ -83,7 +86,9 @@
 
 </h:form>
 
+</ui:define>
 
+	</ui:composition>
 
 </body> 
 </html>
