@@ -5,8 +5,10 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
 import com.megajaen.dao.CategoriaDAO;
+import com.megajaen.dao.ProveedorDAO;
 import com.megajaen.entidades.CategoriaEN;
 import com.megajaen.entidades.ProductoEN;
+import com.megajaen.entidades.ProveedorEN;
 
 
 
@@ -15,6 +17,9 @@ public class ProductoON {
 	
 	@Inject
 	private CategoriaDAO daoCategoria;
+	
+	@Inject
+	private ProveedorDAO daoProveedor;
 	
 	@Inject
 	private EntityManager em;
@@ -33,5 +38,16 @@ public class ProductoON {
 		
 		return cat;
 	}
+	
+public ProveedorEN consultaProveedor(int codigoProveedor) throws Exception {
+		
+		
+		ProveedorEN prov = daoProveedor.read(codigoProveedor);
+		if(prov==null)
+			throw new Exception("Proveedor  no existe");
+		
+		return prov;
+	}
+	
 
 }

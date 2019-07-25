@@ -51,9 +51,17 @@ public class ProductoEN {
 	@JoinColumn(name="cat_producto")
 	@JsonIgnore
 	private CategoriaEN categoria;
+	
+	@OneToOne
+	@JoinColumn(name="prove_producto")
+	@JsonIgnore
+	private ProveedorEN proveedor;
 
 	@Transient
 	private int idCategoriaTemp;
+	
+	@Transient
+	private int idProveedorTemp;
 	
 	@Transient
 	private String nomCategoriaTemp;
@@ -145,6 +153,18 @@ public class ProductoEN {
 	public void setIdCategoriaTemp(int idCategoriaTemp) {
 		this.idCategoriaTemp = idCategoriaTemp;
 	}
+	
+	
+
+	public int getIdProveedorTemp() {
+		return idProveedorTemp;
+	}
+
+
+	public void setIdProveedorTemp(int idProveedorTemp) {
+		this.idProveedorTemp = idProveedorTemp;
+	}
+
 
 	public String getNomCategoriaTemp() {
 		return nomCategoriaTemp;
@@ -162,6 +182,16 @@ public class ProductoEN {
 	public void setImagen(Byte[] imagen) {
 		this.imagen = imagen;
 	}
+	
+
+	public ProveedorEN getProveedor() {
+		return proveedor;
+	}
+
+
+	public void setProveedor(ProveedorEN proveedor) {
+		this.proveedor = proveedor;
+	}
 
 
 	@Override
@@ -169,8 +199,14 @@ public class ProductoEN {
 		return "ProductoEN [codigo=" + codigo + ", nombre=" + nombre + ", descripcion=" + descripcion
 				+ ", precioCompra=" + precioCompra + ", precioVenta=" + precioVenta + ", stock=" + stock
 				+ ", calificacion=" + calificacion + ", imagen=" + Arrays.toString(imagen) + ", categoria=" + categoria
-				+ "]";
+				+ ", proveedor=" + proveedor + ", idCategoriaTemp=" + idCategoriaTemp + ", idProveedorTemp="
+				+ idProveedorTemp + ", nomCategoriaTemp=" + nomCategoriaTemp + "]";
 	}
+
+
+
+
+
 
 
 	
