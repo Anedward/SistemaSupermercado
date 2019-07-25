@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import com.megajaen.dao.ClienteDAO;
 import com.megajaen.entidades.ClienteEN;
+import com.megajaen.entidades.UsuarioEN;
 
 
 @Stateless
@@ -46,9 +47,28 @@ public class ClienteON {
 
 	public ClienteEN getCliente(int codigo) {
 
+		
 		ClienteEN aux = dao.read3(codigo);
 
 		return aux;
 	}
+	
+	
+	
+	public List<UsuarioEN> listadousuarioLog(String un, String pass) {
+		
+		return dao.listadousuarioLog(un, pass);
+		
+	}
+	
+	
+public List<UsuarioEN> listadousuario() {
+		
+		return dao.listadousuario();
+		
+	}
+	
+	
+	
 
 }

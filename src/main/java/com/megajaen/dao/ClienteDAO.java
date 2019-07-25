@@ -2,6 +2,7 @@ package com.megajaen.dao;
 
 import java.util.List;
 
+import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -9,7 +10,7 @@ import javax.persistence.Query;
 
 import com.megajaen.entidades.ClienteEN;
 import com.megajaen.entidades.UsuarioEN;
-@Stateless
+@Stateful
 public class ClienteDAO {
 
 	@Inject
@@ -105,5 +106,16 @@ public class ClienteDAO {
 		List<UsuarioEN> listado = query.getResultList();
 		return listado;
 	}
+	
+	
+	
+	public List<UsuarioEN> listadousuario() {
+		String  jpql = "SELECT u FROM UsuarioEN u";
+		Query query = em.createQuery(jpql, UsuarioEN.class);
+		
+		List<UsuarioEN> listado = query.getResultList();
+		return listado;
+	}
+	
 
 }
