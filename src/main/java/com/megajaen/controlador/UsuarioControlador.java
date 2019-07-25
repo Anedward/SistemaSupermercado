@@ -10,6 +10,7 @@ import javax.inject.Inject;
 
 import com.megajaen.dao.ClienteDAO;
 import com.megajaen.entidades.UsuarioEN;
+import com.megajaen.on.ClienteON;
 
 
 @ManagedBean
@@ -21,7 +22,7 @@ public class UsuarioControlador {
 		private String password;
 		private UsuarioEN usuario;
 		@Inject
-		private ClienteDAO sdao;
+		private ClienteON con;
 		@Inject
 		private preferencias pre;
 		
@@ -30,49 +31,31 @@ public class UsuarioControlador {
 			return usuario;
 		}
 
-
-
-
 		public void setUsuario(UsuarioEN usuario) {
 			this.usuario = usuario;
 		}
-
-
-
 
 	public String getNombreusuario() {
 			return nombreusuario;
 		}
 
-
-
-
 		public void setNombreusuario(String nombreusuario) {
 			this.nombreusuario = nombreusuario;
 		}
-
-
-
 
 		public String getPassword() {
 			return password;
 		}
 
-
-
-
 		public void setPassword(String password) {
 			this.password = password;
 		}
-
-
-
 
 	public String Iniciar() {	
 		try {
 			if(nombreusuario!=null && password!=null) {
 				System.out.println("hola ");
-				 usuarios=sdao.listadousuarioLog(nombreusuario, password);
+				 usuarios=con.listadousuarioLog(nombreusuario, password);
 				if(usuarios.size()>0) {
 					usuario=usuarios.get(0);
 					pre.setUsuario(usuarios.get(0));
