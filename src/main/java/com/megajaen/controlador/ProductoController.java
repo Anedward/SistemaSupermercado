@@ -84,6 +84,16 @@ public class ProductoController {
 		this.listaProductos = listaProductos;
 	}
 	
+	public String guardarDatos() throws IOException {
+		upload();
+		System.out.println("Holaaa+++++"+file);
+		System.out.println("Holaaa ++++++ "+producto);
+		prodON.guardarProductoImg(producto, file);
+		System.out.println(producto);
+		System.out.println(file);
+		return "productos";
+	}
+	
 	public UploadedFile getFile() {
 		return file;
 	}
@@ -91,6 +101,8 @@ public class ProductoController {
 	public void setFile(UploadedFile file) {
 		this.file = file;
 	}
+	
+	
 	
 	
 	public void consultarCategoria() {
@@ -151,16 +163,9 @@ public class ProductoController {
 		return contenidoCarrito;
 
 	}
-	
-	public String guardarDatos() throws IOException {
-		upload();
-		System.out.println("Holaaa"+file);
-		System.out.println(producto);
-		prodON.guardarProductoImg(producto, file);
-		System.out.println(producto);
-		System.out.println(file);
-		return "productos";
-	}
+
 
 
 }
+
+

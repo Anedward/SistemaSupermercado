@@ -10,7 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
@@ -61,7 +60,7 @@ public class ProductoEN {
 	
 	@OneToOne
 	@JoinColumn(name="prove_producto")
-	//@JsonIgnore
+	@JsonIgnore
 	private ProveedorEN proveedor;
 
 	@Transient
@@ -189,24 +188,18 @@ public class ProductoEN {
 		this.imagen = imagen;
 	}
 
-
 	public ProveedorEN getProveedor() {
 		return proveedor;
 	}
-
 
 	public void setProveedor(ProveedorEN proveedor) {
 		this.proveedor = proveedor;
 	}
 	
-	
-
-
 	public List<DetalleFacturaEN> getItems() {
 		return items;
 	}
-
-
+	
 	public void setItems(List<DetalleFacturaEN> items) {
 		this.items = items;
 	}

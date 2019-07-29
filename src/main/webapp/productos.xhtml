@@ -57,6 +57,16 @@
 			#{productoController.producto.categoria.descripcion}
 		</h:panelGroup>  
 		
+		<h:outputLabel value="Proveedor" />
+
+		 <h:inputText value="#{productoController.producto.idProveedorTemp}" id="txtProveedor" >
+			<f:ajax listener="#{productoController.consultarProveedor()}" render="datosProveedor"/>
+		</h:inputText>
+		<h:panelGroup id="datosProveedor">
+			<h:message for="txtProveedor"/>
+			#{productoController.producto.proveedor.razonSocial}
+		</h:panelGroup>
+		
 		
 		<h:outputLabel value="Imagen" />
 		<p:fileUpload value="#{productoController.file}" mode="simple"/>
