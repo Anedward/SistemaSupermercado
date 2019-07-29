@@ -71,6 +71,11 @@ public class ProductoON {
 		return daoCategoria.getProductos2();
 
 	}
+	
+	public List<ProductoEN> getListadoFotos() {
+		return daoProducto.ListarFotos();
+
+	}
 
 	public ProductoEN getProducto(int codigo) {
 
