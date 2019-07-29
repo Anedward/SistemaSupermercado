@@ -5,56 +5,59 @@
       xmlns:h="http://java.sun.com/jsf/html"> 
 <head>
 	<f:metadata>
-		<f:viewParam name="id" value="#{proveedorMB.id}"></f:viewParam>
-		<f:viewAction action="#{proveedorMB.loadData()}" />
+		<f:viewParam name="id" value="#{proveedorController.id}"></f:viewParam>
+		<f:viewAction action="#{proveedorController.loadData()}" />
 	</f:metadata>
 </head>
 <body> 
+
+<ui:composition template="/index.xhtml">
+		<ui:define name="body">
+
 
 <h1>REGISTRO DE PROVEEDORES</h1>
 
 	<h:form>
 		<h:panelGrid columns="3">
 			<h:outputLabel value="Codigo" />
-			<h:inputText value="#{proveedorMB.proveedor.codigo}"
+			<h:inputText value="#{proveedorController.proveedor.codigo}"
 				id="txtCodigo" />
 			<h:message for="txtCodigo" />
 
 			<h:outputLabel value="Nombre" />
-			<h:inputText value="#{proveedorMB.proveedor.razonSocial}"
+			<h:inputText value="#{proveedorController.proveedor.razonSocial}"
 				id="txtNombre" />
 			<h:message for="txtNombre" />
 
 			<h:outputLabel value="RUC" />
-			<h:inputText value="#{proveedorMB.proveedor.ruc}" id="txtRUC" />
+			<h:inputText value="#{proveedorController.proveedor.ruc}" id="txtRUC" />
 			<h:message for="txtRUC" />
 
 			<h:outputLabel value="Direccion" />
-			<h:inputText value="#{proveedorMB.proveedor.direccion}"
+			<h:inputText value="#{proveedorController.proveedor.direccion}"
 				id="txtDireccion" />
 			<h:message for="txtDireccion" />
 
 			<h:outputLabel value="Telefono:" />
-			<h:inputText value="#{proveedorMB.proveedor.telefono}"
+			<h:inputText value="#{proveedorController.proveedor.telefono}"
 				id="txtTelefono" />
 			<h:message for="txtTelefono" />
 
 			<h:outputLabel value="Email" />
-			<h:inputText value="#{proveedorMB.proveedor.email}"
+			<h:inputText value="#{proveedorController.proveedor.email}"
 				id="txtEmail" />
 			<h:message for="txtEmail" />
 			
 						
 			</h:panelGrid>
-		<h:commandButton action="#{proveedorMB.cargarDatos()}" value="Guardar" />
-		<h:commandButton action="#{proveedorMB.nuevo()}" immediate="true" value="Nuevo" />
-		<h:commandButton action="#{proveedorMB.nuevo()}" immediate="true" value="Limpiar" />
+		<h:commandButton action="#{proveedorController.cargarDatos()}" value="Guardar" />
+		<h:commandButton action="#{proveedorController.nuevo()}" immediate="true" value="Nuevo" />
 		<h:commandButton action="productos" immediate="true" value="Principal" />
 			</h:form>
 			
 			<h:form>
 	<h1>LISTADO DE PROVEEDORES</h1>
-	<h:dataTable value="#{proveedorMB.listadoProveedor}" var="proveedor" border="1">
+	<h:dataTable value="#{proveedorController.listadoProveedor}" var="proveedor" border="1">
 		<h:column>
 			<f:facet name="header">Codigo</f:facet>
 			#{proveedor.codigo}
@@ -93,7 +96,9 @@
 
 </h:form>
 			
+</ui:define>
 
+	</ui:composition>
 
 
 </body> 

@@ -1,38 +1,58 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
 
-	<h:head></h:head>
-	<body>
-	
+<h:head>
+	<f:metadata>
+		<f:viewParam name="id" value="#{categoriaController.id}"></f:viewParam>
+		<f:viewAction action="#{categoriaController.loadData()}"></f:viewAction>
+	</f:metadata>
+</h:head>
+<body>
+
+<ui:composition template="/index.xhtml">
+		<ui:define name="body">
 	<h:form>
-	<center>
-	
-	<h:panelGrid columns="3">
-	
-	    
-		<h:outputLabel value="Codigo" />
-		<h:inputText value="#{categoriaController.categoria.codigo}" id="txtCodigo"/>
-		<h:message for="txtCodigo"/>
-		
-		
-		<h:outputLabel value="Nombre" />
-		<h:inputText value="#{categoriaController.categoria.descripcion}" id="txtDes"/>
-		<h:message for="txtDes"/>
-		
-		<h:commandButton action="#{categoriaController.cargarDatos()}" value="Guardar" />
-	</h:panelGrid>
-	
-			
-			<h:commandButton action="#{categoriaController.nuevo()}" immediate="true" value="Nuevo" />
-			<h:commandButton action="#{categoriaController.nuevoPrincipal()}" immediate="true" value="Nuevo" />
-	
-<!-- 	<h:commandButton action="#{productoController.listado()}" immediate="true" value="Listado" /> -->
-	</center>
-	</h:form>
-	
-	</body>
-</html>
+		<center>
 
+			<h1>GESTIÓN DE CATEGORÍAS</h1>
+			<h:panelGrid columns="3">
+
+				<h:outputLabel value="Codigo" />
+				<h:inputText value="#{categoriaController.categoria.codigo}"
+					id="txtCodigo" />
+				<h:message for="txtCodigo" />
+
+				<h:outputLabel value="Nombre" />
+				<h:inputText value="#{categoriaController.categoria.descripcion}"
+					id="txtDes" />
+				<h:message for="txtDes" />
+
+			</h:panelGrid>
+			<br />
+			<h:commandButton action="#{categoriaController.cargarDatos()}"
+				value="Guardar" />
+			<br /> <br />
+			<h:commandButton action="#{categoriaController.nuevo()}"
+				immediate="true" value="Nuevo" />
+			<br />
+			<br />
+
+
+			<h:commandButton action="#{categoriaController.listado()}"
+				immediate="true" value="Lista de Categorias" />
+			<br />
+			<br />
+
+			<h:commandButton action="productos" immediate="true"
+				value="Principal" />
+		</center>
+
+	</h:form>
+			</ui:define>
+			</ui:composition>
+
+</body>
+</html>

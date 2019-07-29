@@ -67,6 +67,10 @@ public List<UsuarioEN> listadousuario() {
 		return dao.listadousuario();
 		
 	}
+
+/**public List<UsuarioEN> ingreso(String email) {
+	return dao.ingresoLogin(email);
+}**/
 	
 	
 	

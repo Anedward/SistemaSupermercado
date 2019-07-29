@@ -1,50 +1,50 @@
 package com.megajaen.controlador;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import com.megajaen.entidades.CategoriaEN;
 import com.megajaen.entidades.ProductoEN;
-import com.megajaen.entidades.ProveedorEN;
 import com.megajaen.on.CategoriaON;
-import com.megajaen.on.ProveedorON;
 
 @ManagedBean
 @ViewScoped
 public class CategoriaController {
 
 	private CategoriaEN categoria = new CategoriaEN();
-	private ProveedorEN proveedor=new ProveedorEN();
-
-	private int id;
-
+	private CategoriaEN cate;
 	private List<CategoriaEN> listaCategorias;
-	private List<ProveedorEN> listaProveedores;
-	private List<String> listaCat;
-	private List<String> listaProv;
-
-	@Inject
-	private FacesContext fc;
-
+	
+	private int id;
+	
 	@Inject
 	private CategoriaON catON;
 	
-	@Inject
-	private ProveedorON provON;
-
+	private int codCat;
+	
 	@PostConstruct
 	public void init() {
-		System.out.println("init " + categoria);
-		listaCategorias = catON.listaCategorias();
+		categoria = new CategoriaEN();
+		//categoria.addProducto(new ProductoEN());
+		listaCategorias = catON.getListadoCategorias();
 	}
-
+	
+	public void loadData() {
+		System.out.println("codigo editar " + id);
+		if(id==0)
+			return;
+		categoria = catON.getCategoria(id);
+		System.out.println(categoria.getCodigo() + " " + categoria.getDescripcion() );
+		System.out.println("#telefonos: " + " " + categoria.getProducto().size());
+		for(ProductoEN prod : categoria.getProducto()) {
+			System.out.println("\t"+prod);
+		}		
+	}
+	
 	public CategoriaEN getCategoria() {
 		return categoria;
 	}
@@ -60,22 +60,13 @@ public class CategoriaController {
 	public void setListaCategorias(List<CategoriaEN> listaCategorias) {
 		this.listaCategorias = listaCategorias;
 	}
-	
 
-	public ProveedorEN getProveedor() {
-		return proveedor;
+	public CategoriaEN getCate() {
+		return cate;
 	}
 
-	public void setProveedor(ProveedorEN proveedor) {
-		this.proveedor = proveedor;
-	}
-
-	public List<ProveedorEN> getListaProveedores() {
-		return listaProveedores;
-	}
-
-	public void setListaProveedores(List<ProveedorEN> listaProveedores) {
-		this.listaProveedores = listaProveedores;
+	public void setCate(CategoriaEN cate) {
+		this.cate = cate;
 	}
 
 	public int getId() {
@@ -86,87 +77,72 @@ public class CategoriaController {
 		this.id = id;
 	}
 
+	public int getCodCat() {
+		return codCat;
+	}
+
+	public void setCodCat(int codCat) {
+		this.codCat = codCat;
+	}
+	
+	public CategoriaEN getCategoria(int codigoCat) {
+		
+		if(codigoCat == 0) {
+			throw new IllegalArgumentException("Codigo invalido");
+		}
+		for(CategoriaEN categoria : listaCategorias) {
+			if (codigoCat == (categoria.getCodigo())) {
+				return categoria;
+		}
+		
+	}
+		return null;
+	}
+
 	public String cargarDatos() {
+		
 		try {
 			catON.guardar(categoria);
 			init();
 		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		return null;
 	}
-
-	public void loadData() {
-		if (id == 0)
-			return;
-		System.out.println("codigo editar " + this.id);
-		categoria = catON.getCategoria(this.id);
-		if (categoria == null) {
-			categoria = new CategoriaEN();
-			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "El Registro no Existe", "Información");
-			fc.addMessage(null, msg);
-		}
-		System.out.println(categoria);
-	}
-
+	
 	public String editar(int codigo) {
-		return "categorias?faces-redirect=true&id=" + codigo;
+		
+		return "categoria?faces-redirect=true&id="+codigo;
 	}
-
+	
 	public String borrar(int codigo) {
-		System.out.println("Codigo borrar " + codigo);
+		System.out.println("codigo borrar " + codigo);
+		
 		try {
 			catON.borrar(codigo);
 			init();
 		} catch (Exception e) {
-			System.out.println("Error " + e.getMessage());
+			// TODO Auto-generated catch block
+			System.out.println("Error "+ e.getMessage());
 			e.printStackTrace();
 		}
+		
 		return null;
 	}
 	
-	public void addProducto() {
+/*	public void addProducto(){
 		categoria.addProducto(new ProductoEN());
-		System.out.println("Productos" + categoria.getProducto().size());
-	}
-	
-	public List<String> comboCat(){
-		listaCategorias = catON.listaCategorias();
-		listaCat= new ArrayList<>();
-		
-		for (CategoriaEN cate : listaCategorias) {
-			listaCat.add(cate.getDescripcion());
-			System.out.println(cate.getCodigo());
-		}
-		return listaCat;
-		
-	}
-	
-	public List<String> comboProv(){
-		listaProveedores=provON.getListadoProveedor();
-		listaProv=new ArrayList<>();
-		for (ProveedorEN prove : listaProveedores) {
-			listaProv.add(prove.getRazonSocial());
-			System.out.println(prove.getCodigo());
-			
-		}
-		return listaProv;
-		
-	}
+		System.out.println("cnt " + categoria.getProducto().size());
+	}*/
 	
 	public String nuevo() {
 		categoria = new CategoriaEN();
 		return "categoria";
 	}
 	
-	public String nuevoProveedor() {
-		//proveedor = new ProveedorEN();
-		return "proveedor";
+	public String listado() {
+		return "listaCategoria";
 	}
-	
-	public String nuevoPrincipal() {
-		//proveedor = new ProveedorEN();
-		return "productos";
-	}
-
 }

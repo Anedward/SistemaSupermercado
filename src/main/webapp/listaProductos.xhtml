@@ -4,66 +4,78 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"> 
 
-<h:head>
-	<f:metadata>
-		<f:viewParam name="id" value="#{productoController.id}"></f:viewParam>
-		<f:viewAction action="#{productoController.loadData()}"/>
-	</f:metadata>
-
-</h:head> 
-
+<h:head></h:head> 
 <body> 
 
+<ui:composition template="/index.xhtml">
+		<ui:define name="body">
+
 <h:form>
-	<h1>LISTADO DE PRODUCTOS</h1>
-	<h:dataTable value="#{productoController.listaProductos}" var="producto" border="1">
-		<h:column>
-			<f:facet name="header">Código</f:facet>
-			#{producto.codigo}
+		<center>
+			<h2>Lista de Productos</h2>
+		</center>
+
+		<h:dataTable value="#{productoController.listaProductos}" var="producs"
+			border="1">
+			
+			<h:column>
+				<f:facet name="header">CODIGO</f:facet>
+			#{producs.codigo}
 		</h:column>
-		<h:column>
-			<f:facet name="header">Nombre</f:facet>
-			#{producto.nombre}
+
+			<h:column>
+				<f:facet name="header">Nombre</f:facet>
+			#{producs.nombre}
 		</h:column>
-		<h:column>
-			<f:facet name="header">Descripcion</f:facet>
-			#{producto.descripcion}
-		</h:column>
-		<h:column>
-			<f:facet name="header">Precio de Compra</f:facet>
-			#{producto.precioCompra}
-		</h:column>
-		<h:column>
-			<f:facet name="header">Precio de Venta</f:facet>
-			#{producto.precioVenta}
-		</h:column>
-		<h:column>
-			<f:facet name="header">Stock</f:facet>
-			#{producto.stock}
-		</h:column>
-		<h:column>
-			<f:facet name="header">Estado</f:facet>
-			#{producto.estado}
-		</h:column>
-		<h:column>
-			<f:facet name="header">Calificacion</f:facet>
-			#{producto.calificacion}
+
+
+			<h:column>
+
+				<f:facet name="header">Precio Venta</f:facet>
+			#{producs.precioVenta}
 		</h:column>
 		
 		<h:column>
-			<f:facet name="header">Acciones</f:facet>
-			<h:commandButton action="#{productoController.editar(producto.codigo)}" immediate="true" value="Editar" />
-			<h:commandButton action="#{productoController.borrar(producto.codigo)}" immediate="true" value="Borrar" />
-			
+
+				<f:facet name="header">Precio Compra</f:facet>
+			#{producs.precioCompra}
 		</h:column>
-	
-	</h:dataTable>
+		
+		<h:column>
+			<f:facet name="header">Descripcion</f:facet>
+			#{producs.descripcion}
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">Stock</f:facet>
+			#{producs.stock}
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">Calificacion</f:facet>
+			#{producs.calificacion}
+		</h:column>
+		
 
-	<h:commandButton action="#{productoController.nuevo()}" immediate="true" value="Nuevo" />
-	<h:commandButton action="productos" immediate="true" value="Principal" />
+			<h:column>
 
-</h:form>
+				<f:facet name="header">Acciones</f:facet>
 
 
-</body>  
+				<h:commandButton action="#{shopcartMB.orderBy(producs)}"
+					immediate="true" value="Agregar al Carrito  " />
+
+
+			</h:column>
+
+		</h:dataTable>
+
+		<h:link value="Principal" outcome="productos"></h:link>
+
+	</h:form>
+</ui:define>
+
+	</ui:composition>
+
+</body> 
 </html>
