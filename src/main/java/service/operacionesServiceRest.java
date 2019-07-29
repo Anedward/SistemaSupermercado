@@ -39,5 +39,12 @@ public class operacionesServiceRest {
 		
 	}
 	
+	/**@GET
+	@Path("ingreso")
+	@Produces("application/json")
+	public List<UsuarioEN> ingreso(String email) {
+		return clienteON.ingreso(email);
+	}**/
+	
 
 }
