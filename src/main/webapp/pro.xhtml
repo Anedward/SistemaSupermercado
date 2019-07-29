@@ -12,9 +12,6 @@
 
 <body> 
 
-<ui:composition template="/index.xhtml">
-		<ui:define name="body">
-
 <h:form enctype="multipart/form-data">
   <p:growl id="messages" showDetail="true" />
   
@@ -47,7 +44,7 @@
 		<h:inputText value="#{productoController.producto.calificacion}" id="txtCali" />
 		<h:message for="txtCali"/>
 		
-		<h:outputLabel value="Categoria" />
+		<h:outputLabel value="Imagen del Producto" />
 
 		 <h:inputText value="#{productoController.producto.idCategoriaTemp}" id="txtCategoria" >
 			<f:ajax listener="#{productoController.consultarCategoria()}" render="datosCategoria"/>
@@ -58,16 +55,10 @@
 		</h:panelGroup>  
 		
 		
-		<h:outputLabel value="Imagen" />
 		<p:fileUpload value="#{productoController.file}" mode="simple"/>
 	
 		
-	
-		<h:outputText value="" />
 		<h:commandButton action="#{productoController.guardarDatos()}" value="Guardar" />
-		<h:commandButton action="categoria" value="+Categoria" />
-			<h:commandButton action="proveedor" value="+Proveedor" />
-			<h:commandButton action="listaProductos" value="ListaProductos" />
 	
 	</h:panelGrid>
 	
@@ -79,9 +70,8 @@
 
 </h:form>
 
-</ui:define>
 
-	</ui:composition>
 
 </body> 
 </html>
+

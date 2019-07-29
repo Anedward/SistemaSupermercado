@@ -3,6 +3,7 @@ package com.megajaen.entidades;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.enterprise.inject.Typed;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -47,8 +48,8 @@ public class ProductoEN {
 	private int calificacion;
 	
 	@Column(name="prod_imagen")
-	@Lob
-	private Byte[] imagen;
+	@Typed
+	private byte[] imagen;
 	
 	@OneToMany(mappedBy = "producto", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<DetalleFacturaEN> items;
@@ -181,14 +182,13 @@ public class ProductoEN {
 		this.nomCategoriaTemp = nomCategoriaTemp;
 	}
 	
-	public Byte[] getImagen() {
+	public byte[] getImagen() {
 		return imagen;
 	}
-
-	public void setImagen(Byte[] imagen) {
+	public void setImagen(byte[] imagen) {
 		this.imagen = imagen;
 	}
-	
+
 
 	public ProveedorEN getProveedor() {
 		return proveedor;
@@ -219,18 +219,7 @@ public class ProductoEN {
 				+ ", calificacion=" + calificacion + ", imagen=" + Arrays.toString(imagen) + ", items=" + items
 				+ ", categoria=" + categoria + ", proveedor=" + proveedor + ", idCategoriaTemp=" + idCategoriaTemp
 				+ ", idProveedorTemp=" + idProveedorTemp + ", nomCategoriaTemp=" + nomCategoriaTemp + "]";
-	}
-
-
-
-
-
-
-
-
-
-
-	
+	}	
 	
 
 }

@@ -1,5 +1,6 @@
 package com.megajaen.controlador;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,37 +22,36 @@ import com.megajaen.on.CategoriaON;
 import com.megajaen.on.ProductoON;
 import com.megajaen.on.ProveedorON;
 
-
 @ManagedBean
 @ViewScoped
 public class ProductoController {
-	
-private ProductoEN producto;
-private UploadedFile file;
-private List<CategoriaEN> listaCategorias;
-private List<ProveedorEN> listaProveedores;
-private List<ProductoEN> listaProductos;
 
-@Inject
-private CategoriaON catON;
-	
+	private ProductoEN producto;
+	private UploadedFile file;
+	private List<CategoriaEN> listaCategorias;
+	private List<ProveedorEN> listaProveedores;
+	private List<ProductoEN> listaProductos;
+
 	@Inject
-	private ProductoON prodON; 
-	
+	private CategoriaON catON;
+
 	@Inject
-	private ProveedorON provON; 
-	
+	private ProductoON prodON;
+
+	@Inject
+	private ProveedorON provON;
+
 	@Inject
 	private FacesContext fc;
-	
+
 	@PostConstruct
 	public void init() {
 		producto = new ProductoEN();
-		listaCategorias=catON.getListadoCategorias();
-		listaProveedores=provON.getListadoProveedor();
-		listaProductos=prodON.getListadoProductos();
+		listaCategorias = catON.getListadoCategorias();
+		listaProveedores = provON.getListadoProveedor();
+		listaProductos = prodON.getListadoProductos();
 	}
-	
+
 	public ProductoEN getProducto() {
 		return producto;
 	}
@@ -68,7 +68,6 @@ private CategoriaON catON;
 		this.listaCategorias = listaCategorias;
 	}
 
-
 	public List<ProveedorEN> getListaProveedores() {
 		return listaProveedores;
 	}
@@ -77,14 +76,6 @@ private CategoriaON catON;
 		this.listaProveedores = listaProveedores;
 	}
 
-	public String guardarDatos() {
-		prodON.guardarProducto(producto);
-		System.out.println(producto);
-		return "productos";
-	}
-	
-	
-	
 	public List<ProductoEN> getListaProductos() {
 		return listaProductos;
 	}
@@ -92,9 +83,18 @@ private CategoriaON catON;
 	public void setListaProductos(List<ProductoEN> listaProductos) {
 		this.listaProductos = listaProductos;
 	}
+	
+	public UploadedFile getFile() {
+		return file;
+	}
 
+	public void setFile(UploadedFile file) {
+		this.file = file;
+	}
+	
+	
 	public void consultarCategoria() {
-		
+
 		CategoriaEN cat;
 		try {
 			cat = prodON.consultaCategoria(producto.getIdCategoriaTemp());
@@ -102,17 +102,16 @@ private CategoriaON catON;
 		} catch (Exception e) {
 			producto.setCategoria(null);
 			// TODO Auto-generated catch block
-			FacesMessage msg =  new FacesMessage(FacesMessage.SEVERITY_ERROR, 
-					e.getMessage(), "Error");
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), "Error");
 			fc.addMessage("txtCategoria", msg);
-			
+
 			e.printStackTrace();
 		}
-		
+
 	}
-	
-public void consultarProveedor() {
-		
+
+	public void consultarProveedor() {
+
 		ProveedorEN prov;
 		try {
 			prov = prodON.consultaProveedor(producto.getIdProveedorTemp());
@@ -120,37 +119,26 @@ public void consultarProveedor() {
 		} catch (Exception e) {
 			producto.setProveedor(null);
 			// TODO Auto-generated catch block
-			FacesMessage msg =  new FacesMessage(FacesMessage.SEVERITY_ERROR, 
-					e.getMessage(), "Error");
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), "Error");
 			fc.addMessage("txtProveedor", msg);
-			
+
 			e.printStackTrace();
 		}
-		
+
 	}
 	
-	
-	 
-    public UploadedFile getFile() {
-        return file;
-    }
- 
-    public void setFile(UploadedFile file) {
-        this.file = file;
-    }
-     
-    public void upload() {
-        if(file != null) {
-            FacesMessage message = new FacesMessage("Succesful", file.getFileName() + " is uploaded.");
-            FacesContext.getCurrentInstance().addMessage(null, message);
-        }
-    }
-     
-    public void handleFileUpload(FileUploadEvent event) {
-        FacesMessage msg = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-    }
-    
+	public void upload() {
+		if (file != null) {
+			FacesMessage message = new FacesMessage("Succesful", file.getFileName() + " is uploaded.");
+			FacesContext.getCurrentInstance().addMessage(null, message);
+		}
+	}
+
+	public void handleFileUpload(FileUploadEvent event) {
+		FacesMessage msg = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+
 	public Map<ProductoEN, Integer> getContenidoCarrito() {
 		Map<ProductoEN, Integer> contenidoCarrito = new HashMap<>();
 		for (ProductoEN obj : listaProductos) {
@@ -163,7 +151,16 @@ public void consultarProveedor() {
 		return contenidoCarrito;
 
 	}
+	
+	public String guardarDatos() throws IOException {
+		upload();
+		System.out.println("Holaaa"+file);
+		System.out.println(producto);
+		prodON.guardarProductoImg(producto, file);
+		System.out.println(producto);
+		System.out.println(file);
+		return "productos";
+	}
 
-    
 
 }
