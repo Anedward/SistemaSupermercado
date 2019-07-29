@@ -15,8 +15,10 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
 import com.megajaen.entidades.ClienteEN;
+import com.megajaen.entidades.ProductoEN;
 import com.megajaen.entidades.UsuarioEN;
 import com.megajaen.on.ClienteON;
+import com.megajaen.on.ProductoON;
 
 
 
@@ -28,6 +30,9 @@ public class operacionesServiceRest {
 
 	@Inject
 	private ClienteON clienteON;
+	
+	@Inject
+	private ProductoON prodON;
 
 	
 	@GET
@@ -36,6 +41,15 @@ public class operacionesServiceRest {
 			
 	public List<UsuarioEN> ge(){
 		return clienteON.listadousuario();
+		
+	}
+	
+	@GET
+	@Path("listarP")
+	@Produces("application/json")
+			
+	public List<ProductoEN> getPro(){
+		return prodON.getListadoProd();
 		
 	}
 	
