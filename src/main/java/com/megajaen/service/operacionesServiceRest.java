@@ -59,6 +59,14 @@ public class operacionesServiceRest {
 		return clienteON.listadousuarioLog(un, pass);
 
 	}
+	
+	@GET
+	@Path("ImagenProductos")
+	@Produces("application/json")
+	public List<ProductoEN> muestraFotos(int codigo){
+		return (List<ProductoEN>) prodON.buscarProducto(codigo);
+		
+	}
 
 	/**
 	 * @GET @Path("ingreso") @Produces("application/json") public List<UsuarioEN>
