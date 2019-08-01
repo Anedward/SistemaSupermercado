@@ -118,6 +118,7 @@ public class ProductoON {
 			redirect = "verProducto?faces-redirect=true&id=" + producto.getCodigo();
 		return redirect;
 	}
+	
 
 }
 
