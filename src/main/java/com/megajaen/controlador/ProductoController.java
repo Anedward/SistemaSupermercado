@@ -6,12 +6,14 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.ApplicationScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
+import org.omnifaces.cdi.GraphicImageBean;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 
@@ -24,6 +26,8 @@ import com.megajaen.on.ProveedorON;
 
 @ManagedBean
 @ViewScoped
+@GraphicImageBean
+//@ApplicationScoped
 public class ProductoController {
 
 	private ProductoEN producto;
@@ -43,6 +47,8 @@ public class ProductoController {
 
 	@Inject
 	private FacesContext fc;
+	
+	private int idB;
 
 	@PostConstruct
 	public void init() {
@@ -84,6 +90,14 @@ public class ProductoController {
 		this.listaProductos = listaProductos;
 	}
 	
+	public int getId() {
+		return idB;
+	}
+
+	public void setId(int id) {
+		this.idB = id;
+	}
+
 	public String guardarDatos() throws IOException {
 		upload();
 		System.out.println("Holaaa+++++"+file);
@@ -163,9 +177,31 @@ public class ProductoController {
 		return contenidoCarrito;
 
 	}
-
-
-
+	
+	public byte[] getBytes(int id) {
+		producto = prodON.buscarProducto(id);
+		System.out.println(producto);
+		System.out.println(producto.getCodigo());
+		System.out.println(producto.getNombre());
+		return producto.getImagen();
+	}
+	
+	public String verProducto(int id) {
+		return prodON.verProducto(producto, id);
+	}
+	
+	public void buscarProducto() {
+		producto = prodON.buscarProducto(idB);
+		
+		System.out.println("holaaaaa"+idB);
+		System.out.println("holaaaaa"+producto);
+		System.out.println(producto.getCodigo());
+		System.out.println(producto.getNombre());
+		System.out.println(producto.getImagen());
+		
+	}
+	
 }
+	
 
 

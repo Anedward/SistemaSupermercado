@@ -32,17 +32,17 @@ public class ProductoON {
 	@Inject
 	private EntityManager em;
 
-	public String guardarProductoImg(ProductoEN producto, UploadedFile file) throws IOException  {
-		String redirect ="";
+	public String guardarProductoImg(ProductoEN producto, UploadedFile file) throws IOException {
+		String redirect = "";
 		System.out.println("llego");
 		System.out.println(producto);
 		System.out.println(file);
 		producto.setImagen(IOUtils.toByteArray(file.getInputstream()));
-		
+
 		daoProducto.insertarProducto(producto);
-		//em.persist(producto);
+		// em.persist(producto);
 		return redirect;
-				
+
 	}
 
 	public void guardarProducto(ProductoEN producto) {
@@ -72,16 +72,21 @@ public class ProductoON {
 
 	}
 
+	public List<ProductoEN> listadoFotos() {
+		return daoProducto.listarFotos();
+
+	}
+
 	public ProductoEN getProducto(int codigo) {
 
 		ProductoEN aux = daoCategoria.read33(codigo);
 
 		return aux;
 	}
-	
-	public ProductoEN buscarProducto (int id) {
-		ProductoEN prod = em.find(ProductoEN.class, id);
-		return prod;
+
+	public ProductoEN buscarProducto(int id) {
+		ProductoEN producto = daoProducto.buscarProducto(id);
+		return producto;
 	}
 
 	public void borrar(int codigo) throws Exception {
@@ -97,5 +102,16 @@ public class ProductoON {
 		return daoCategoria.getProductosPorNombre(prod.getNombre());
 	}
 
-}
+	public List<ProductoEN> getListadoProd() {
+		return daoProducto.listP();
+	}
 
+	public String verProducto(ProductoEN producto, int id) {
+		String redirect = null;
+		producto = daoProducto.buscarProducto(id);
+
+		redirect = "verProducto?faces-redirect=true&id=" + producto.getCodigo();
+		return redirect;
+	}
+
+}

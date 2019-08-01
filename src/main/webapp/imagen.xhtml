@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:o="http://omnifaces.org/ui">
+
+<h:head>
+	<link rel="stylesheet" type="text/css" href="css/imagen.css" />
+</h:head>
+<body>
+	<h:form class="colunma">
+
+		<ui:repeat id="tbl" var="productos"
+			value="#{productoController.listaProductos}">
+			<div class="foto colunma1">
+				<a href=""> <o:graphicImage
+						value="#{productoController.getBytes(productos.codigo)}"
+						class="imagen" />
+				</a> <br /> <br /> <br /> <br /> <br /> <br />
+				<h:commandButton
+					action="#{productoController.verProducto(productos.codigo)}"
+					value="Ver" />
+				<br /> <br /> <a href="Imagen">#{productos.nombre}</a> <br />
+				<br />
+				<h:outputText value="#{productos.precioVenta}">
+					<f:convertNumber type="currency" currencySymbol="$" />
+				</h:outputText>
+				<br /> <br />
+			</div>
+			<br />
+		</ui:repeat>
+		<br />
+	</h:form>
+</body>
+</html>
