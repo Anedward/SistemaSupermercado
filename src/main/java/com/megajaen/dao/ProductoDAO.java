@@ -23,8 +23,9 @@ public class ProductoDAO {
 	public List<ProductoEN> listP(){
 		String jpql = "SELECT cat FROM ProductoEN cat ";
 		Query q = em.createQuery(jpql, ProductoEN.class);
-		List<ProductoEN> categorias = q.getResultList();
-		return categorias;
+		List<ProductoEN> productos = q.getResultList();
+		
+		return productos;
 		
 	}
 
