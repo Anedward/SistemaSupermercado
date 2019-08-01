@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:o="http://omnifaces.org/ui">
+
+<h:head>
+	<link rel="stylesheet" type="text/css" href="css/imagen.css" />
+</h:head>
+
+<f:metadata>
+	<f:viewParam name="id" value="#{productoController.id}" />
+	<f:event listener="#{productoController.buscarProducto()}"
+		type="preRenderView"></f:event>
+</f:metadata>
+
+<h:body>
+
+	<h:form>
+		<center>
+			<o:graphicImage
+				value="#{productoController.getBytes(productoController.producto.codigo)}"
+				class="imagenIn foto" /><br /><br />
+				<h:outputLabel value="#{productoController.producto.nombre}" /><br /><br />
+				<h:outputLabel value="#{productoController.producto.descripcion}" />
+		</center>
+	</h:form>
+</h:body>
+</html>

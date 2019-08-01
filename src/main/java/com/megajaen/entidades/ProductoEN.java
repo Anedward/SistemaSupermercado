@@ -205,14 +205,14 @@ public class ProductoEN {
 	}
 
 
-	@Override
+	/*@Override
 	public String toString() {
 		return "ProductoEN [codigo=" + codigo + ", nombre=" + nombre + ", descripcion=" + descripcion
 				+ ", precioCompra=" + precioCompra + ", precioVenta=" + precioVenta + ", stock=" + stock
 				+ ", calificacion=" + calificacion + ", imagen=" + Arrays.toString(imagen) + ", items=" + items
 				+ ", categoria=" + categoria + ", proveedor=" + proveedor + ", idCategoriaTemp=" + idCategoriaTemp
 				+ ", idProveedorTemp=" + idProveedorTemp + ", nomCategoriaTemp=" + nomCategoriaTemp + "]";
-	}	
+	}	*/
 	
 
 }
