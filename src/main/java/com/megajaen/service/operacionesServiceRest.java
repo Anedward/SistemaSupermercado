@@ -1,4 +1,4 @@
-package service;
+package com.megajaen.service;
 
 import java.util.HashMap;
 import java.util.List;
