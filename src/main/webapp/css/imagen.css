@@ -5,6 +5,11 @@
 	width: 315px; 
 }
 
+.imagenIn{
+	height:400px;
+	width: 350px; 
+}
+
 .nombre{
 	background-color: #008040;
 	text-align: center;
