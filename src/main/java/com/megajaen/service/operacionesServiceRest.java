@@ -22,6 +22,7 @@ import com.megajaen.entidades.UsuarioEN;
 import com.megajaen.on.ClienteON;
 import com.megajaen.on.ProductoON;
 
+
 @Path("/cliente")
 
 public class operacionesServiceRest {
@@ -81,6 +82,43 @@ public class operacionesServiceRest {
 		System.out.println("Paso el codigo "+codigo);
 		return prod;
 	}
+	
+	@POST
+	@Path("/insertCliente")
+	@Consumes("application/json")
+	@Produces("application/json")
+	public Response crearUniversidad(ClienteEN cli) {
+
+		Response.ResponseBuilder builder = null;
+		Map<String, String> data = new HashMap<>();
+     
+		try {
+			clienteON.guardar(cli);
+			
+			data.put("Codigo", "ingresado "+cli.getCodigo());
+			data.put("Mensaje", "Dato Ingresado Correctamente");
+			builder = Response.status(Response.Status.OK).entity(data);
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			data.put("codigo", "404");
+			data.put("message", "Error" + e.getMessage());
+			builder = Response.status(Response.Status.BAD_REQUEST).entity(data);
+		}
+		return builder.build();
+
+	}
+	
+	
+	@GET
+	@Path("listarClientes")
+	@Produces("application/json")
+	public List<ClienteEN> listaClientes(){
+		return clienteON.getListadoClientes();
+		
+	}
+	
 
 	/**
 	 * @GET @Path("ingreso") @Produces("application/json") public List<UsuarioEN>
