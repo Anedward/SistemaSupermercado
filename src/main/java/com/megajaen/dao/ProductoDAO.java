@@ -20,11 +20,17 @@ public class ProductoDAO {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<ProductoEN> ListarFotos(){
+	public List<ProductoEN> listarFotos(){
 		String jpql = "SELECT f FROM ProductoEN f";
 		Query query = em.createQuery(jpql, ProductoEN.class);
 		List<ProductoEN> lfotos= query.getResultList();		
 		return lfotos;
 	}
+	
+	public ProductoEN buscarImagen (int id) {
+		ProductoEN producto = em.find(ProductoEN.class, id);
+		return producto;
+	}
+	
 
 }

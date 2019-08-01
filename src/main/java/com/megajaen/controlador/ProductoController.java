@@ -168,24 +168,17 @@ public class ProductoController {
 
 	}
 	
-	/*public byte[] getBytes(int id) {
-		producto = prodON.buscarProducto(88888);
-		System.out.println(producto);
-		System.out.println(producto.getCodigo());
-		System.out.println(producto.getNombre());
-		return producto.getImagen();
-	}*/
-	
-	public byte[] getBytesFo() {
-		listaProductos = prodON.getListadoFotos();
+	public byte[] getBytes(int id) {
+		producto = prodON.buscarProducto(id);
 		System.out.println(producto);
 		System.out.println(producto.getCodigo());
 		System.out.println(producto.getNombre());
 		return producto.getImagen();
 	}
 	
-	
-
+	public String verProducto(int id) {
+		return prodON.verProducto(producto, id);
+	}
 }
 
 
