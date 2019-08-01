@@ -19,7 +19,16 @@ public class ProductoDAO {
 	public void insertarProducto (ProductoEN producto) {
 		em.persist(producto);
 	}
-	
+
+	public List<ProductoEN> listP(){
+		String jpql = "SELECT cat FROM ProductoEN cat ";
+		Query q = em.createQuery(jpql, ProductoEN.class);
+		List<ProductoEN> productos = q.getResultList();
+		
+		return productos;
+		
+	}
+
 	@SuppressWarnings("unchecked")
 	public List<ProductoEN> listarFotos(){
 		String jpql = "SELECT f FROM ProductoEN f";
@@ -32,6 +41,5 @@ public class ProductoDAO {
 		ProductoEN producto = em.find(ProductoEN.class, id);
 		return producto;
 	}
-	
 
 }

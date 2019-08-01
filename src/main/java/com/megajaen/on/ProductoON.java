@@ -106,6 +106,11 @@ public class ProductoON {
 		return daoCategoria.getProductosPorNombre(prod.getNombre());
 	}
 	
+
+	public List<ProductoEN> getListadoProd() {
+		return daoProducto.listP();
+	}
+
 	public String verProducto(ProductoEN producto, int id) {
 		String redirect = null;
 		producto = daoProducto.buscarProducto(id);
