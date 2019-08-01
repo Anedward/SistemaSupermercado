@@ -96,6 +96,9 @@ public class ProductoON {
 	public List<ProductoEN> getListadoNombre(ProductoEN prod) {
 		return daoCategoria.getProductosPorNombre(prod.getNombre());
 	}
+	
+	
+	
 
 }
 
