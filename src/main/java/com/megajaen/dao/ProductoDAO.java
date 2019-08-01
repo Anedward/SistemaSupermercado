@@ -9,6 +9,7 @@ import javax.persistence.Query;
 
 import com.megajaen.entidades.ProductoEN;
 
+
 @Stateless
 public class ProductoDAO {
 	
@@ -27,7 +28,7 @@ public class ProductoDAO {
 		return lfotos;
 	}
 	
-	public ProductoEN buscarImagen (int id) {
+	public ProductoEN buscarProducto (int id) {
 		ProductoEN producto = em.find(ProductoEN.class, id);
 		return producto;
 	}

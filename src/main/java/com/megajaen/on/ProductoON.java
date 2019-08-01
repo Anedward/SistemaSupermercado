@@ -18,6 +18,8 @@ import com.megajaen.entidades.ProductoEN;
 import com.megajaen.entidades.ProveedorEN;
 
 
+
+
 @Stateless
 public class ProductoON {
 
@@ -85,9 +87,10 @@ public class ProductoON {
 		return aux;
 	}
 	
+
 	public ProductoEN buscarProducto (int id) {
-		ProductoEN prod = em.find(ProductoEN.class, id);
-		return prod;
+		ProductoEN producto = daoProducto.buscarProducto(id);
+		return producto;
 	}
 
 	public void borrar(int codigo) throws Exception {
@@ -105,8 +108,9 @@ public class ProductoON {
 	
 	public String verProducto(ProductoEN producto, int id) {
 		String redirect = null;
-		producto = daoProducto.buscarImagen(id);
-
+		producto = daoProducto.buscarProducto(id);
+		
+			redirect = "verProducto?faces-redirect=true&id=" + producto.getCodigo();
 		return redirect;
 	}
 

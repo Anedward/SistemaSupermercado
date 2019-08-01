@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:o="http://omnifaces.org/ui">
+
+<ui:composition >
+	<ui:define name="pageTitle">Inmuebles</ui:define>
+	<ui:define name="pageHeader">Header</ui:define>
+	<ui:define name="contenido">
+
+		<h:head>
+
+		</h:head>
+
+		<f:metadata>
+			<f:viewParam name="id" value="#{productoController.id}" />
+			<f:event listener="#{productoController.buscarProducto()}"
+				type="preRenderView"></f:event>
+		</f:metadata>
+
+		<h:body>
+		<h:form>
+			
+			
+				
+				<div>
+				
+				<o:graphicImage value="#{productoController.getBytes(productoController.producto.codigo)}" />
+											</div>
+											
+													<a href="#pablo">#{productoController.producto.nombre}</a>
+												
+												<div class="card-description">#{productoController.producto.descripcion}</div>
+												
+												
+												
+										
+								
+									
+						</h:form>
+
+				
+
+
+
+
+		
+		</h:body>
+	</ui:define>
+</ui:composition>
+</html>

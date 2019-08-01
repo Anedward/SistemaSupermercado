@@ -47,6 +47,8 @@ public class ProductoController {
 
 	@Inject
 	private FacesContext fc;
+	
+	private int idB;
 
 	@PostConstruct
 	public void init() {
@@ -88,6 +90,14 @@ public class ProductoController {
 		this.listaProductos = listaProductos;
 	}
 	
+	public int getId() {
+		return idB;
+	}
+
+	public void setId(int id) {
+		this.idB = id;
+	}
+
 	public String guardarDatos() throws IOException {
 		upload();
 		System.out.println("Holaaa+++++"+file);
@@ -179,6 +189,19 @@ public class ProductoController {
 	public String verProducto(int id) {
 		return prodON.verProducto(producto, id);
 	}
+	
+	public void buscarProducto() {
+		producto = prodON.buscarProducto(idB);
+		
+		System.out.println("holaaaaa"+idB);
+		System.out.println("holaaaaa"+producto);
+		System.out.println(producto.getCodigo());
+		System.out.println(producto.getNombre());
+		System.out.println(producto.getImagen());
+		
+	}
+	
 }
+	
 
 
