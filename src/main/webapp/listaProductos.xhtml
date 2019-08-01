@@ -1,81 +1,79 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
 
-<h:head></h:head> 
-<body> 
+<h:head></h:head>
+<body>
 
-<ui:composition template="/index.xhtml">
+	<ui:composition template="/index.xhtml">
 		<ui:define name="body">
 
-<h:form>
-		<center>
-			<h2>Lista de Productos</h2>
-		</center>
+			<h:form>
+				<center>
+					<h2>Lista de Productos</h2>
+				</center>
 
-		<h:dataTable value="#{productoController.listaProductos}" var="producs"
-			border="1">
-			
-			<h:column>
-				<f:facet name="header">CODIGO</f:facet>
-			#{producs.codigo}
-		</h:column>
+				<h:dataTable value="#{productoController.listaProductos}"
+					var="producs" border="1">
 
-			<h:column>
-				<f:facet name="header">Nombre</f:facet>
+					<h:column>
+						<f:facet name="header">Codigo</f:facet>
+						#{producs.codigo}
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">Nombre</f:facet>
 			#{producs.nombre}
 		</h:column>
 
-
-			<h:column>
-
-				<f:facet name="header">Precio Venta</f:facet>
-			#{producs.precioVenta}
-		</h:column>
-		
-		<h:column>
-
-				<f:facet name="header">Precio Compra</f:facet>
-			#{producs.precioCompra}
-		</h:column>
-		
-		<h:column>
-			<f:facet name="header">Descripcion</f:facet>
+					<h:column>
+						<f:facet name="header">Descripcion</f:facet>
 			#{producs.descripcion}
 		</h:column>
-		
-		<h:column>
-			<f:facet name="header">Stock</f:facet>
+
+					<h:column>
+
+						<f:facet name="header">Precio Venta</f:facet>
+			#{producs.precioVenta}
+		</h:column>
+
+					<h:column>
+						<f:facet name="header">Precio de Compra</f:facet>
+			#{producs.precioCompra}
+		</h:column>
+
+					<h:column>
+						<f:facet name="header">Stock</f:facet>
 			#{producs.stock}
 		</h:column>
-		
-		<h:column>
-			<f:facet name="header">Calificacion</f:facet>
+
+					<h:column>
+						<f:facet name="header">Calificacion</f:facet>
 			#{producs.calificacion}
 		</h:column>
-		
-
-			<h:column>
-
-				<f:facet name="header">Acciones</f:facet>
 
 
-				<h:commandButton action="#{shopcartMB.orderBy(producs)}"
-					immediate="true" value="Agregar al Carrito  " />
+					<h:column>
+
+						<f:facet name="header">Acciones</f:facet>
 
 
-			</h:column>
+						<h:commandButton action="#{shopcartMB.orderBy(producs)}"
+							immediate="true" value="Agregar al Carrito  " />
 
-		</h:dataTable>
 
-		<h:link value="Principal" outcome="productos"></h:link>
+					</h:column>
 
-	</h:form>
-</ui:define>
+				</h:dataTable>
+
+				<h:link value="Principal" outcome="productos"></h:link>
+
+			</h:form>
+		</ui:define>
 
 	</ui:composition>
 
-</body> 
+</body>
 </html>

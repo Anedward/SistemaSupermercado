@@ -6,12 +6,14 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.ApplicationScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
+import org.omnifaces.cdi.GraphicImageBean;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 
@@ -24,6 +26,8 @@ import com.megajaen.on.ProveedorON;
 
 @ManagedBean
 @ViewScoped
+@GraphicImageBean
+//@ApplicationScoped
 public class ProductoController {
 
 	private ProductoEN producto;
@@ -163,9 +167,18 @@ public class ProductoController {
 		return contenidoCarrito;
 
 	}
-
-
-
+	
+	public byte[] getBytes(int id) {
+		producto = prodON.buscarProducto(id);
+		System.out.println(producto);
+		System.out.println(producto.getCodigo());
+		System.out.println(producto.getNombre());
+		return producto.getImagen();
+	}
+	
+	public String verProducto(int id) {
+		return prodON.verProducto(producto, id);
+	}
 }
 
 

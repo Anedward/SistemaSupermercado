@@ -17,6 +17,7 @@ import com.megajaen.entidades.CategoriaEN;
 import com.megajaen.entidades.ProductoEN;
 import com.megajaen.entidades.ProveedorEN;
 
+
 @Stateless
 public class ProductoON {
 
@@ -71,6 +72,11 @@ public class ProductoON {
 		return daoCategoria.getProductos2();
 
 	}
+	
+	public List<ProductoEN> listadoFotos() {
+		return daoProducto.listarFotos();
+
+	}
 
 	public ProductoEN getProducto(int codigo) {
 
@@ -95,6 +101,13 @@ public class ProductoON {
 
 	public List<ProductoEN> getListadoNombre(ProductoEN prod) {
 		return daoCategoria.getProductosPorNombre(prod.getNombre());
+	}
+	
+	public String verProducto(ProductoEN producto, int id) {
+		String redirect = null;
+		producto = daoProducto.buscarImagen(id);
+
+		return redirect;
 	}
 
 }
