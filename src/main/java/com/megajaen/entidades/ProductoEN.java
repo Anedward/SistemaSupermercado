@@ -1,6 +1,8 @@
 package com.megajaen.entidades;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 import javax.enterprise.inject.Typed;
@@ -10,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
@@ -50,9 +53,12 @@ public class ProductoEN {
 	@Typed
 	private byte[] imagen;
 	
-	@OneToMany(mappedBy = "producto", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<DetalleFacturaEN> items;
+	/*@OneToMany(mappedBy = "producto", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<DetalleFacturaEN> items;*/
 	
+	@ManyToMany(mappedBy="productoLista")
+    private Collection<DetalleFacturaEN> detalleLista = new ArrayList<>();
+    
 	@OneToOne
 	@JoinColumn(name="cat_producto")
 	@JsonIgnore
@@ -195,14 +201,27 @@ public class ProductoEN {
 	public void setProveedor(ProveedorEN proveedor) {
 		this.proveedor = proveedor;
 	}
+
+
+	public Collection<DetalleFacturaEN> getDetalleLista() {
+		return detalleLista;
+	}
+
+
+	public void setDetalleLista(Collection<DetalleFacturaEN> detallekLista) {
+		this.detalleLista = detallekLista;
+	}
 	
-	public List<DetalleFacturaEN> getItems() {
+	
+	/*public List<DetalleFacturaEN> getItems() {
 		return items;
 	}
 	
 	public void setItems(List<DetalleFacturaEN> items) {
 		this.items = items;
 	}
+	
+	
 
 
 	/*@Override

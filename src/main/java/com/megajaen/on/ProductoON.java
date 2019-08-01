@@ -17,9 +17,6 @@ import com.megajaen.entidades.CategoriaEN;
 import com.megajaen.entidades.ProductoEN;
 import com.megajaen.entidades.ProveedorEN;
 
-
-
-
 @Stateless
 public class ProductoON {
 

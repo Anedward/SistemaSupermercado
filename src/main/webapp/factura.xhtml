@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+	<f:metadata>
+		<f:viewParam name="id" value="#{facturaController.id}"></f:viewParam>
+		<f:viewAction action="#{facturaController.loadData()}"/>
+	</f:metadata>
+
+</h:head> 
+
+<body> 
+
+<h:form>
+	<h:panelGrid columns="3">
+		<h:outputLabel value="Codigo" />
+		<h:inputText value="#{facturaController.factura.codigo}" id="txtCodigo"/>
+		<h:message for="txtCodigo"/>
+		
+		<h:outputLabel value="Numero de Factura" />
+		<h:inputText value="#{facturaController.factura.numFact}" id="txtFactura"/>
+		<h:message for="txtFactura"/>
+		
+		<h:outputLabel value="Fecha" />
+		<h:inputText value="#{facturaController.factura.fechaEmision}" id="txttFecha" />
+		<h:message for="txtFecha"/>
+		
+		<h:outputLabel value="Iva" />
+		<h:inputText value="#{facturaController.factura.iva}" id="txtIva" />
+		<h:message for="txtIva"/>
+		
+		<h:outputLabel value="Total" />
+		<h:inputText value="#{facturaController.factura.total}" id="txtTotal" />
+		<h:message for="txtTotal"/>
+		<h:outputLabel value="Detalles" />
+		
+		<h:dataTable value="#{facturaController.factura.detalle}" var="det">
+			<h:column>
+				<f:facet name="header">Código</f:facet>
+				<h:inputText value="#{det.codigo}" />
+			</h:column>
+		</h:dataTable>
+		
+		<h:dataTable value="#{facturaController.factura.detalle}" var="detalle">
+			<h:column>
+				<f:facet name="header">Cantidad</f:facet>
+				<h:inputText value="#{detalle.cantidad}" />
+			</h:column>
+		</h:dataTable>
+	
+		<h:commandButton action="#{facturaController.addDetalles()}" value="+ detalles" />
+	
+		<h:outputText value="" />
+		<h:commandButton action="#{facturaController.cargarDatos()}" value="Guardar" />
+	
+	</h:panelGrid>
+	
+
+
+</h:form>
+
+
+</body> 
+</html>

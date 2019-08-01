@@ -1,13 +1,22 @@
 package com.megajaen.entidades;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Transient;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class DetalleFacturaEN {
@@ -17,25 +26,19 @@ public class DetalleFacturaEN {
 	
 	@Column(name="detFac_cantidad")
 	private int cantidad;
-
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
-	@JoinColumn(name="fac_codigo", unique = true)
+	
+	@OneToOne
+	@JoinColumn(name="det_factura")
+	@JsonIgnore
 	private FacturaEN factura;
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
-	@JoinColumn(name="prod_codigo", unique = true)
-	private ProductoEN producto = new ProductoEN();
-
+	@ManyToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+	@JoinTable(name="detalle_producto",joinColumns=@JoinColumn(name="detalle_id"),inverseJoinColumns=@JoinColumn(name="producto_id"))
+	private List<ProductoEN> productoLista = new ArrayList<>();
 	
+	@Transient
+	private int idFacturaTemp;
 	
-	public FacturaEN getFactura() {
-		return factura;
-	}
-
-	public void setFactura(FacturaEN factura) {
-		this.factura = factura;
-	}
-
 
 	public int getCodigo() {
 		return codigo;
@@ -53,30 +56,29 @@ public class DetalleFacturaEN {
 		this.cantidad = cantidad;
 	}
 
-	public ProductoEN getProducto() {
-		return producto;
+	public FacturaEN getFactura() {
+		return factura;
 	}
 
-	public void setProducto(ProductoEN producto) {
-		this.producto = producto;
+	public void setFactura(FacturaEN factura) {
+		this.factura = factura;
 	}
 
-	public DetalleFacturaEN(ProductoEN producto, int cantidad) {
-		super();
-		this.producto = producto;
-		this.cantidad = cantidad;
-	}
-	
-	public DetalleFacturaEN() {
-		
+	public List<ProductoEN> getProductoLista() {
+		return productoLista;
 	}
 
-	
-	
-	
-	
-	
+	public void setProductoLista(List<ProductoEN> productoLista) {
+		this.productoLista = productoLista;
+	}
 
-	
+	public int getIdFacturaTemp() {
+		return idFacturaTemp;
+	}
 
+	public void setIdFacturaTemp(int idFacturaTemp) {
+		this.idFacturaTemp = idFacturaTemp;
+	}
+	
+	
 }
