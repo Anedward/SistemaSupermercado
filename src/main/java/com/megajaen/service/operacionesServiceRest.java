@@ -11,6 +11,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
@@ -25,6 +26,8 @@ import com.megajaen.on.ProductoON;
 
 public class operacionesServiceRest {
 
+	private ProductoEN prod;
+	
 	@Inject
 	private ClienteON clienteON;
 
@@ -63,9 +66,20 @@ public class operacionesServiceRest {
 	@GET
 	@Path("ImagenProductos")
 	@Produces("application/json")
-	public List<ProductoEN> muestraFotos(int codigo){
-		return (List<ProductoEN>) prodON.buscarProducto(codigo);
+	public List<ProductoEN> muestraFotos(){
+		return prodON.getListadoProductos();
 		
+	}
+	
+	@GET
+	@Path("ImagenProducto")
+	@Produces("application/json")
+	public ProductoEN mostrarProducto(@QueryParam("cod") int codigo) {
+		ProductoEN prod=new ProductoEN();
+		System.out.println("Llegando el cod "+codigo);
+		prod=prodON.buscarProducto(codigo);
+		System.out.println("Paso el codigo "+codigo);
+		return prod;
 	}
 
 	/**
