@@ -49,7 +49,24 @@
 				<f:facet name="header">Cantidad</f:facet>
 				<h:inputText value="#{detalle.cantidad}" />
 			</h:column>
+			
+			
+			
+			<h:column>
+				<f:facet name="header">Producto</f:facet>
+				<h:outputLabel value="Proveedor" />
+
+		 <h:inputText value="#{productoController.producto.idProveedorTemp}" id="txtProveedor" >
+			<f:ajax listener="#{productoController.consultarProveedor()}" render="datosProveedor"/>
+		</h:inputText>
+		<h:panelGroup id="datosProveedor">
+			<h:message for="txtProveedor"/>
+			#{productoController.producto.proveedor.razonSocial}
+		</h:panelGroup>
+			</h:column>
 		</h:dataTable>
+		
+		
 	
 		<h:commandButton action="#{facturaController.addDetalles()}" value="+ detalles" />
 	

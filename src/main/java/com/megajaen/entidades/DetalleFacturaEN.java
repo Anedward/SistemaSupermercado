@@ -1,17 +1,9 @@
 package com.megajaen.entidades;
 
-
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
@@ -27,14 +19,15 @@ public class DetalleFacturaEN {
 	@Column(name="detFac_cantidad")
 	private int cantidad;
 	
+	@ManyToOne
+	@JoinColumn(name="det_producto")
+	@JsonIgnore
+	private ProductoEN producto;
+	
 	@OneToOne
 	@JoinColumn(name="det_factura")
 	@JsonIgnore
 	private FacturaEN factura;
-	
-	@ManyToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
-	@JoinTable(name="detalle_producto",joinColumns=@JoinColumn(name="detalle_id"),inverseJoinColumns=@JoinColumn(name="producto_id"))
-	private List<ProductoEN> productoLista = new ArrayList<>();
 	
 	@Transient
 	private int idFacturaTemp;
@@ -64,14 +57,6 @@ public class DetalleFacturaEN {
 		this.factura = factura;
 	}
 
-	public List<ProductoEN> getProductoLista() {
-		return productoLista;
-	}
-
-	public void setProductoLista(List<ProductoEN> productoLista) {
-		this.productoLista = productoLista;
-	}
-
 	public int getIdFacturaTemp() {
 		return idFacturaTemp;
 	}
@@ -79,6 +64,13 @@ public class DetalleFacturaEN {
 	public void setIdFacturaTemp(int idFacturaTemp) {
 		this.idFacturaTemp = idFacturaTemp;
 	}
-	
+
+	public ProductoEN getProducto() {
+		return producto;
+	}
+
+	public void setProducto(ProductoEN producto) {
+		this.producto = producto;
+	}
 	
 }

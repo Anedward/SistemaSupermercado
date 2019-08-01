@@ -34,9 +34,13 @@ public class DetalleFacturaController {
 	
 	private DetalleFacturaEN detalle;
 	private List<FacturaEN> listaFacturas;
+	private List<ProductoEN> listaProductos;
 
 	@Inject
 	private FacturaON facON;
+	
+	@Inject
+	private ProductoON proON;
 	
 	@Inject
 	private DetalleFacturaON detON;
@@ -49,6 +53,7 @@ public class DetalleFacturaController {
 	public void init() {
 		detalle = new DetalleFacturaEN();
 		listaFacturas = facON.getListadoFacturas();
+		listaProductos = proON.getListadoProductos();
 	}	
 
 	public DetalleFacturaEN getDetalle() {
@@ -66,6 +71,15 @@ public class DetalleFacturaController {
 		this.listaFacturas = listaFacturas;
 	}
 	
+	
+	public List<ProductoEN> getListaProductos() {
+		return listaProductos;
+	}
+
+	public void setListaProductos(List<ProductoEN> listaProductos) {
+		this.listaProductos = listaProductos;
+	}
+
 	public String guardarDatos() throws IOException {
 	
 		detON.guardar(detalle);
