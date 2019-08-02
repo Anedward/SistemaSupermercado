@@ -6,8 +6,8 @@
 
 <h:head>
 	<f:metadata>
-		<f:viewParam name="id" value="#{facturaController.id}"></f:viewParam>
-		<f:viewAction action="#{facturaController.loadData()}"/>
+		<f:viewParam name="id" value="#{facturaDetalleController.id}"></f:viewParam>
+		<f:viewAction action="#{facturaDetalleController.loadData()}"/>
 	</f:metadata>
 
 </h:head> 
@@ -17,61 +17,57 @@
 <h:form>
 	<h:panelGrid columns="3">
 		<h:outputLabel value="Codigo" />
-		<h:inputText value="#{facturaController.factura.codigo}" id="txtCodigo"/>
+		<h:inputText value="#{facturaDetalleController.factura.codigo}" id="txtCodigo"/>
 		<h:message for="txtCodigo"/>
 		
 		<h:outputLabel value="Numero de Factura" />
-		<h:inputText value="#{facturaController.factura.numFact}" id="txtFactura"/>
+		<h:inputText value="#{facturaDetalleController.factura.numFact}" id="txtFactura"/>
 		<h:message for="txtFactura"/>
 		
 		<h:outputLabel value="Fecha" />
-		<h:inputText value="#{facturaController.factura.fechaEmision}" id="txttFecha" />
+		<h:inputText value="#{facturaDetalleController.factura.fechaEmision}" id="txttFecha" />
 		<h:message for="txtFecha"/>
 		
 		<h:outputLabel value="Iva" />
-		<h:inputText value="#{facturaController.factura.iva}" id="txtIva" />
+		<h:inputText value="#{facturaDetalleController.factura.iva}" id="txtIva" />
 		<h:message for="txtIva"/>
 		
 		<h:outputLabel value="Total" />
-		<h:inputText value="#{facturaController.factura.total}" id="txtTotal" />
+		<h:inputText value="#{facturaDetalleController.factura.total}" id="txtTotal" />
 		<h:message for="txtTotal"/>
 		<h:outputLabel value="Detalles" />
 		
-		<h:dataTable value="#{facturaController.factura.detalle}" var="det">
+		<h:dataTable value="#{facturaDetalleController.factura.detalle}" var="det">
 			<h:column>
 				<f:facet name="header">Código</f:facet>
 				<h:inputText value="#{det.codigo}" />
 			</h:column>
-		</h:dataTable>
 		
-		<h:dataTable value="#{facturaController.factura.detalle}" var="detalle">
 			<h:column>
 				<f:facet name="header">Cantidad</f:facet>
-				<h:inputText value="#{detalle.cantidad}" />
+				<h:inputText value="#{det.cantidad}" />
 			</h:column>
-			
-			
 			
 			<h:column>
 				<f:facet name="header">Producto</f:facet>
-				<h:outputLabel value="Proveedor" />
-
-		 <h:inputText value="#{productoController.producto.idProveedorTemp}" id="txtProveedor" >
-			<f:ajax listener="#{productoController.consultarProveedor()}" render="datosProveedor"/>
-		</h:inputText>
-		<h:panelGroup id="datosProveedor">
-			<h:message for="txtProveedor"/>
-			#{productoController.producto.proveedor.razonSocial}
-		</h:panelGroup>
+				<h:inputText value="#{facturaDetalleController.detalle.idProductoTemp}" id="txProducto">
+				<f:ajax listener="#{facturaDetalleController.consultarProducto()}" execute="txProducto" render="datosProducto"/>
+				</h:inputText>
+				<h:panelGroup id="datosProducto">
+			<h:message for="txtProducto" />
+			#{facturaDetalleController.detalle.producto.nombre}
+			</h:panelGroup>
+				
 			</h:column>
+			
 		</h:dataTable>
 		
 		
 	
-		<h:commandButton action="#{facturaController.addDetalles()}" value="+ detalles" />
+		<h:commandButton action="#{facturaDetalleController.addDetalles()}" value="+ detalles" />
 	
 		<h:outputText value="" />
-		<h:commandButton action="#{facturaController.cargarDatos()}" value="Guardar" />
+		<h:commandButton action="#{facturaDetalleController.guardarDatos()}" value="Guardar" />
 	
 	</h:panelGrid>
 	

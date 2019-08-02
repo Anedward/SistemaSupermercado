@@ -118,7 +118,6 @@ public class ProductoController {
 	
 	
 	
-	
 	public void consultarCategoria() {
 
 		CategoriaEN cat;

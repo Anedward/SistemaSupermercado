@@ -1,5 +1,7 @@
 package com.megajaen.entidades;
 
+import java.util.ArrayList;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -31,6 +33,9 @@ public class DetalleFacturaEN {
 	
 	@Transient
 	private int idFacturaTemp;
+	
+	@Transient
+	private int idProductoTemp;
 	
 
 	public int getCodigo() {
@@ -72,5 +77,26 @@ public class DetalleFacturaEN {
 	public void setProducto(ProductoEN producto) {
 		this.producto = producto;
 	}
+
+	public int getIdProductoTemp() {
+		return idProductoTemp;
+	}
+
+	public void setIdProductoTemp(int idProductoTemp) {
+		this.idProductoTemp = idProductoTemp;
+	}
+	
+	public void addProducto(ProductoEN prod) {
+		if(producto==null) {
+			producto = new ProductoEN();
+		}
+	}
+
+	@Override
+	public String toString() {
+		return "DetalleFacturaEN [codigo=" + codigo + ", cantidad=" + cantidad + ", producto=" + producto + ", factura="
+				+ factura + ", idFacturaTemp=" + idFacturaTemp + ", idProductoTemp=" + idProductoTemp + "]";
+	}
+	
 	
 }

@@ -12,6 +12,7 @@ import com.megajaen.entidades.DetalleFacturaEN;
 import com.megajaen.entidades.FacturaEN;
 import com.megajaen.entidades.ProductoEN;
 import com.megajaen.on.CategoriaON;
+import com.megajaen.on.DetalleFacturaON;
 import com.megajaen.on.FacturaON;
 
 @ManagedBean
@@ -19,12 +20,16 @@ import com.megajaen.on.FacturaON;
 public class FacturaController {
 	
 	private FacturaEN factura = new FacturaEN();
+	private DetalleFacturaEN detalle = new DetalleFacturaEN();
 	private List<FacturaEN> listaFacturas;
 	
 	private int id;
 	
 	@Inject
 	private FacturaON facON;
+	
+	@Inject
+	private DetalleFacturaON detON;
 	
 	@PostConstruct
 	public void init() {
@@ -86,8 +91,12 @@ public class FacturaController {
 	public String cargarDatos() {
 		
 		try {
-			facON.guardar(factura);
-			init();
+			/*facON.guardar(factura);
+			detON.guardar(detalle);
+			
+			init();*/
+			System.out.println(factura.toString());
+			System.out.println(detalle.toString());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

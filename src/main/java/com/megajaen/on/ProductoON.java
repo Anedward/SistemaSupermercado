@@ -49,6 +49,7 @@ public class ProductoON {
 		em.persist(producto);
 	}
 
+	
 	public CategoriaEN consultaCategoria(int codigoCategoria) throws Exception {
 
 		CategoriaEN cat = daoCategoria.read(codigoCategoria);
@@ -72,10 +73,10 @@ public class ProductoON {
 
 	}
 	
-	public List<ProductoEN> listadoFotos() {
+	/*public List<ProductoEN> listadoFotos() {
 		return daoProducto.listarFotos();
 
-	}
+	}*/
 
 	public ProductoEN getProducto(int codigo) {
 

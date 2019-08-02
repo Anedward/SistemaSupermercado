@@ -29,11 +29,13 @@ import com.megajaen.on.ProveedorON;
 
 @ManagedBean
 @ViewScoped
-public class DetalleFacturaController {
+public class FacturaDetalleController {
 	
 	private DetalleFacturaEN detalle;
+	private FacturaEN factura;
 	private List<FacturaEN> listaFacturas;
 	private List<ProductoEN> listaProductos;
+	private int id;
 
 	@Inject
 	private FacturaON facON;
@@ -78,10 +80,42 @@ public class DetalleFacturaController {
 	public void setListaProductos(List<ProductoEN> listaProductos) {
 		this.listaProductos = listaProductos;
 	}
+	
+	
+
+	public FacturaEN getFactura() {
+		return factura;
+	}
+
+	public void setFactura(FacturaEN factura) {
+		this.factura = factura;
+	}
+	
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void loadData() {
+		System.out.println("codigo editar " + id);
+		if(id==0)
+			return;
+		factura = facON.getFactura(id);
+		System.out.println(factura.getCodigo() + " " + factura.getFechaEmision());
+		System.out.println("#detalles: " + " " + factura.getDetalle().size());
+		for(DetalleFacturaEN det : factura.getDetalle()) {
+			System.out.println("\t"+det);
+		}		
+	}
 
 	public String guardarDatos() throws IOException {
-	
+		facON.guardar(factura);
 		detON.guardar(detalle);
+		System.out.println(detalle.toString());
 		return "detalle";
 	}
 	
@@ -136,5 +170,10 @@ public class DetalleFacturaController {
 		detalle.addProductos(new ProductoEN());
 		System.out.println("Productos " + detalle.getProducto().size());
 	}*/
+	
+	public void addDetalles(){
+		factura.addDetalles(new DetalleFacturaEN());
+		System.out.println("cnt " + factura.getDetalle().size());
+	}
 
 }

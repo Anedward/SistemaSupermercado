@@ -1,6 +1,7 @@
 package com.megajaen.entidades;
 
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.enterprise.inject.Typed;
@@ -61,11 +62,11 @@ public class ProductoEN {
 	@JsonIgnore
 	private ProveedorEN proveedor;
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name="det_producto")
 	@JsonIgnore
 	private List<DetalleFacturaEN> detalleFactura;
-
+	
 	@Transient
 	private int idCategoriaTemp;
 	
@@ -208,6 +209,19 @@ public class ProductoEN {
 	public void setDetalleFactura(List<DetalleFacturaEN> detalleFactura) {
 		this.detalleFactura = detalleFactura;
 	}
+
+
+	@Override
+	public String toString() {
+		return "ProductoEN [codigo=" + codigo + ", nombre=" + nombre + ", descripcion=" + descripcion
+				+ ", precioCompra=" + precioCompra + ", precioVenta=" + precioVenta + ", stock=" + stock
+				+ ", calificacion=" + calificacion + ", imagen=" + Arrays.toString(imagen) + ", categoria=" + categoria
+				+ ", proveedor=" + proveedor + ", detalleFactura=" + detalleFactura + ", idCategoriaTemp="
+				+ idCategoriaTemp + ", idProveedorTemp=" + idProveedorTemp + ", nomCategoriaTemp=" + nomCategoriaTemp
+				+ "]";
+	}
+
+
 	
 
 }

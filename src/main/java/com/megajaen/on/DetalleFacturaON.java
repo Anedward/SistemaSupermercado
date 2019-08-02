@@ -31,6 +31,9 @@ public class DetalleFacturaON {
 	private DetalleFacturaDAO daoDetFac;
 
 	@Inject
+	private ProductoDAO daoProd;
+
+	@Inject
 	private EntityManager em;
 
 	public void guardar(DetalleFacturaEN detalle){		
@@ -43,6 +46,15 @@ public class DetalleFacturaON {
 		if (fac == null)
 			throw new Exception("Factura  no existe");
 		return fac;
+	}
+	
+	public ProductoEN consultaProducto(int codigoProducto) throws Exception {
+
+		ProductoEN prod = daoProd.read(codigoProducto);
+		if (prod == null)
+			throw new Exception("Producto  no existe");
+
+		return prod;
 	}
 	
 	public List<FacturaEN> getListadoFacturass() {

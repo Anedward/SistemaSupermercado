@@ -104,4 +104,10 @@ public class FacturaEN {
 		this.detalle.add(det);
 	}
 
+	@Override
+	public String toString() {
+		return "FacturaEN [codigo=" + codigo + ", numFact=" + numFact + ", fechaEmision=" + fechaEmision + ", iva="
+				+ iva + ", total=" + total + ", detalle=" + detalle + ", listaDetalles=" + listaDetalles + "]";
+	}
+
 }
