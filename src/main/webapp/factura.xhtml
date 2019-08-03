@@ -47,7 +47,8 @@
 				<f:facet name="header">Cantidad</f:facet>
 				<h:inputText value="#{det.cantidad}" />
 			</h:column>
-			
+			</h:dataTable >
+			<h:dataTable value="#{facturaDetalleController.factura.detalle}" var="det">
 			<h:column>
 				<f:facet name="header">Producto</f:facet>
 				<h:inputText value="#{facturaDetalleController.detalle.idProductoTemp}" id="txProducto">
@@ -68,6 +69,8 @@
 	
 		<h:outputText value="" />
 		<h:commandButton action="#{facturaDetalleController.guardarDatos()}" value="Guardar" />
+		
+		<h:commandButton action="#{facturaDetalleController.guardarDatosDet()}" value="Guardar Detalle" />
 	
 	</h:panelGrid>
 	

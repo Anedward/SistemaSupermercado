@@ -82,8 +82,10 @@ public class DetalleFacturaController {
 	public String guardarDatos() throws IOException {
 	
 		detON.guardar(detalle);
+		System.out.println(detalle);
 		return "detalle";
 	}
+	
 	
 	public void consultarFactura() {
 

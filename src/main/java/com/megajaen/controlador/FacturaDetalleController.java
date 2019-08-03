@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -29,6 +30,7 @@ import com.megajaen.on.ProveedorON;
 
 @ManagedBean
 @ViewScoped
+//@SessionScoped
 public class FacturaDetalleController {
 	
 	private DetalleFacturaEN detalle;
@@ -52,9 +54,12 @@ public class FacturaDetalleController {
 
 	@PostConstruct
 	public void init() {
+	
+		factura = new FacturaEN();
 		detalle = new DetalleFacturaEN();
+		
 		//listaFacturas = facON.getListadoFacturas();
-		listaProductos = proON.getListadoProductos();
+		//listaProductos = proON.getListadoProductos();
 	}	
 
 	public DetalleFacturaEN getDetalle() {
@@ -115,9 +120,20 @@ public class FacturaDetalleController {
 	public String guardarDatos() throws IOException {
 		facON.guardar(factura);
 		detON.guardar(detalle);
-		System.out.println(detalle.toString());
+		System.out.println(factura.toString());
+		//System.out.println(detalle.toString());
 		return "detalle";
 	}
+	
+	
+	public String guardarDatosDet() throws IOException {
+		detON.guardar(detalle);
+		
+		//System.out.println(detalle);
+		//System.out.println(detalle.toString());
+		return "detalle";
+	}
+	
 	
 	public void consultarFactura() {
 
@@ -173,7 +189,7 @@ public class FacturaDetalleController {
 	
 	public void addDetalles(){
 		factura.addDetalles(new DetalleFacturaEN());
-		System.out.println("cnt " + factura.getDetalle().size());
+		System.out.println("Nuevo detalle" + factura.getDetalle().size());
 	}
 
 }

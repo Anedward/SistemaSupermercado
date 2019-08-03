@@ -37,7 +37,7 @@ public class DetalleFacturaON {
 	private EntityManager em;
 
 	public void guardar(DetalleFacturaEN detalle){		
-		daoDetFac.insertarDetalle(detalle);
+		daoDetFac.save(detalle);
 	}
 
 
