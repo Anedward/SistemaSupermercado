@@ -36,10 +36,19 @@ public class DetalleFacturaON {
 	@Inject
 	private EntityManager em;
 
-	public void guardar(DetalleFacturaEN detalle){		
+	public String guardar(DetalleFacturaEN detalle){	
+		String redirect="";
+		System.out.println(detalle);
+		//System.out.println(producto);
+		//detalle.setProducto(producto);
+		
 		daoDetFac.save(detalle);
+		//em.persist(producto);
+		return redirect;
+		
 	}
-
+	
+	
 
 	public FacturaEN consultarFactura(int codigoFactura) throws Exception {
 		FacturaEN fac = daoFactura.read(codigoFactura);
@@ -87,5 +96,6 @@ public class DetalleFacturaON {
 	public List<DetalleFacturaEN> getListadoDetalle() {
 		return daoDetFac.listDetalles();
 	}
-
+	
+	
 }

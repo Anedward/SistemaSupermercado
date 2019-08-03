@@ -26,7 +26,7 @@ public class DetalleFacturaEN {
 	@JsonIgnore
 	private ProductoEN producto;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name="det_factura")
 	@JsonIgnore
 	private FacturaEN factura;
@@ -90,6 +90,16 @@ public class DetalleFacturaEN {
 		if(producto==null) {
 			producto = new ProductoEN();
 		}
+	}
+	
+	public DetalleFacturaEN() {
+
+	}
+	
+	public DetalleFacturaEN(ProductoEN producto, int cantidad) {
+		super();
+		this.producto = producto;
+		this.cantidad = cantidad;
 	}
 
 	@Override

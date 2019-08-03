@@ -1,11 +1,13 @@
 package com.megajaen.controlador;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -29,11 +31,15 @@ import com.megajaen.on.ProveedorON;
 
 @ManagedBean
 @ViewScoped
-public class DetalleFacturaController {
+//@SessionScoped
+public class FacDetController {
 	
 	private DetalleFacturaEN detalle;
+	private FacturaEN factura;
 	private List<FacturaEN> listaFacturas;
 	private List<ProductoEN> listaProductos;
+	private List<DetalleFacturaEN> items = new ArrayList<DetalleFacturaEN>();;
+	private int id;
 
 	@Inject
 	private FacturaON facON;
@@ -50,10 +56,25 @@ public class DetalleFacturaController {
 
 	@PostConstruct
 	public void init() {
+	
+		factura = new FacturaEN();
 		detalle = new DetalleFacturaEN();
+		factura.addDetalles(new DetalleFacturaEN());
+		
 		//listaFacturas = facON.getListadoFacturas();
-		listaProductos = proON.getListadoProductos();
+		//listaProductos = proON.getListadoProductos();
 	}	
+
+	
+	public List<DetalleFacturaEN> getItems() {
+		return items;
+	}
+
+
+	public void setItems(List<DetalleFacturaEN> items) {
+		this.items = items;
+	}
+
 
 	public DetalleFacturaEN getDetalle() {
 		return detalle;
@@ -78,13 +99,54 @@ public class DetalleFacturaController {
 	public void setListaProductos(List<ProductoEN> listaProductos) {
 		this.listaProductos = listaProductos;
 	}
-
-	/*public String guardarDatos() throws IOException {
 	
+	
+
+	public FacturaEN getFactura() {
+		return factura;
+	}
+
+	public void setFactura(FacturaEN factura) {
+		this.factura = factura;
+	}
+	
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void loadData() {
+		System.out.println("codigo editar " + id);
+		if(id==0)
+			return;
+		factura = facON.getFactura(id);
+		System.out.println(factura.getCodigo() + " " + factura.getFechaEmision());
+		System.out.println("#detalles: " + " " + factura.getDetalle().size());
+		for(DetalleFacturaEN det : factura.getDetalle()) {
+			System.out.println("\t"+det);
+		}		
+	}
+
+	public String guardarDatos() throws IOException {
+		facON.guardar(factura);
 		detON.guardar(detalle);
-		System.out.println(detalle);
+		System.out.println(factura.toString());
+		//System.out.println(detalle.toString());
 		return "detalle";
-	}*/
+	}
+	
+	
+	public String guardarDatosDet() throws IOException {
+		detON.guardar(detalle);
+		
+		//System.out.println(detalle);
+		//System.out.println(detalle.toString());
+		return "detalle";
+	}
 	
 	
 	public void consultarFactura() {
@@ -138,5 +200,48 @@ public class DetalleFacturaController {
 		detalle.addProductos(new ProductoEN());
 		System.out.println("Productos " + detalle.getProducto().size());
 	}*/
+	
+	public void addDetalles(){
+		factura.addDetalles(new DetalleFacturaEN());
+		System.out.println("Nuevo detalle" + factura.getDetalle().size());
+	}
 
+	private int isExisting(ProductoEN p) {
+		for (int i = 0; i < this.items.size(); i++)
+			if (this.items.get(i).getProducto().getCodigo() == p.getCodigo())
+				return i;
+		return -1;
+
+	}
+
+	public String orderBy(ProductoEN p) {
+		int index = isExisting(p);
+		if (index == -1)
+			this.items.add(new DetalleFacturaEN(p, 1));
+		
+		else {
+			int cantidad = this.items.get(index).getCantidad() + 1;
+			this.items.get(index).setCantidad(cantidad);
+		}
+		return "facturad?face-redirect=true";
+	}
+	
+
+	public void delete(DetalleFacturaEN it) {
+		this.items.remove(it);
+	}
+
+	public double sum() {
+		double s = 0;
+		for (DetalleFacturaEN it : this.items)
+			s += it.getCantidad() * it.getProducto().getPrecioVenta();
+		return s;
+	}
+	
+	public double totalFac() {
+		double t = 0;
+		//double iva = sum() * 0.12;
+		t = sum() + (sum() * 0.12);
+		return t;
+	}
 }
