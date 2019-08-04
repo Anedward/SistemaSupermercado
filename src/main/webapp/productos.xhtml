@@ -20,32 +20,40 @@
   
 	<h:panelGrid columns="3">
 		<h:outputLabel value="Codigo" />
-		<h:inputText value="#{productoController.producto.codigo}" id="txtCodigo"/>
-		<h:message for="txtCodigo"/>
+		<h:inputText value="#{productoController.producto.codigo}" id="txtCodigo"
+		required="true" requiredMessage="*Campo Obligatorio"/>
+		<h:message for="txtCodigo" style="color: red"/>
 		
 		<h:outputLabel value="Codigo Barras" />
 		<h:inputText value="#{productoController.producto.codBarra}" id="txtCodBarra" />
 		<h:message for="txtCodBarra"/>
 		
 		<h:outputLabel value="Nombre" />
-		<h:inputText value="#{productoController.producto.nombre}" id="txtNombre" />
-		<h:message for="txtNombre"/>
+		<h:inputText value="#{productoController.producto.nombre}" id="txtNombre" 
+		required="true" requiredMessage="*Campo Obligatorio">
+		<f:validator validatorId="vcaracter" /></h:inputText>
+		<h:message for="txtNombre" style="color: red"/>
 		
 		<h:outputLabel value="Descripcion" />
-		<h:inputText value="#{productoController.producto.descripcion}" id="txtDescripcion" />
-		<h:message for="txtDescripcion"/>
+		<h:inputText value="#{productoController.producto.descripcion}" id="txtDescripcion" 
+		required="true" requiredMessage="*Campo Obligatorio"/>
+		<h:message for="txtDescripcion" style="color: red"/>
 		
 		<h:outputLabel value="Precio de Compra" />
-		<h:inputText value="#{productoController.producto.precioCompra}" id="txtPC" />
-		<h:message for="txtPC"/>
+		<h:inputText value="#{productoController.producto.precioCompra}" id="txtPC"
+		required="true" requiredMessage="*Campo Obligatorio"/>
+		<h:message for="txtPC" style="color: red"/>
 		
 		<h:outputLabel value="Precio de Venta" />
-		<h:inputText value="#{productoController.producto.precioVenta}" id="txtPV" />
-		<h:message for="txtPC"/>
+		<h:inputText value="#{productoController.producto.precioVenta}" id="txtPV" 
+		required="true" requiredMessage="*Campo Obligatorio"/>
+		<h:message for="txtPC" style="color: red"/>
 		
 		<h:outputLabel value="Stock" />
-		<h:inputText value="#{productoController.producto.stock}" id="txtStock" />
-		<h:message for="txtStock"/>
+		<h:inputText value="#{productoController.producto.stock}" id="txtStock"
+		required="true" requiredMessage="*Campo Obligatorio">
+		<f:validator validatorId="vnumero" /></h:inputText>
+		<h:message for="txtStock" style="color: red"/>
 		
 		<h:outputLabel value="Calificacion" />
 		<h:inputText value="#{productoController.producto.calificacion}" id="txtCali" />
