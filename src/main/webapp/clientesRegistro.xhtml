@@ -23,13 +23,16 @@
 					<h:inputText styleClass="inputText"
 						value="#{clienteMB.cliente.nombre}" id="txtNombre" required="true"
 						requiredMessage="*Campo Obligatorio">
-						<f:validator validatorId="vcaracter"/>
+						<f:validator validatorId="vCaracter" />
 					</h:inputText>
-					<h:message for="txtNombre" style="color: red, font-weight:bold"/>
+					<h:message for="txtNombre" style="color: red" />
 
 					<h:outputLabel value="Apellido" />
 					<h:inputText styleClass="inputText"
-						value="#{clienteMB.cliente.apellido}" id="txtApellido" />
+						value="#{clienteMB.cliente.apellido}" id="txtApellido"
+						required="true" requiredMessage="*Campo Obligatorio">
+						<f:validator validatorId="vCaracter" />
+					</h:inputText>
 					<h:message for="txtApellido" />
 
 					<h:outputLabel value="Sexo" />
@@ -47,7 +50,10 @@
 
 					<h:outputLabel value="Telefono" />
 					<h:inputText styleClass="inputText"
-						value="#{clienteMB.cliente.telefono}" id="txtTelefono" />
+						value="#{clienteMB.cliente.telefono}" id="txtTelefono"
+						required="true" requiredMessage="*Campo Obligatorio">
+						<f:validator validatorId="vNumero" />
+					</h:inputText>
 					<h:message for="txtTelefono" />
 
 					<h:outputLabel value="Fecha Registro" />
@@ -83,7 +89,6 @@
 				
 					</center
 					-->
-
 				</h:panelGrid>
 
 			</h:form>

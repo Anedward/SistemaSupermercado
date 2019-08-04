@@ -7,8 +7,8 @@ import javax.faces.validator.FacesValidator;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
-@FacesValidator("vCaracter")
-public class ValidacionCaracter implements Validator {
+@FacesValidator("vNumero")
+public class ValidacionNumerico implements Validator {
 
 	@Override
 	public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
@@ -21,8 +21,8 @@ public class ValidacionCaracter implements Validator {
 		else {		
 			for (int i = 0; i <cadena.length(); i++) {
 				char c = cadena.charAt(i);
-				if (!(c >= 'A' && c <= 'Z') && !(c >= 'a' && c <= 'z')) {
-					throw new ValidatorException(new FacesMessage("Ingrese solo letras"));
+				if (!(c >= '0' && c <= '9') ) {
+					throw new ValidatorException(new FacesMessage("Ingrese solo Numeros"));
 				}
 			}
 			
