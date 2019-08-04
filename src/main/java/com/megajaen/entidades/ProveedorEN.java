@@ -30,6 +30,7 @@ public class ProveedorEN {
 	private String email;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnore
 	@JoinColumn(name="prove_producto")
 
 	private List<ProductoEN> producto;
@@ -94,7 +95,7 @@ public class ProveedorEN {
 	@Override
 	public String toString() {
 		return "ProveedorEN [codigo=" + codigo + ", razonSocial=" + razonSocial + ", ruc=" + ruc + ", direccion="
-				+ direccion + ", telefono=" + telefono + ", email=" + email + ", producto=" + producto + "]";
+				+ direccion + ", telefono=" + telefono + ", email=" + email + "]";
 	}
 
 	public void addProducto(ProductoEN prod) {

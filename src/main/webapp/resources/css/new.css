@@ -1,0 +1,48 @@
+
+
+/* ==========================================================================
+   Media Queries
+   ========================================================================== */
+
+@media only screen and (min-width: 240px) {
+    
+
+
+}
+
+@media only screen and (min-width: 320px){
+    
+
+ 
+}
+
+@media only screen and (min-width: 480px) {
+    
+ 
+
+
+}
+@media only screen and (min-width: 768px) {
+
+#Divgeneral{
+    margin-top: .05em; 
+    width: 1300px;
+    height: 600px;
+    margin: 0 auto;
+}
+
+.pie{
+    width: 1300px;
+    height: 50px;
+}
+#content{
+
+    margin-top: 2em;
+    margin-left: 3em;
+    width: 1200px;
+    height: 440px;
+    
+}
+
+}
+
