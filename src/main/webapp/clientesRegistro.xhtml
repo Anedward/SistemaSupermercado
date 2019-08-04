@@ -14,63 +14,68 @@
 
 	<ui:composition template="/index.xhtml">
 		<ui:define name="body">
-			
-				<h2>Registrarte</h2>
-				<h:form styleClass="formRegister">
 
-					<h:panelGrid columns="3">
-						<h:outputLabel value="Nombre" />
-						<h:inputText styleClass="inputText"
-							value="#{clienteMB.cliente.nombre}" id="txtNombre" />
-						<h:message for="txtNombre" />
+			<h2>Registrarte</h2>
+			<h:form styleClass="formRegister">
 
-						<h:outputLabel value="Apellido" />
-						<h:inputText styleClass="inputText"
-							value="#{clienteMB.cliente.apellido}" id="txtApellido" />
-						<h:message for="txtApellido" />
+				<h:panelGrid columns="3">
+					<h:outputLabel value="Nombre" />
+					<h:inputText styleClass="inputText"
+						value="#{clienteMB.cliente.nombre}" id="txtNombre" required="true"
+						requiredMessage="*Campo Obligatorio">
+						<f:validator validatorId="vcaracter"/>
+					</h:inputText>
+					<h:message for="txtNombre" style="color: red, font-weight:bold"/>
 
-						<h:outputLabel value="Sexo" />
-						<h:selectOneRadio value="#{clienteMB.cliente.sexo}" styleClass="radioButton">
-							<f:selectItem itemValue="Hombre" itemLabel="Hombre" />
-							<f:selectItem itemValue="Mujer" itemLabel="Mujer" />
-						</h:selectOneRadio>
-						<br></br>
+					<h:outputLabel value="Apellido" />
+					<h:inputText styleClass="inputText"
+						value="#{clienteMB.cliente.apellido}" id="txtApellido" />
+					<h:message for="txtApellido" />
 
-						<h:outputLabel value="Direccion" />
-						<h:inputText styleClass="inputText"
-							value="#{clienteMB.cliente.direccion}" id="txtDireccion" />
-						<h:message for="txtDireccion" />
+					<h:outputLabel value="Sexo" />
+					<h:selectOneRadio value="#{clienteMB.cliente.sexo}"
+						styleClass="radioButton">
+						<f:selectItem itemValue="Hombre" itemLabel="Hombre" />
+						<f:selectItem itemValue="Mujer" itemLabel="Mujer" />
+					</h:selectOneRadio>
+					<br></br>
 
-						<h:outputLabel value="Telefono" />
-						<h:inputText styleClass="inputText"
-							value="#{clienteMB.cliente.telefono}" id="txtTelefono" />
-						<h:message for="txtTelefono" />
+					<h:outputLabel value="Direccion" />
+					<h:inputText styleClass="inputText"
+						value="#{clienteMB.cliente.direccion}" id="txtDireccion" />
+					<h:message for="txtDireccion" />
 
-						<h:outputLabel value="Fecha Registro" />
-						<h:inputText styleClass="inputText"
-							value="#{clienteMB.cliente.fechaRegistro}" id="txtfechaRegistro"
-							disabled="true" />
-						<h:message for="txtfechaRegistro" />
+					<h:outputLabel value="Telefono" />
+					<h:inputText styleClass="inputText"
+						value="#{clienteMB.cliente.telefono}" id="txtTelefono" />
+					<h:message for="txtTelefono" />
 
-						<h:outputLabel value="Email" />
-						<h:inputText styleClass="inputText"
-							value="#{clienteMB.cliente.usuario.emailusuario}" id="txtUserEmail" />
-						<h:message for="txtUserEmail" />
+					<h:outputLabel value="Fecha Registro" />
+					<h:inputText styleClass="inputText"
+						value="#{clienteMB.cliente.fechaRegistro}" id="txtfechaRegistro"
+						disabled="true" />
+					<h:message for="txtfechaRegistro" />
 
-						<h:outputLabel value="Contraseña" />
-						<h:inputSecret styleClass="inputText"
-							value="#{clienteMB.cliente.usuario.contrasenia}" id="txtUserPwd" />
-						<h:message for="txtUserPwd" />
+					<h:outputLabel value="Email" />
+					<h:inputText styleClass="inputText"
+						value="#{clienteMB.cliente.usuario.emailusuario}"
+						id="txtUserEmail" />
+					<h:message for="txtUserEmail" />
 
-						<center>
-							<div>
-								<h:commandButton styleClass="buttons"
-									action="#{clienteMB.cargarDatos()}" value="Registrarse" />
-							</div>
+					<h:outputLabel value="Contraseña" />
+					<h:inputSecret styleClass="inputText"
+						value="#{clienteMB.cliente.usuario.contrasenia}" id="txtUserPwd" />
+					<h:message for="txtUserPwd" />
 
-						</center>
+					<center>
+						<div>
+							<h:commandButton styleClass="buttons"
+								action="#{clienteMB.cargarDatos()}" value="Registrarse" />
+						</div>
 
-						<!-- 
+					</center>
+
+					<!-- 
 		
 					
 							<h:commandButton styleClass="buttons"
@@ -79,10 +84,10 @@
 					</center
 					-->
 
-					</h:panelGrid>
+				</h:panelGrid>
 
-				</h:form>
-			</ui:define>
+			</h:form>
+		</ui:define>
 
 	</ui:composition>
 

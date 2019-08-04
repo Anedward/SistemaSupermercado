@@ -21,8 +21,10 @@ public class UsuarioControlador {
 		private String nombreusuario;
 		private String password;
 		private UsuarioEN usuario;
+		
 		@Inject
 		private ClienteON con;
+		
 		@Inject
 		private preferencias pre;
 		
