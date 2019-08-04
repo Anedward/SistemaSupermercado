@@ -34,6 +34,7 @@ import com.megajaen.on.ProveedorON;
 public class FacturaDetalleController {
 	
 	private DetalleFacturaEN detalle;
+	private ProductoEN producto;
 	private FacturaEN factura;
 	private List<FacturaEN> listaFacturas;
 	private List<ProductoEN> listaProductos;
@@ -69,6 +70,16 @@ public class FacturaDetalleController {
 	public void setDetalle(DetalleFacturaEN detalle) {
 		this.detalle = detalle;
 	}
+	
+	
+	public ProductoEN getProducto() {
+		return producto;
+	}
+
+	public void setProducto(ProductoEN producto) {
+		this.producto = producto;
+	}
+
 	public List<FacturaEN> getListaFacturas() {
 		return listaFacturas;
 	}
@@ -118,21 +129,28 @@ public class FacturaDetalleController {
 	}
 
 	public String guardarDatos() throws IOException {
+		for(DetalleFacturaEN det : factura.getDetalle()) {
+			System.out.println("\t"+det);
+			
 		facON.guardar(factura);
-		detON.guardar(detalle);
-		System.out.println(factura.toString());
+		facON.guardarDet(det);
+		init();
+		}
+		//System.out.println(factura.toString());
 		//System.out.println(detalle.toString());
 		return "detalle";
 	}
 	
 	
-	public String guardarDatosDet() throws IOException {
+	
+	
+	/*public String guardarDatosDet() throws IOException {
 		detON.guardar(detalle);
 		
 		//System.out.println(detalle);
 		//System.out.println(detalle.toString());
 		return "detalle";
-	}
+	}*/
 	
 	
 	public void consultarFactura() {
@@ -191,5 +209,13 @@ public class FacturaDetalleController {
 		factura.addDetalles(new DetalleFacturaEN());
 		System.out.println("Nuevo detalle" + factura.getDetalle().size());
 	}
+	
+	public void addProductos(){
+		detalle.addProducto(producto);
+		//System.out.println("Nuevo detalle" + factura.getDetalle().size());
+		//System.out.println(detalle.getProducto().toString());
+	}
+	
+	
 
 }

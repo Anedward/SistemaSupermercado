@@ -48,6 +48,9 @@
 				<h:inputText value="#{det.cantidad}" />
 			</h:column>
 			</h:dataTable >
+			
+			
+		
 			<h:dataTable value="#{facturaDetalleController.factura.detalle}" var="det">
 			<h:column>
 				<f:facet name="header">Producto</f:facet>
@@ -68,9 +71,12 @@
 		<h:commandButton action="#{facturaDetalleController.addDetalles()}" value="+ detalles" />
 	
 		<h:outputText value="" />
+		
+	
+		
 		<h:commandButton action="#{facturaDetalleController.guardarDatos()}" value="Guardar" />
 		
-		<h:commandButton action="#{facturaDetalleController.guardarDatosDet()}" value="Guardar Detalle" />
+		
 	
 	</h:panelGrid>
 	
