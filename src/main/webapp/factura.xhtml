@@ -9,25 +9,32 @@
 </h:head>
 <body>
 
-
-
 	<h:form id="formFacturas" styleClass="formularios">
-	<p:panel id="panelFac" styleClass="panel">
-	
-                            
+		<p:panel id="panelFac" styleClass="panel">
+			<p:layoutUnit id="datosFactura" styleClass="datosFactura"
+				position="east">
+				<p:panel>
+				<h:panelGrid columns="3">
 
-                            <p:layoutUnit id="datosFactura" styleClass="datosFactura" position="east">
-                                <h:panelGrid columns="1">
-                                    <h:outputLabel value="FACTURA"/>
-                                    <h:outputLabel value="00010"/>
-                                    <p:separator/>
+					<h:outputLabel value="N° Factura" />
+					<h:inputText value="#{facturaDetalleController.factura.numFact}"
+						id="txtFactura" />
+					<h:message for="txtFactura" />
 
-                                </h:panelGrid>
+					<h:outputLabel value="Fecha" />
+					<h:outputText
+						value="#{facturaDetalleController.factura.fechaEmision}"
+						id="txttFecha" />
+					<h:message for="txtFecha" />
 
-                            </p:layoutUnit>
-                        
-	
-</p:panel>
+					
+				</h:panelGrid>
+			</p:panel>
+
+			</p:layoutUnit>
+
+
+		</p:panel>
 		<p:panel id="panel" styleClass="panel">
 
 			<p:panel style="margin-top: 20px; height: 80px;">
@@ -50,28 +57,8 @@
 						oncomplete="PF('dialogoProducto').show();" />
 				</p:panelGrid>
 			</p:panel>
+
 			
-			<p:panel>
-			<h:panelGrid columns="3">
-		
-		
-		<h:outputLabel value="Numero de Factura" />
-		<h:inputText value="#{facturaDetalleController.factura.numFact}" id="txtFactura"/>
-		<h:message for="txtFactura"/>
-		
-		<h:outputLabel value="Fecha" />
-		<h:inputText value="#{facturaDetalleController.factura.fechaEmision}" id="txttFecha" />
-		<h:message for="txtFecha"/>
-		
-		<h:outputLabel value="Iva" />
-		<h:inputText value="#{facturaDetalleController.factura.iva}" id="txtIva" />
-		<h:message for="txtIva"/>
-		
-		<h:outputLabel value="Total" />
-		<h:inputText value="#{facturaDetalleController.factura.total}" id="txtTotal" />
-		<h:message for="txtTotal"/>
-		</h:panelGrid>
-		</p:panel>
 
 			<p:panel style=" margin-top: 2px; height: 205px;">
 				<p:dataTable id="tablaProductos" var="producto"
@@ -88,28 +75,52 @@
 						<h:outputText value="#{producto.producto.nombre}" />
 					</p:column>
 					<p:column headerText="Cantidad">
-						<h:outputText value="1" /> 
+						<h:outputText value="#{producto.cantidad}" />
 					</p:column>
 					<p:column headerText="Precio venta">
 						<h:outputText value="$ #{producto.producto.precioVenta}" />
 					</p:column>
-					
+
 					<p:column headerText="Precio Total">
-						<h:outputText value="100" />
+						<h:outputText
+							value="#{producto.cantidad * producto.producto.precioVenta}" />
 					</p:column>
 				</p:dataTable>
 			</p:panel>
-
-			<p:outputLabel id="TotalVenta"
-				value="100"
-				style="margin-top: 3px;" />
+			
+			<p:outputLabel>Subtotal: </p:outputLabel>
+			<p:outputLabel id="TotalVenta" value="#{facturaDetalleController.sum()}" style="margin-top: 3px;" />
 			<p:separator style="margin-top: 5px;" />
-			<p:commandButton value="Registrar" styleClass="btn btn-info"
-				style="margin-top: 2px;" actionListener="#{facturaDetalleController.guardarVenta()}"  update=":formFacturas" />
-			<p:commandButton value="Imprimir" styleClass="btn-success"
-				style="margin-top: 2px;" />
+			
+			<p:outputLabel>IVA: </p:outputLabel>
+			<p:outputLabel value="0.12" style="margin-top: 3px;" />
+			<p:separator style="margin-top: 5px;" />
+			
+			<p:outputLabel>Total: </p:outputLabel>
+			<p:outputLabel id="txtTotal" value="#{facturaDetalleController.totalFac()}" style="margin-top: 3px;" />
+			<p:separator style="margin-top: 5px;" />
+			
+			<!--  
+			<h:outputLabel value="Iva" />
+					<h:outputText value="0.12"
+						id="txtIva" />
+					<h:message for="txtIva" />
+
+					<h:outputLabel value="Total" />
+					<h:outputText value="#{facturaDetalleController.totalFac()}"
+						id="txtTotal" />
+					<h:message for="txtTotal" />
+			-->
+			<p:separator style="margin-top: 5px;" />
+			<p:commandButton value="Guardar" styleClass="btn btn-info"
+				style="margin-top: 2px;"
+				actionListener="#{facturaDetalleController.guardarVenta()}"
+				update=":formFacturas" />
+			
 			<p:commandButton value="Cancelar" styleClass="btn btn-danger"
-				style="margin-top: 2px;" action="#{facturaDetalleController.limpiarFactura()}" update=":formFacturas"/>
+				style="margin-top: 2px;"
+				action="#{facturaDetalleController.limpiarFactura()}"
+				update=":formFacturas" />
 		</p:panel>
 
 
@@ -123,23 +134,30 @@
 			<p:dataTable id="tablaProdAUX" paginator="true"
 				paginatorPosition="top" style="width: 700px;" var="pro"
 				value="#{productoController.listaProductos}" rows="5">
-				<f:facet name="header">
-					<h:outputText value="Producto" style="color: white;" />
-				</f:facet>
-				<p:column headerText="N°">
-					<h:outputText value="#{pro.codigo}" />
+				
+					<f:facet name="header">
+					<h:outputText value="Producto" />
+					</f:facet>
+						
+				<p:column headerText="Codigo">
+				<h:outputText value="#{pro.codigo}" />
 				</p:column>
-				<p:column headerText="Nombre">
-					<h:outputText value="#{pro.nombre}" />
+					
+					<p:column headerText="Nombre">
+				<h:outputText value="#{pro.nombre}" />
 				</p:column>
+				
 				<p:column headerText="Precio">
-					<h:outputText value="$ #{pro.precioVenta}" />
+				<h:outputText value="#{pro.precioVenta}" />
 				</p:column>
+				
+				
 				<p:column headerText="Agregar">
-					<p:commandButton icon="fa fa fa-cart-plus" styleClass="btn-success"
-						actionListener="#{facturaDetalleController.agregarDatosProductoCod(pro.codBarra)}"
+					<p:commandButton value="+ &#128722;" icon="fa fa fa-cart-plus"
+						styleClass="btn-success"
+						action="#{facturaDetalleController.orderBy(pro)}"
 						onclick="PF('dialogoProducto').hide();"
-						update=":formFacturas:tablaProductos :formFacturas:TotalVenta">
+						update=":formFacturas:tablaProductos :formFacturas:txtTotal :formFacturas:TotalVenta">
 
 					</p:commandButton>
 				</p:column>
@@ -154,17 +172,14 @@
 
 		<p:dialog id="dlgCantidadProducto" widgetVar="dialogoCantidadProducto"
 			header="Cantidad" modal="true">
-			Cantidad de Productos a Vender: <p:inputText id="txtCantidadProducto"
-				value="1" />
+			Cantidad de Productos a Vender: 
+			<p:inputText id="txtCantidadProducto" value="#{facturaDetalleController.cantidadProducto}" />
+
 			<p:commandButton value="Aceptar"
 				actionListener="#{facturaDetalleController.agregarDatosProductoCod()}"
 				update="formFacturas:tablaProductos :formFacturas:dlgCantidadProducto"
-				oncomplete="PF('dlgCantidadProducto').hide()"/>
+				oncomplete="PF('dlgCantidadProducto').hide();PF(dialogoProducto').hide();" />
 		</p:dialog>
 	</h:form>
-
-
-
-
 </body>
 </html>

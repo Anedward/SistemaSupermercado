@@ -1,6 +1,8 @@
 package com.megajaen.entidades;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -61,7 +63,7 @@ public class FacturaEN {
 	}
 
 	public String getFechaEmision() {
-		return fechaEmision;
+		return new SimpleDateFormat("dd-MMMM-yyyy").format(new Date());
 	}
 
 	public void setFechaEmision(String fechaEmision) {
