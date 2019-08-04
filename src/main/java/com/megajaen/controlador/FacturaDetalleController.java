@@ -1,6 +1,7 @@
 package com.megajaen.controlador;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,7 +17,6 @@ import javax.inject.Inject;
 
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
-
 
 import com.megajaen.entidades.CategoriaEN;
 import com.megajaen.entidades.DetalleFacturaEN;
@@ -44,6 +44,9 @@ public class FacturaDetalleController {
 
 	private int id;
 	private String codBarra;
+	private int cantidadProducto;
+	private String productoSeleccionado;
+	private String numeroFactura;
 
 	@Inject
 	private FacturaON facON;
@@ -131,6 +134,22 @@ public class FacturaDetalleController {
 		this.codBarra = codBarra;
 	}
 
+	public int getCantidadProducto() {
+		return cantidadProducto;
+	}
+
+	public void setCantidadProducto(int cantidadProducto) {
+		this.cantidadProducto = cantidadProducto;
+	}
+
+	public String getProductoSeleccionado() {
+		return productoSeleccionado;
+	}
+
+	public void setProductoSeleccionado(String productoSeleccionado) {
+		this.productoSeleccionado = productoSeleccionado;
+	}
+
 	public void loadData() {
 		System.out.println("codigo editar " + id);
 		if (id == 0)
@@ -144,14 +163,11 @@ public class FacturaDetalleController {
 	}
 
 	public String guardarDatos() throws IOException {
-		for (DetalleFacturaEN det : factura.getDetalle()) {
-			System.out.println("\t" + det);
-
-			facON.guardar(factura);
-			facON.guardarDet(det);
-			init();
-		}
-		// System.out.println(factura.toString());
+		facON.guardar(factura);
+		System.out.println(factura.toString());
+		//facON.guardarDet(det);
+		init();
+		
 		// System.out.println(detalle.toString());
 		return "detalle";
 	}
@@ -216,18 +232,25 @@ public class FacturaDetalleController {
 	public void agregarDatosProductoCod(){
 
         try {
-            if (this.codBarra == null) {
+            if (codBarra == null) {
                 
             } else {
             	
-                this.producto = proON.obtenerProducto(codBarra);
+                producto = proON.obtenerProducto(codBarra);
                 
-                if(this.producto != null){
-                    this.listaDetalles.add(new DetalleFacturaEN(this.producto));
-                    this.codBarra=null;
-                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Se encontro el cliente", "ok"));
+                //System.out.println(producto);
+                
+                if(producto != null){
+                	
+                 // System.out.println(detalle);
+					listaDetalles.add(new DetalleFacturaEN(this.producto));
+					//System.out.println(listaDetalles);
+                   System.out.println("Inserto");
+                     
+                    codBarra=null;
+                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Se encontro el producto", "ok"));
                 }else{
-                  this.codBarra=null;
+                  codBarra=null;
                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "No se encontro el registro", ";/"));
                 }
             }
@@ -236,20 +259,57 @@ public class FacturaDetalleController {
            
         }
     }
+
+	public String TotalVenta() {
+		String total;
+		double precio = 0;
+		try {
+			for (DetalleFacturaEN d : listaDetalles) {
+				precio = precio + d.getProducto().getPrecioVenta();
+			}
+
+		} catch (Exception e) {
+			total = "0";
+		}
+		total = String.format("%.2f", precio);
+		return total;
+	}
+
+	public void pedirCantidadProducto(String codigoBarra) {
+		productoSeleccionado = codigoBarra;
+
+	}
 	
-	public String TotalVenta(){
-        String total;
-        double precio = 0;
-        try {
-            for(DetalleFacturaEN d: listaDetalles){
-               precio = precio+ d.getProducto().getPrecioVenta();
-            }
-            
-        } catch (Exception e) {
-            total = "0";
-        }
-        total = String.format("%.2f", precio);
-        return total;
-    }
+	public void limpiarFactura() {
+		factura = new FacturaEN();
+		listaDetalles = new ArrayList<>();
+		codBarra = null;
+		//numeroFactura = null;
+		//totalVentaFactura = null;
+		
+	}
+	
+	public void guardarVenta() {
+		try {
+		factura.setNumFact(numeroFactura);	
+		facON.guardar(factura);
+		//factura = facON.obtenerUltimoRegistro();
+		for (DetalleFacturaEN item : listaDetalles) {
+			//proON.obtenerProducto(item.getCodigoBarras());
+			item.setFactura(factura);
+			item.setProducto(producto);
+			item.setCantidad(15);
+			item.setPrecioVenta(producto.getPrecioVenta());
+			item.setPrecioTotal(producto.getPrecioVenta()* item.getCantidad());
+			
+			detON.guardar(item);
+		}
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Correcto", "Registrado"));
+		limpiarFactura();
+		}catch (Exception e) {
+			 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Error", "NoRegistrado"));
+		}
+		
+	}
 
 }

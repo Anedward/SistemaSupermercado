@@ -8,7 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import com.megajaen.entidades.ProductoEN;
-import com.megajaen.entidades.ProveedorEN;
 
 
 @Stateless
@@ -43,14 +42,16 @@ public class ProductoDAO {
 		return producto;
 	}
 	
+	
+	
 	public ProductoEN read(int id) {
 		return em.find(ProductoEN.class, id);
 	}
 	
 	 public ProductoEN obtenerProducto(String codBarra) {
-	        String jpql = "FROM ProductoEN WHERE codBarra = :codBarra";
+	        String jpql = "SELECT prod FROM ProductoEN prod WHERE prod.codBarra = :codBarra";
 	        Query q = em.createQuery(jpql, ProductoEN.class);
-	        q.setParameter("codBarra",codBarra);
+	        q.setParameter("codBarra", codBarra);
 	        ProductoEN prod = (ProductoEN) q.getSingleResult();
 	       return prod;
 	    }

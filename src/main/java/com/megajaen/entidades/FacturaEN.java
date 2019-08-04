@@ -110,8 +110,10 @@ public class FacturaEN {
 	@Override
 	public String toString() {
 		return "FacturaEN [codigo=" + codigo + ", numFact=" + numFact + ", fechaEmision=" + fechaEmision + ", iva="
-				+ iva + ", total=" + total + ", listaDetalles=" + listaDetalles + "]";
+				+ iva + ", total=" + total + ", detalle=" + detalle + ", listaDetalles=" + listaDetalles + "]";
 	}
+
+	
 
 	
 

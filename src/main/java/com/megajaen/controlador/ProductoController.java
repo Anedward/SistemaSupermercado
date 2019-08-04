@@ -37,7 +37,6 @@ public class ProductoController {
 	private List<ProductoEN> listaProductos;
 	
 
-
 	@Inject
 	private CategoriaON catON;
 
@@ -191,7 +190,7 @@ public class ProductoController {
 	
 	public byte[] getBytes(int id) {
 		producto = prodON.buscarProducto(id);
-		System.out.println(producto);
+		//System.out.println(producto);
 		System.out.println(producto.getCodigo());
 		System.out.println(producto.getNombre());
 		return producto.getImagen();
@@ -204,11 +203,11 @@ public class ProductoController {
 	public void buscarProducto() {
 		producto = prodON.buscarProducto(idB);
 		
-		System.out.println("holaaaaa"+idB);
-		System.out.println("holaaaaa"+producto);
-		System.out.println(producto.getCodigo());
-		System.out.println(producto.getNombre());
-		System.out.println(producto.getImagen());
+		//System.out.println("holaaaaa"+idB);
+		//System.out.println("holaaaaa"+producto);
+		//System.out.println(producto.getCodigo());
+		//System.out.println(producto.getNombre());
+	//	System.out.println(producto.getImagen());
 		
 	}
 	

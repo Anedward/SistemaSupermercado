@@ -95,6 +95,22 @@ public class FacturaDAO {
 		return fac;
 
 	}
+	
+	public FacturaEN obtenerUltimoRegistro() {
+		String jpql = "SELECT fac FROM FacturaEN ORDER BY fac.numFact DESC";
+		Query q = em.createQuery(jpql, FacturaEN.class).setMaxResults(1);
+		FacturaEN fac = (FacturaEN) q.getSingleResult();
+		return fac;
+	}
+	
+	public Long obtenerTotalRegistrosFactura() {
+		String jpql = "SELECT COUNT(*) FROM FacturaEN";
+		Query q = em.createQuery(jpql, FacturaEN.class);
+		Long fac = (Long) q.getSingleResult();
+		return fac;
+		
+	}
+	
 
 	// public String idIncrement() {
 	// String jpql = "SELECT AUTO_INCREMENT FROM INFORMATION_SCHEMA.TABLES WHERE

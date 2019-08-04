@@ -23,7 +23,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class ProductoEN {
 	
 	@Id
-	@GeneratedValue
 	@Column(name="prod_codigo")
 	private int codigo;
 	

@@ -20,6 +20,9 @@ public class DetalleFacturaEN {
 	@Column(name="detFac_cantidad")
 	private int cantidad;
 	
+	@Column(name="detFac_precioVenta")
+	private double precioVenta;
+	
 	@Column(name="detFac_preTot")
 	private double precioTotal;
 	
@@ -51,6 +54,7 @@ public class DetalleFacturaEN {
 	super();
 	this.producto = producto;
 	}
+
 
 	public int getCodigo() {
 		return codigo;
@@ -109,12 +113,24 @@ public class DetalleFacturaEN {
 		this.idProductoTemp = idProductoTemp;
 	}
 
+	public double getPrecioVenta() {
+		return precioVenta;
+	}
+
+	public void setPrecioVenta(double precioVenta) {
+		this.precioVenta = precioVenta;
+	}
+
 	@Override
 	public String toString() {
-		return "DetalleFacturaEN [codigo=" + codigo + ", cantidad=" + cantidad
-				+ ", precioTotal=" + precioTotal + ", producto=" + producto + ", factura=" + factura
-				+ ", idFacturaTemp=" + idFacturaTemp + ", idProductoTemp=" + idProductoTemp + "]";
+		return "DetalleFacturaEN [codigo=" + codigo + ", codigoBarras=" 
+				+ ", cantidad=" + cantidad + ", precioVenta=" + precioVenta + ", precioTotal=" + precioTotal
+				+ ", producto=" + producto + ", factura=" + factura + ", idFacturaTemp=" + idFacturaTemp
+				+ ", idProductoTemp=" + idProductoTemp + "]";
 	}
-    
+
+	
+
+	
 
 }
