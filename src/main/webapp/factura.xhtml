@@ -1,67 +1,170 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-	<f:metadata>
-		<f:viewParam name="id" value="#{facturaController.id}"></f:viewParam>
-		<f:viewAction action="#{facturaController.loadData()}"/>
-	</f:metadata>
+</h:head>
+<body>
 
-</h:head> 
 
-<body> 
 
-<h:form>
-	<h:panelGrid columns="3">
-		<h:outputLabel value="Codigo" />
-		<h:inputText value="#{facturaController.factura.codigo}" id="txtCodigo"/>
-		<h:message for="txtCodigo"/>
+	<h:form id="formFacturas" styleClass="formularios">
+	<p:panel id="panelFac" styleClass="panel">
+	
+                            
+
+                            <p:layoutUnit id="datosFactura" styleClass="datosFactura" position="east">
+                                <h:panelGrid columns="1">
+                                    <h:outputLabel value="FACTURA"/>
+                                    <h:outputLabel value="00010"/>
+                                    <p:separator/>
+
+                                </h:panelGrid>
+
+                            </p:layoutUnit>
+                        
+	
+</p:panel>
+		<p:panel id="panel" styleClass="panel">
+
+			<p:panel style="margin-top: 20px; height: 80px;">
+				<f:facet name="header">
+					<h:outputText value="Productos"
+						style="margin-left: 0px; margin-right: -12px;" />
+				</f:facet>
+				<p:panelGrid id="prodPanel" styleClass="prodPanel" columns="4"
+					columnClasses="column1,columna2p,columna3p,columna4p"
+					style="font-size: 14px !important; margin-left: -15px; margin-top: -4px;">
+					<p:outputLabel value="Código de barrra:"
+						style="margin-left: -12px;" />
+					<p:inputText value="#{facturaDetalleController.codBarra}" size="25" />
+					<p:commandButton value="Buscar" icon="fa fa fa-search"
+						styleClass="btn-success"
+						actionListener="#{facturaDetalleController.agregarDatosProductoCod()}"
+						update=":formFacturas:tablaProductos :formFacturas:TotalVenta" />
+					<p:commandButton value="....." icon="fa fa fa-edit"
+						styleClass="OcularBotones btn-success"
+						oncomplete="PF('dialogoProducto').show();" />
+				</p:panelGrid>
+			</p:panel>
+			
+			<p:panel>
+			<h:panelGrid columns="3">
+		
 		
 		<h:outputLabel value="Numero de Factura" />
-		<h:inputText value="#{facturaController.factura.numFact}" id="txtFactura"/>
+		<h:inputText value="#{facturaDetalleController.factura.numFact}" id="txtFactura"/>
 		<h:message for="txtFactura"/>
 		
 		<h:outputLabel value="Fecha" />
-		<h:inputText value="#{facturaController.factura.fechaEmision}" id="txttFecha" />
+		<h:inputText value="#{facturaDetalleController.factura.fechaEmision}" id="txttFecha" />
 		<h:message for="txtFecha"/>
 		
 		<h:outputLabel value="Iva" />
-		<h:inputText value="#{facturaController.factura.iva}" id="txtIva" />
+		<h:inputText value="#{facturaDetalleController.factura.iva}" id="txtIva" />
 		<h:message for="txtIva"/>
 		
 		<h:outputLabel value="Total" />
-		<h:inputText value="#{facturaController.factura.total}" id="txtTotal" />
+		<h:inputText value="#{facturaDetalleController.factura.total}" id="txtTotal" />
 		<h:message for="txtTotal"/>
-		<h:outputLabel value="Detalles" />
-		
-		<h:dataTable value="#{facturaController.factura.detalle}" var="det">
-			<h:column>
-				<f:facet name="header">Código</f:facet>
-				<h:inputText value="#{det.codigo}" />
-			</h:column>
-		</h:dataTable>
-		
-		<h:dataTable value="#{facturaController.factura.detalle}" var="detalle">
-			<h:column>
-				<f:facet name="header">Cantidad</f:facet>
-				<h:inputText value="#{detalle.cantidad}" />
-			</h:column>
-		</h:dataTable>
-	
-		<h:commandButton action="#{facturaController.addDetalles()}" value="+ detalles" />
-	
-		<h:outputText value="" />
-		<h:commandButton action="#{facturaController.cargarDatos()}" value="Guardar" />
-	
-	</h:panelGrid>
-	
+		</h:panelGrid>
+		</p:panel>
+
+			<p:panel style=" margin-top: 2px; height: 205px;">
+				<p:dataTable id="tablaProductos" var="producto"
+					value="#{facturaDetalleController.listaDetalles}"
+					rowStyleClass="ejemplo, ejemplo2"
+					emptyMessage="No se han encontrado registros." paginator="true"
+					paginatorPosition="top" rows="4">
+
+					<p:column headerText="Código de barra">
+
+						<h:outputText value="#{producto.producto.codBarra}" />
+					</p:column>
+					<p:column headerText="Producto">
+						<h:outputText value="#{producto.producto.nombre}" />
+					</p:column>
+					<p:column headerText="Cantidad">
+						<h:outputText value="1" /> 
+					</p:column>
+					<p:column headerText="Precio venta">
+						<h:outputText value="$ #{producto.producto.precioVenta}" />
+					</p:column>
+					
+					<p:column headerText="Precio Total">
+						<h:outputText value="100" />
+					</p:column>
+				</p:dataTable>
+			</p:panel>
+
+			<p:outputLabel id="TotalVenta"
+				value="100"
+				style="margin-top: 3px;" />
+			<p:separator style="margin-top: 5px;" />
+			<p:commandButton value="Registrar" styleClass="btn btn-info"
+				style="margin-top: 2px;" actionListener="#{facturaDetalleController.guardarVenta()}"  update=":formFacturas" />
+			<p:commandButton value="Imprimir" styleClass="btn-success"
+				style="margin-top: 2px;" />
+			<p:commandButton value="Cancelar" styleClass="btn btn-danger"
+				style="margin-top: 2px;" action="#{facturaDetalleController.limpiarFactura()}" update=":formFacturas"/>
+		</p:panel>
 
 
-</h:form>
+		<p:dialog id="dlgProducto" widgetVar="dialogoProducto" modal="true"
+			showEffect="explode" hideEffect="explode"
+			styleClass="dialogoClientes" resizable="false" position="center"
+			responsive="true" draggable="false" closeOnEscape="true"
+			closable="false">
 
 
-</body> 
+			<p:dataTable id="tablaProdAUX" paginator="true"
+				paginatorPosition="top" style="width: 700px;" var="pro"
+				value="#{productoController.listaProductos}" rows="5">
+				<f:facet name="header">
+					<h:outputText value="Producto" style="color: white;" />
+				</f:facet>
+				<p:column headerText="N°">
+					<h:outputText value="#{pro.codigo}" />
+				</p:column>
+				<p:column headerText="Nombre">
+					<h:outputText value="#{pro.nombre}" />
+				</p:column>
+				<p:column headerText="Precio">
+					<h:outputText value="$ #{pro.precioVenta}" />
+				</p:column>
+				<p:column headerText="Agregar">
+					<p:commandButton icon="fa fa fa-cart-plus" styleClass="btn-success"
+						actionListener="#{facturaDetalleController.agregarDatosProductoCod(pro.codBarra)}"
+						onclick="PF('dialogoProducto').hide();"
+						update=":formFacturas:tablaProductos :formFacturas:TotalVenta">
+
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+			<center>
+				<p:separator />
+				<p:commandButton value="cerrar" icon="fa fa fa-mail-reply"
+					styleClass="btn-danger" style="margin-top: 8px;"
+					onclick="PF('dialogoProducto').hide();" />
+			</center>
+		</p:dialog>
+
+		<p:dialog id="dlgCantidadProducto" widgetVar="dialogoCantidadProducto"
+			header="Cantidad" modal="true">
+			Cantidad de Productos a Vender: <p:inputText id="txtCantidadProducto"
+				value="1" />
+			<p:commandButton value="Aceptar"
+				actionListener="#{facturaDetalleController.agregarDatosProductoCod()}"
+				update="formFacturas:tablaProductos :formFacturas:dlgCantidadProducto"
+				oncomplete="PF('dlgCantidadProducto').hide()"/>
+		</p:dialog>
+	</h:form>
+
+
+
+
+</body>
 </html>

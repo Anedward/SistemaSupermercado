@@ -10,14 +10,27 @@ import javax.persistence.Query;
 import com.megajaen.entidades.DetalleFacturaEN;
 import com.megajaen.entidades.ProductoEN;
 
+
 @Stateless
 public class DetalleFacturaDAO {
 	
 	@Inject
 	private EntityManager em;
 	
+	public void save(DetalleFacturaEN det) {
+		if(this.read(det.getCodigo())!=null)
+			this.update(det);
+		else
+			this.insertarDetalle(det);
+		
+	}
+	
 	public void insertarDetalle (DetalleFacturaEN detalle) {
 		em.persist(detalle);
+	}
+	
+	public DetalleFacturaEN read(int id) {
+		return em.find(DetalleFacturaEN.class, id);
 	}
 
 	public List<DetalleFacturaEN> listDetalles(){
@@ -30,6 +43,10 @@ public class DetalleFacturaDAO {
 	public DetalleFacturaEN buscarDetalles(int id) {
 		DetalleFacturaEN detalles = em.find(DetalleFacturaEN.class, id);
 		return detalles;
+	}
+public void update(DetalleFacturaEN det) {
+		
+		em.merge(det);
 	}
 
 }

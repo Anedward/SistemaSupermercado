@@ -35,6 +35,7 @@ public class ProductoController {
 	private List<CategoriaEN> listaCategorias;
 	private List<ProveedorEN> listaProveedores;
 	private List<ProductoEN> listaProductos;
+	
 
 	@Inject
 	private CategoriaON catON;
@@ -97,6 +98,15 @@ public class ProductoController {
 	public void setId(int id) {
 		this.idB = id;
 	}
+	
+	public void loadData() {
+		System.out.println("codigo editar " + idB);
+		if(idB==0)
+			return;
+		producto = prodON.getProducto(idB);
+		System.out.println(producto.getCodigo() + " " + producto.getNombre() );
+			
+	}
 
 	public String guardarDatos() throws IOException {
 		upload();
@@ -105,6 +115,7 @@ public class ProductoController {
 		prodON.guardarProductoImg(producto, file);
 		System.out.println(producto);
 		System.out.println(file);
+		init();
 		return "productos";
 	}
 	
@@ -115,7 +126,6 @@ public class ProductoController {
 	public void setFile(UploadedFile file) {
 		this.file = file;
 	}
-	
 	
 	
 	
@@ -180,7 +190,7 @@ public class ProductoController {
 	
 	public byte[] getBytes(int id) {
 		producto = prodON.buscarProducto(id);
-		System.out.println(producto);
+		//System.out.println(producto);
 		System.out.println(producto.getCodigo());
 		System.out.println(producto.getNombre());
 		return producto.getImagen();
@@ -193,11 +203,11 @@ public class ProductoController {
 	public void buscarProducto() {
 		producto = prodON.buscarProducto(idB);
 		
-		System.out.println("holaaaaa"+idB);
-		System.out.println("holaaaaa"+producto);
-		System.out.println(producto.getCodigo());
-		System.out.println(producto.getNombre());
-		System.out.println(producto.getImagen());
+		//System.out.println("holaaaaa"+idB);
+		//System.out.println("holaaaaa"+producto);
+		//System.out.println(producto.getCodigo());
+		//System.out.println(producto.getNombre());
+	//	System.out.println(producto.getImagen());
 		
 	}
 	

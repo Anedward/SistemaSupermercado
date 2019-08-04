@@ -29,17 +29,32 @@ public class ProductoDAO {
 		
 	}
 
-	@SuppressWarnings("unchecked")
+	/*@SuppressWarnings("unchecked")
 	public List<ProductoEN> listarFotos(){
 		String jpql = "SELECT f FROM ProductoEN f";
 		Query query = em.createQuery(jpql, ProductoEN.class);
 		List<ProductoEN> lfotos= query.getResultList();		
 		return lfotos;
-	}
+	}*/
 	
 	public ProductoEN buscarProducto (int id) {
 		ProductoEN producto = em.find(ProductoEN.class, id);
 		return producto;
 	}
+	
+	
+	
+	public ProductoEN read(int id) {
+		return em.find(ProductoEN.class, id);
+	}
+	
+	 public ProductoEN obtenerProducto(String codBarra) {
+	        String jpql = "SELECT prod FROM ProductoEN prod WHERE prod.codBarra = :codBarra";
+	        Query q = em.createQuery(jpql, ProductoEN.class);
+	        q.setParameter("codBarra", codBarra);
+	        ProductoEN prod = (ProductoEN) q.getSingleResult();
+	       return prod;
+	    }
+	
 
 }

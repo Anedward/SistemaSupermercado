@@ -1,19 +1,11 @@
 package com.megajaen.entidades;
 
-
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -21,24 +13,48 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class DetalleFacturaEN {
 	@Id
+	@GeneratedValue
 	@Column(name="detFac_codigo")
 	private int codigo;
 	
 	@Column(name="detFac_cantidad")
 	private int cantidad;
 	
-	@OneToOne
+	@Column(name="detFac_precioVenta")
+	private double precioVenta;
+	
+	@Column(name="detFac_preTot")
+	private double precioTotal;
+	
+	//Relacion con la entidad Producto
+	@ManyToOne
+	@JoinColumn(name="det_producto")
+	@JsonIgnore
+	private ProductoEN producto;
+	
+	//Relacion con la entidad Factura
+	@ManyToOne
 	@JoinColumn(name="det_factura")
 	@JsonIgnore
 	private FacturaEN factura;
 	
-	@ManyToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
-	@JoinTable(name="detalle_producto",joinColumns=@JoinColumn(name="detalle_id"),inverseJoinColumns=@JoinColumn(name="producto_id"))
-	private List<ProductoEN> productoLista = new ArrayList<>();
-	
 	@Transient
 	private int idFacturaTemp;
 	
+	@Transient
+	private int idProductoTemp;
+
+	//Constructor
+	public DetalleFacturaEN() {
+		super();
+	}
+    
+  //Constructor
+	public DetalleFacturaEN(ProductoEN producto) {
+	super();
+	this.producto = producto;
+	}
+
 
 	public int getCodigo() {
 		return codigo;
@@ -48,12 +64,29 @@ public class DetalleFacturaEN {
 		this.codigo = codigo;
 	}
 
+
 	public int getCantidad() {
 		return cantidad;
 	}
 
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
+	}
+
+	public double getPrecioTotal() {
+		return precioTotal;
+	}
+
+	public void setPrecioTotal(double precioTotal) {
+		this.precioTotal = precioTotal;
+	}
+
+	public ProductoEN getProducto() {
+		return producto;
+	}
+
+	public void setProducto(ProductoEN producto) {
+		this.producto = producto;
 	}
 
 	public FacturaEN getFactura() {
@@ -64,14 +97,6 @@ public class DetalleFacturaEN {
 		this.factura = factura;
 	}
 
-	public List<ProductoEN> getProductoLista() {
-		return productoLista;
-	}
-
-	public void setProductoLista(List<ProductoEN> productoLista) {
-		this.productoLista = productoLista;
-	}
-
 	public int getIdFacturaTemp() {
 		return idFacturaTemp;
 	}
@@ -79,6 +104,33 @@ public class DetalleFacturaEN {
 	public void setIdFacturaTemp(int idFacturaTemp) {
 		this.idFacturaTemp = idFacturaTemp;
 	}
+
+	public int getIdProductoTemp() {
+		return idProductoTemp;
+	}
+
+	public void setIdProductoTemp(int idProductoTemp) {
+		this.idProductoTemp = idProductoTemp;
+	}
+
+	public double getPrecioVenta() {
+		return precioVenta;
+	}
+
+	public void setPrecioVenta(double precioVenta) {
+		this.precioVenta = precioVenta;
+	}
+
+	@Override
+	public String toString() {
+		return "DetalleFacturaEN [codigo=" + codigo + ", codigoBarras=" 
+				+ ", cantidad=" + cantidad + ", precioVenta=" + precioVenta + ", precioTotal=" + precioTotal
+				+ ", producto=" + producto + ", factura=" + factura + ", idFacturaTemp=" + idFacturaTemp
+				+ ", idProductoTemp=" + idProductoTemp + "]";
+	}
+
 	
+
 	
+
 }

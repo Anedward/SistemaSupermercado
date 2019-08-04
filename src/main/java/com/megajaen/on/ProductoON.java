@@ -49,6 +49,7 @@ public class ProductoON {
 		em.persist(producto);
 	}
 
+	
 	public CategoriaEN consultaCategoria(int codigoCategoria) throws Exception {
 
 		CategoriaEN cat = daoCategoria.read(codigoCategoria);
@@ -72,10 +73,10 @@ public class ProductoON {
 
 	}
 	
-	public List<ProductoEN> listadoFotos() {
+	/*public List<ProductoEN> listadoFotos() {
 		return daoProducto.listarFotos();
 
-	}
+	}*/
 
 	public ProductoEN getProducto(int codigo) {
 
@@ -115,6 +116,12 @@ public class ProductoON {
 			redirect = "verProducto?faces-redirect=true&id=" + producto.getCodigo();
 		return redirect;
 	}
+	
+
+	public ProductoEN obtenerProducto( String codBarra) throws Exception {
+		ProductoEN producto = daoProducto.obtenerProducto(codBarra);
+		return producto;
+	} 
 	
 
 }

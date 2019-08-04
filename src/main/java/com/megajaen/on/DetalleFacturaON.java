@@ -31,18 +31,39 @@ public class DetalleFacturaON {
 	private DetalleFacturaDAO daoDetFac;
 
 	@Inject
+	private ProductoDAO daoProd;
+
+	@Inject
 	private EntityManager em;
 
-	public void guardar(DetalleFacturaEN detalle){		
-		daoDetFac.insertarDetalle(detalle);
+	public String guardar(DetalleFacturaEN detalle){	
+		String redirect="";
+		//System.out.println(detalle);
+		//System.out.println(producto);
+		//detalle.setProducto(producto);
+		
+		daoDetFac.save(detalle);
+		//em.persist(producto);
+		return redirect;
+		
 	}
-
+	
+	
 
 	public FacturaEN consultarFactura(int codigoFactura) throws Exception {
 		FacturaEN fac = daoFactura.read(codigoFactura);
 		if (fac == null)
 			throw new Exception("Factura  no existe");
 		return fac;
+	}
+	
+	public ProductoEN consultaProducto(int codigoProducto) throws Exception {
+
+		ProductoEN prod = daoProd.read(codigoProducto);
+		if (prod == null)
+			throw new Exception("Producto  no existe");
+
+		return prod;
 	}
 	
 	public List<FacturaEN> getListadoFacturass() {
@@ -75,5 +96,6 @@ public class DetalleFacturaON {
 	public List<DetalleFacturaEN> getListadoDetalle() {
 		return daoDetFac.listDetalles();
 	}
-
+	
+	
 }
