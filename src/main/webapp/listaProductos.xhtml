@@ -5,7 +5,7 @@
 	xmlns:h="http://java.sun.com/jsf/html">
 
 <h:head>
-<f:metadata>
+	<f:metadata>
 		<f:viewParam name="id" value="#{productoController.id}"></f:viewParam>
 		<f:viewAction action="#{productoController.loadData()}" />
 	</f:metadata>
@@ -58,6 +58,19 @@
 						<f:facet name="header">Calificacion</f:facet>
 			#{producs.calificacion}
 		</h:column>
+
+					<h:column>
+
+						<f:facet name="header">Acciones</f:facet>
+
+
+						<h:commandButton action="#{shopcartMB.orderBy(producs)}"
+							immediate="true" value="Agregar al Carrito  " />
+
+
+					</h:column>
+
+
 
 
 				</h:dataTable>
