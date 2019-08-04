@@ -38,7 +38,7 @@ public class DetalleFacturaON {
 
 	public String guardar(DetalleFacturaEN detalle){	
 		String redirect="";
-		System.out.println(detalle);
+		//System.out.println(detalle);
 		//System.out.println(producto);
 		//detalle.setProducto(producto);
 		

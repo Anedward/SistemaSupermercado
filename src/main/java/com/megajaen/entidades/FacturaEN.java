@@ -7,6 +7,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -18,6 +19,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class FacturaEN {
 	@Id
+	@GeneratedValue
 	@Column(name = "fac_codigo")
 	private int codigo;
 
@@ -40,6 +42,7 @@ public class FacturaEN {
 
 	@OneToMany(mappedBy = "factura", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<DetalleFacturaEN> listaDetalles;
+
 
 	public int getCodigo() {
 		return codigo;
@@ -81,14 +84,6 @@ public class FacturaEN {
 		this.total = total;
 	}
 
-	public List<DetalleFacturaEN> getDetalle() {
-		return detalle;
-	}
-
-	public void setDetalle(List<DetalleFacturaEN> detalle) {
-		this.detalle = detalle;
-	}
-
 	public List<DetalleFacturaEN> getListaDetalles() {
 		return listaDetalles;
 	}
@@ -97,6 +92,14 @@ public class FacturaEN {
 		this.listaDetalles = listaDetalles;
 	}
 
+	public List<DetalleFacturaEN> getDetalle() {
+		return detalle;
+	}
+
+	public void setDetalle(List<DetalleFacturaEN> detalle) {
+		this.detalle = detalle;
+	}
+	
 	public void addDetalles(DetalleFacturaEN det) {
 		if(detalle==null) {
 			detalle = new ArrayList<>();
@@ -109,5 +112,9 @@ public class FacturaEN {
 		return "FacturaEN [codigo=" + codigo + ", numFact=" + numFact + ", fechaEmision=" + fechaEmision + ", iva="
 				+ iva + ", total=" + total + ", detalle=" + detalle + ", listaDetalles=" + listaDetalles + "]";
 	}
+
+	
+
+	
 
 }

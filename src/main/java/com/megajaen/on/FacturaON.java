@@ -109,4 +109,9 @@ public class FacturaON {
 		return daoDetFac.listDetalles();
 	}
 	
+	public FacturaEN obtenerUltimoRegistro() throws Exception {
+		FacturaEN fac = facdao.obtenerUltimoRegistro();
+		return fac;
+	}
+	
 }

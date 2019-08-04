@@ -42,8 +42,19 @@ public class ProductoDAO {
 		return producto;
 	}
 	
+	
+	
 	public ProductoEN read(int id) {
 		return em.find(ProductoEN.class, id);
 	}
+	
+	 public ProductoEN obtenerProducto(String codBarra) {
+	        String jpql = "SELECT prod FROM ProductoEN prod WHERE prod.codBarra = :codBarra";
+	        Query q = em.createQuery(jpql, ProductoEN.class);
+	        q.setParameter("codBarra", codBarra);
+	        ProductoEN prod = (ProductoEN) q.getSingleResult();
+	       return prod;
+	    }
+	
 
 }

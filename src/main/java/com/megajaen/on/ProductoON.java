@@ -118,5 +118,11 @@ public class ProductoON {
 	}
 	
 
+	public ProductoEN obtenerProducto( String codBarra) throws Exception {
+		ProductoEN producto = daoProducto.obtenerProducto(codBarra);
+		return producto;
+	} 
+	
+
 }
 
