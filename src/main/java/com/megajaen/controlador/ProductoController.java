@@ -35,6 +35,8 @@ public class ProductoController {
 	private List<CategoriaEN> listaCategorias;
 	private List<ProveedorEN> listaProveedores;
 	private List<ProductoEN> listaProductos;
+	
+
 
 	@Inject
 	private CategoriaON catON;
@@ -97,6 +99,15 @@ public class ProductoController {
 	public void setId(int id) {
 		this.idB = id;
 	}
+	
+	public void loadData() {
+		System.out.println("codigo editar " + idB);
+		if(idB==0)
+			return;
+		producto = prodON.getProducto(idB);
+		System.out.println(producto.getCodigo() + " " + producto.getNombre() );
+			
+	}
 
 	public String guardarDatos() throws IOException {
 		upload();
@@ -105,6 +116,7 @@ public class ProductoController {
 		prodON.guardarProductoImg(producto, file);
 		System.out.println(producto);
 		System.out.println(file);
+		init();
 		return "productos";
 	}
 	

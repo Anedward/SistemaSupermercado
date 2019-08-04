@@ -37,7 +37,7 @@
 		<h:message for="txtTotal"/>
 		<h:outputLabel value="Detalles" />
 		
-		<h:dataTable value="#{facturaDetalleController.detalle}" var="det">
+		<h:dataTable value="#{facturaDetalleController.factura.detalle}" var="det">
 			<h:column>
 				<f:facet name="header">Código</f:facet>
 				<h:inputText value="#{det.codigo}" />
@@ -49,22 +49,9 @@
 			</h:column>
 			</h:dataTable >
 			
-			<h:dataTable value="#{facturaDetalleController.detalle}" var="det">
-			<h:column>
-				<f:facet name="header">Factura</f:facet>
-				<h:inputText value="#{facturaDetalleController.detalle.idFacturaTemp}" id="txFactura">
-				<f:ajax listener="#{facturaDetalleController.consultarFactura()}" execute="txtFactura" render="datosFactura"/>
-				</h:inputText>
-				<h:panelGroup id="datosFactura">
-			<h:message for="txtFactura" />
-			#{facturaDetalleController.detalle.factura.codigo}
-			</h:panelGroup>
-				
-			</h:column>
 			
-		</h:dataTable>
 		
-			<h:dataTable value="#{facturaDetalleController.detalle}" var="det">
+			<h:dataTable value="#{facturaDetalleController.factura.detalle}" var="det">
 			<h:column>
 				<f:facet name="header">Producto</f:facet>
 				<h:inputText value="#{facturaDetalleController.detalle.idProductoTemp}" id="txProducto">
@@ -85,7 +72,7 @@
 	
 		<h:outputText value="" />
 		
-		<h:commandButton action="#{facturaDetalleController.addProductos()}" value="Agregar Producto" />
+	
 		
 		<h:commandButton action="#{facturaDetalleController.guardarDatos()}" value="Guardar" />
 		

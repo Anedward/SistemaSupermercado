@@ -21,12 +21,12 @@ public class DetalleFacturaEN {
 	@Column(name="detFac_cantidad")
 	private int cantidad;
 	
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name="det_producto")
 	@JsonIgnore
 	private ProductoEN producto;
 	
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name="det_factura")
 	@JsonIgnore
 	private FacturaEN factura;

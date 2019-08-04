@@ -13,12 +13,16 @@
 <h:form>
 	
 		
-		<h:dataTable value="#{facDetController.items}" var="det">
+		<h:dataTable value="#{facDetController.detalle}" var="det">
 			<h:column>
 				<f:facet name="header">Código</f:facet>
-				<h:inputText value="#{det.producto.codigo}" />
+				<h:inputText value="#{det.codigo}" />
 			</h:column>
 			
+			<h:column>
+				<f:facet name="header">Cod Producto</f:facet>
+				<h:inputText value="#{det.codigo}" />
+			</h:column>
 			<h:column>
 				<f:facet name="header">Nombre</f:facet>
 				<h:inputText value="#{det.producto.nombre}" />

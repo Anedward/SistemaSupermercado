@@ -129,12 +129,19 @@ public class FacturaDetalleController {
 	}
 
 	public String guardarDatos() throws IOException {
+		for(DetalleFacturaEN det : factura.getDetalle()) {
+			System.out.println("\t"+det);
+			
 		facON.guardar(factura);
-		detON.guardar(detalle);
-		System.out.println(factura.toString());
+		facON.guardarDet(det);
+		init();
+		}
+		//System.out.println(factura.toString());
 		//System.out.println(detalle.toString());
 		return "detalle";
 	}
+	
+	
 	
 	
 	/*public String guardarDatosDet() throws IOException {
