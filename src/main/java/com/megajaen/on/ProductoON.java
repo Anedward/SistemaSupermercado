@@ -19,6 +19,10 @@ import com.megajaen.entidades.ProveedorEN;
 
 @Stateless
 public class ProductoON {
+	
+	private ProductoEN producto;
+	private UploadedFile file;
+	private int idB;
 
 	@Inject
 	private CategoriaDAO daoCategoria;
@@ -122,6 +126,28 @@ public class ProductoON {
 		ProductoEN producto = daoProducto.obtenerProducto(codBarra);
 		return producto;
 	} 
+	
+	public byte[] getBytes(int id) {
+		producto = daoProducto.buscarProducto(id);
+		//System.out.println(producto);
+		System.out.println(producto.getCodigo());
+		System.out.println(producto.getNombre());
+		return producto.getImagen();
+	}
+	
+	public String verProducto(int id) {
+		return verProducto(id);	
+	}
+	
+	public void buscarProducto() {
+		producto = daoProducto.buscarProducto(idB);
+		//System.out.println("holaaaaa"+idB);
+		//System.out.println("holaaaaa"+producto);
+		//System.out.println(producto.getCodigo());
+		//System.out.println(producto.getNombre());
+	//	System.out.println(producto.getImagen());
+		
+	}
 	
 
 }
