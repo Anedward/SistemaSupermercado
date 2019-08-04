@@ -21,47 +21,15 @@ public class ValidacionEmail implements Validator {
 			throw new ValidatorException(new FacesMessage("*Campo Obligatorio"));
 		}
 
-		else {		
-			 // comprueba que no empieze por punto o @
-		      Pattern p = Pattern.compile("^.|^@");
-		      Matcher m = p.matcher(cadena);
-		      if (m.find())
-		    	  throw new ValidatorException(new FacesMessage("Email No puede empezar por '.' ó '@'"));
-		         
-		      // comprueba que no empieze por www.
-		      p = Pattern.compile("^www.");
-		      m = p.matcher(cadena);
-		      if (m.find())
-		    	  throw new ValidatorException(new FacesMessage("Email No puede empezar con 'www'"));
+		else {
+			String caracterPermitido = "^[_A-Za-z0-9-\\\\+]+(\\\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\\\.[A-Za-z0-9]+)*(\\\\.[A-Za-z]{2,})$";
 
-		      // comprueba que contenga @
-		      p = Pattern.compile("@");
-		      m = p.matcher(cadena);
-		      if (!m.find())
-		    	  throw new ValidatorException(new FacesMessage("Email debe tener '@'"));
-		      	
-		      // comprueba que no contenga caracteres prohibidos	
-		      p = Pattern.compile("[^A-Za-z0-9.@_-~#]+");
-		      m = p.matcher(cadena);
-		      StringBuffer sb = new StringBuffer();
-		      boolean resultado = m.find();
-		      boolean caracteresIlegales = false;
+			boolean email_OK = Pattern.matches(caracterPermitido, cadena);
 
-		      while(resultado) {
-		         caracteresIlegales = true;
-		         m.appendReplacement(sb, "");
-		         resultado = m.find();
-		      }
+			if (!email_OK) { // Email doesn't match
+				throw new ValidatorException(new FacesMessage("Email Invalido"));
+			}
 
-		      // Añade el ultimo segmento de la entrada a la cadena
-		      m.appendTail(sb);
-
-		      cadena = sb.toString();
-
-		      if (caracteresIlegales) {
-		         System.out.println("La cadena contiene caracteres ilegales");
-		      }
-			
 		}
 
 	}

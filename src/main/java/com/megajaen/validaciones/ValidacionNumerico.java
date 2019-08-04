@@ -19,15 +19,12 @@ public class ValidacionNumerico implements Validator {
 		}
 
 		else {		
-			for (int i = 0; i <cadena.length(); i++) {
-				char c = cadena.charAt(i);
-				if (!(c >= '0' && c <= '9') ) {
-					throw new ValidatorException(new FacesMessage("Ingrese solo Numeros"));
-				}
+			for (int i = 0; i < cadena.length(); i++) {
+			      if (!Character.isDigit(cadena.charAt(i)))
+			    	  throw new ValidatorException(new FacesMessage("Ingrese solo Numeros"));
+			    }
 			}
 			
 		}
-
-	}
 
 }
