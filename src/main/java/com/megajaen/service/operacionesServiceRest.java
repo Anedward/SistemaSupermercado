@@ -124,5 +124,13 @@ public class operacionesServiceRest {
 	 * @GET @Path("ingreso") @Produces("application/json") public List<UsuarioEN>
 	 *      ingreso(String email) { return clienteON.ingreso(email); }
 	 **/
+	
+	@GET
+	@Path("login")
+	@Produces("application/json")
+	public UsuarioEN login(@QueryParam("email") String email, @QueryParam("clave") String clave){
+		return clienteON.Iniciar(email, clave);
+		
+	}
 
 }
