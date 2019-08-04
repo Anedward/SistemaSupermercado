@@ -23,7 +23,7 @@
 					<h:inputText styleClass="inputText"
 						value="#{clienteMB.cliente.nombre}" id="txtNombre" required="true"
 						requiredMessage="*Campo Obligatorio">
-						<f:validator validatorId="vCaracter" />
+						<f:validator validatorId="vcaracter" />
 					</h:inputText>
 					<h:message for="txtNombre" style="color: red" />
 
@@ -31,7 +31,7 @@
 					<h:inputText styleClass="inputText"
 						value="#{clienteMB.cliente.apellido}" id="txtApellido"
 						required="true" requiredMessage="*Campo Obligatorio">
-						<f:validator validatorId="vCaracter" />
+						<f:validator validatorId="vcaracter" />
 					</h:inputText>
 					<h:message for="txtApellido" />
 
@@ -52,7 +52,7 @@
 					<h:inputText styleClass="inputText"
 						value="#{clienteMB.cliente.telefono}" id="txtTelefono"
 						required="true" requiredMessage="*Campo Obligatorio">
-						<f:validator validatorId="vNumero" />
+						<f:validator validatorId="vnumero" />
 					</h:inputText>
 					<h:message for="txtTelefono" />
 
@@ -65,7 +65,9 @@
 					<h:outputLabel value="Email" />
 					<h:inputText styleClass="inputText"
 						value="#{clienteMB.cliente.usuario.emailusuario}"
-						id="txtUserEmail" />
+						id="txtUserEmail">
+						<f:validator validatorId="vemail" />
+					</h:inputText>
 					<h:message for="txtUserEmail" />
 
 					<h:outputLabel value="Contraseña" />

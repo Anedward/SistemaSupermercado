@@ -7,7 +7,7 @@ import javax.faces.validator.FacesValidator;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
-@FacesValidator("vCaracter")
+@FacesValidator("vcaracter")
 public class ValidacionCaracter implements Validator {
 
 	@Override

@@ -7,7 +7,7 @@ import javax.faces.validator.FacesValidator;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
-@FacesValidator("vNumero")
+@FacesValidator("vnumero")
 public class ValidacionNumerico implements Validator {
 
 	@Override
