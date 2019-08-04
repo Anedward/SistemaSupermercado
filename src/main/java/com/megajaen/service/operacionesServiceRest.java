@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
@@ -57,10 +59,16 @@ public class operacionesServiceRest {
 	@GET
 	@Path("listarU")
 	@Produces("application/json")
-	public List<UsuarioEN> listadousuarioLog(@QueryParam("un") String un, @QueryParam("pass") String pass) {
-		String mensaje = "llego";
-		System.out.println("llego" + mensaje);
-		return clienteON.listadousuarioLog(un, pass);
+	public UsuarioEN listadousuarioLog(@QueryParam("un") String un, @QueryParam("pass") String pass) {
+		System.out.println("usuarios");
+		System.out.println(clienteON.listadousuarioLog(un, pass));
+		return clienteON.Iniciar(un, pass);
+		
+		
+		
+		
+	
+		
 
 	}
 	

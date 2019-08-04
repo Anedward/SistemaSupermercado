@@ -9,6 +9,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import com.megajaen.dao.ClienteDAO;
+import com.megajaen.entidades.ClienteEN;
 import com.megajaen.entidades.UsuarioEN;
 import com.megajaen.on.ClienteON;
 
@@ -50,6 +51,8 @@ public class UsuarioControlador {
 		public void setPassword(String password) {
 			this.password = password;
 		}
+		
+		
 
 	public String Iniciar() {	
 		try {
