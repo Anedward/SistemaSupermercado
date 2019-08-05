@@ -111,16 +111,29 @@ public class FacturaDAO {
 	}
 
 	public String getultimoRegistro() {
+		String x="";
 		String jpql = "SELECT fac.numFact FROM FacturaEN fac WHERE fac.codigo = (SELECT MAX(fac.codigo) FROM FacturaEN fac)";
-		Query q = em.createQuery(jpql, String.class);
-		q.setMaxResults(1);
-		q.getResultList();
-		String c = q.toString();
+		Query q = em.createQuery(jpql,String.class);
+		Object obj = q.setMaxResults(1).getResultList();
+		//q.getResultList();
+		//q.getSingleResult();
+		String c = obj.toString();
 
-		if (c.isEmpty()) {
+		if (c != null) {
 			c = "00000001";
-		}
-
+			
+			
+		}else {
+            char r1 = c.charAt(4);
+            char r2 = c.charAt(5);
+            char r3 = c.charAt(6);
+            char r4 = c.charAt(7);
+            String juntar = "" + r1 + r2 + r3 + r4;
+            int j = Integer.parseInt(juntar);
+            GenerarCodigo gnum = new GenerarCodigo();
+            gnum.GenerarCodigoProd(j);
+            c= gnum.serie();
+        }
 		return c;
 	}
 

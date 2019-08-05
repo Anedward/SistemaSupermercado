@@ -65,7 +65,7 @@ public class FacturaDetalleController {
 
 		factura = new FacturaEN();
 		detalle = new DetalleFacturaEN();
-		facON.getLastNumFact();
+		
 
 		// listaFacturas = facON.getListadoFacturas();
 		// listaProductos = proON.getListadoProductos();
@@ -350,5 +350,9 @@ public class FacturaDetalleController {
 		for (DetalleFacturaEN it : this.listaDetalles)
 			s += it.getCantidad() * it.getProducto().getPrecioVenta();
 		return s;
+	}
+	
+	public String lastIDFact() {
+		return facON.getLastNumFact();
 	}
 }

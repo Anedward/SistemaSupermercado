@@ -16,12 +16,12 @@
 				<p:panel>
 				<h:panelGrid columns="3">
 
-					<h:outputLabel value="N° Factura" />
-					<h:inputText value="#{facturaDetalleController.factura.numFact}"
-						id="txtFactura" />
-					<h:message for="txtFactura" />
+					<h:outputLabel value="N° Factura: " />
+					<h:outputText value="#{facturaDetalleController.lastIDFact()}"
+						id="txtNumFactura" />
+					<h:message for="txtNumFactura" />
 
-					<h:outputLabel value="Fecha" />
+					<h:outputLabel value="Fecha: " />
 					<h:outputText
 						value="#{facturaDetalleController.factura.fechaEmision}"
 						id="txttFecha" />
@@ -157,7 +157,7 @@
 						styleClass="btn-success"
 						action="#{facturaDetalleController.orderBy(pro)}"
 						onclick="PF('dialogoProducto').hide();"
-						update=":formFacturas:tablaProductos :formFacturas:txtTotal :formFacturas:TotalVenta">
+						update=":formFacturas:tablaProductos :formFacturas:txtTotal :formFacturas:TotalVenta :formFacturas:txtNumFactura">
 
 					</p:commandButton>
 				</p:column>
