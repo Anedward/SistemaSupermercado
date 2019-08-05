@@ -2,16 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:a="http://xmlns.jcp.org/jsf/passthrough" xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="/resources/plantilla.xhtml">
-    <ui:define name="pageTitle">Inmuebles</ui:define>
+    <ui:define name="pageTitle">Productos</ui:define>
     <ui:define name="pageHeader">Header</ui:define>
     <ui:define name="contenido">
 
-        <h:head>
+         <h:head>
             <meta charset="utf-8" />
             <link rel="apple-touch-icon" sizes="76x76" href="resources/assets/img/apple-icon.png" />
             <link rel="icon" type="image/png" href="resources/assets/img/favicon.png" />
             <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-            <title>Inmuebles</title>
+            <title>Productos</title>
             <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
             <!--     Fonts and icons     -->
             <link href="resources/assets/iconfont/material-icons.css" rel="stylesheet" />
@@ -51,7 +51,7 @@
                     </nav>
                     <!-- End Navbar -->
 
-<<<<<<< HEAD
+
                     <div class="content">
                         <div class="container-fluid">
                         
@@ -70,53 +70,9 @@
                                                 <h4 class="card-title">Registrar productos</h4>
                                             </div>
                                             <div class="card-body ">
-=======
-<h:form enctype="multipart/form-data">
-  <p:growl id="messages" showDetail="true" />
-  
-	<h:panelGrid columns="3">
-		<h:outputLabel value="Codigo" />
-		<h:inputText value="#{productoController.producto.codigo}" id="txtCodigo"
-		/>
-		<h:message for="txtCodigo" style="color: red"/>
-		
-		<h:outputLabel value="Codigo Barras" />
-		<h:inputText value="#{productoController.producto.codBarra}" id="txtCodBarra" />
-		<h:message for="txtCodBarra"/>
-		
-		<h:outputLabel value="Nombre" />
-		<h:inputText value="#{productoController.producto.nombre}" id="txtNombre" 
-		>
-		<f:validator validatorId="vcaracter" /></h:inputText>
-		<h:message for="txtNombre" style="color: red"/>
-		
-		<h:outputLabel value="Descripcion" />
-		<h:inputText value="#{productoController.producto.descripcion}" id="txtDescripcion" 
-		/>
-		<h:message for="txtDescripcion" style="color: red"/>
-		
-		<h:outputLabel value="Precio de Compra" />
-		<h:inputText value="#{productoController.producto.precioCompra}" id="txtPC"
-		/>
-		<h:message for="txtPC" style="color: red"/>
-		
-		<h:outputLabel value="Precio de Venta" />
-		<h:inputText value="#{productoController.producto.precioVenta}" id="txtPV" 
-		/>
-		<h:message for="txtPC" style="color: red"/>
-		
-		<h:outputLabel value="Stock" />
-		<h:inputText value="#{productoController.producto.stock}" id="txtStock"
-		>
-		<f:validator validatorId="vnumero" /></h:inputText>
-		<h:message for="txtStock" style="color: red"/>
-		
-		<h:outputLabel value="Calificacion" />
-		<h:inputText value="#{productoController.producto.calificacion}" id="txtCali" />
-		<h:message for="txtCali"/>
-		
-		<h:outputLabel value="Categoria" />
->>>>>>> branch 'master' of https://github.com/Anedward/SistemaSupermercado.git
+
+
+	
 
                                                
                                                 <div class="row">
@@ -241,8 +197,9 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                
+                                        
                                             </div>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -252,7 +209,7 @@
                             </h:form>
                         </div>
                     </div>
-                    <footer class="footer">
+             <footer class="footer">
                         <div class="container-fluid">
                             <div class="copyright float-right">
                                 &copy;
@@ -490,3 +447,7 @@
 </ui:composition>
 
 </html>
+
+
+
+

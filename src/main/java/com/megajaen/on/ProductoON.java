@@ -76,16 +76,15 @@ public class ProductoON {
 		return daoCategoria.getProductos2();
 
 	}
-<<<<<<< HEAD
 
-	public List<ProductoEN> listadoFotos() {
-=======
-	
-	/*public List<ProductoEN> listadoFotos() {
->>>>>>> branch 'master' of https://github.com/Anedward/SistemaSupermercado.git
-		return daoProducto.listarFotos();
+//	public List<ProductoEN> listadoFotos() {
 
-	}*/
+//public List<ProductoEN> listadoFotos() {
+
+		//return daoProducto.listarFotos();
+	//}
+
+
 
 	public ProductoEN getProducto(int codigo) {
 

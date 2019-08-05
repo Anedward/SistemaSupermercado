@@ -41,10 +41,10 @@ public List<ProductoEN> listP(){
 	public ProductoEN buscarProducto (int id) {
 		ProductoEN producto = em.find(ProductoEN.class, id);
 		return producto;
-<<<<<<< HEAD
+
 	}
-=======
-	}
+
+
 	
 	
 	
@@ -61,5 +61,5 @@ public List<ProductoEN> listP(){
 	    }
 	
 
->>>>>>> branch 'master' of https://github.com/Anedward/SistemaSupermercado.git
+
 }

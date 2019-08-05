@@ -2,38 +2,28 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
 <ui:composition template="resources/plantilla.xhtml">
-    <ui:define name="pageTitle">Registro Usuario</ui:define>
+    <ui:define name="pageTitle">Registrar Usuario</ui:define>
     <ui:define name="pageHeader">Header</ui:define>
     <ui:define name="contenido">
-
-<<<<<<< HEAD
-        <h:head>
+    
+ <h:head>
             <meta charset="utf-8" />
             <link rel="apple-touch-icon" sizes="76x76" href="resources/assets/img/apple-icon.png" />
             <link rel="icon" type="image/png" href="resources/assets/img/favicon.png" />
             <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-            <title>Registro Usuario</title>
+            <title>Inmuebles</title>
             <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
             <!--     Fonts and icons     -->
             <link href="resources/assets/iconfont/material-icons.css" rel="stylesheet" />
-=======
-	<ui:composition template="/index.xhtml">
-		<ui:define name="body">
->>>>>>> branch 'master' of https://github.com/Anedward/SistemaSupermercado.git
 
-<<<<<<< HEAD
             <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet" />
             <!-- CSS Files -->
             <link href="resources/assets/css/material-dashboard.css?v=2.0.2" rel="stylesheet" />
             <!-- CSS Just for demo purpose, don't include it in your project -->
             <link href="resources/assets/demo/demo.css" rel="stylesheet" />
         </h:head>
-=======
-			<h2>Registrarte</h2>
-			<h:form styleClass="formRegister">
->>>>>>> branch 'master' of https://github.com/Anedward/SistemaSupermercado.git
+        
 
-<<<<<<< HEAD
         <h:body class="off-canvas-sidebar">
             <!-- Navbar -->
             <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top text-white" id="navigation-example">
@@ -206,14 +196,9 @@
                                               <div class="text-center">
                                                         <h:commandButton action="#{clienteMB.cargarDatos()}" class="btn btn-info mt-4" value="Registrarse" />
                                                         <h:commandButton action="#{clienteMB.listado()}" class="btn btn-info mt-4" value="Listar Clientes" />
-                                           
-                                          
-                                          
-                                        </div>
-                                          
-                             
+                                            </div>
                                                 </h:form>
-                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -233,9 +218,6 @@
                     </footer>
                 </div>
             </div>
-            
-            
-            
             <!--   Core JS Files   -->
             <script src="resources/assets/js/core/jquery.min.js" type="text/javascript"></script>
             <script src="resources/assets/js/core/popper.min.js" type="text/javascript"></script>
@@ -283,96 +265,24 @@
                 $(document).ready(function() {
                     $().ready(function() {
                         $sidebar = $('.sidebar');
-=======
-				<h:panelGrid columns="3">
-					<h:outputLabel value="Nombre" />
-					<h:inputText styleClass="inputText"
-						value="#{clienteMB.cliente.nombre}" id="txtNombre" required="true"
-						requiredMessage="*Campo Obligatorio">
-						<f:validator validatorId="vcaracter" />
-					</h:inputText>
-					<h:message for="txtNombre" style="color: red" />
->>>>>>> branch 'master' of https://github.com/Anedward/SistemaSupermercado.git
 
-<<<<<<< HEAD
                         $sidebar_img_container = $sidebar.find('.sidebar-background');
-=======
-					<h:outputLabel value="Apellido" />
-					<h:inputText styleClass="inputText"
-						value="#{clienteMB.cliente.apellido}" id="txtApellido"
-						required="true" requiredMessage="*Campo Obligatorio">
-						<f:validator validatorId="vcaracter" />
-					</h:inputText>
-					<h:message for="txtApellido" style="color: red"/>
->>>>>>> branch 'master' of https://github.com/Anedward/SistemaSupermercado.git
 
-<<<<<<< HEAD
                         $full_page = $('.full-page');
-=======
-					<h:outputLabel value="Sexo" />
-					<h:selectOneRadio value="#{clienteMB.cliente.sexo}"
-						styleClass="radioButton">
-						<f:selectItem itemValue="Hombre" itemLabel="Hombre" />
-						<f:selectItem itemValue="Mujer" itemLabel="Mujer" />
-					</h:selectOneRadio>
-					<br></br>
->>>>>>> branch 'master' of https://github.com/Anedward/SistemaSupermercado.git
 
-<<<<<<< HEAD
                         $sidebar_responsive = $('body > .navbar-collapse');
-=======
-					<h:outputLabel value="Direccion" />
-					<h:inputText styleClass="inputText"
-						value="#{clienteMB.cliente.direccion}" id="txtDireccion" />
-					<h:message for="txtDireccion" />
->>>>>>> branch 'master' of https://github.com/Anedward/SistemaSupermercado.git
 
-<<<<<<< HEAD
                         window_width = $(window).width();
-=======
-					<h:outputLabel value="Telefono" />
-					<h:inputText styleClass="inputText"
-						value="#{clienteMB.cliente.telefono}" id="txtTelefono"
-						required="true" requiredMessage="*Campo Obligatorio">
-						<f:validator validatorId="vnumero" />
-					</h:inputText>
-					<h:message for="txtTelefono" style="color: red"/>
->>>>>>> branch 'master' of https://github.com/Anedward/SistemaSupermercado.git
 
-<<<<<<< HEAD
                         fixed_plugin_open = $('.sidebar .sidebar-wrapper .nav li.active a p').html();
-=======
-					<h:outputLabel value="Fecha Registro" />
-					<h:inputText styleClass="inputText"
-						value="#{clienteMB.cliente.fechaRegistro}" id="txtfechaRegistro"
-						disabled="true" />
-					<h:message for="txtfechaRegistro" />
->>>>>>> branch 'master' of https://github.com/Anedward/SistemaSupermercado.git
 
-<<<<<<< HEAD
                         if (window_width > 767 &amp;&amp; fixed_plugin_open == 'Dashboard') {
                             if ($('.fixed-plugin .dropdown').hasClass('show-dropdown')) {
                                 $('.fixed-plugin .dropdown').addClass('open');
                             }
-=======
-					<h:outputLabel value="Email" />
-					<h:inputText styleClass="inputText"
-						value="#{clienteMB.cliente.usuario.emailusuario}"
-						id="txtUserEmail">
-					</h:inputText>
-					<h:message for="txtUserEmail" />
->>>>>>> branch 'master' of https://github.com/Anedward/SistemaSupermercado.git
 
-<<<<<<< HEAD
                         }
-=======
-					<h:outputLabel value="Contraseña" />
-					<h:inputSecret styleClass="inputText"
-						value="#{clienteMB.cliente.usuario.contrasenia}" id="txtUserPwd" />
-					<h:message for="txtUserPwd" />
->>>>>>> branch 'master' of https://github.com/Anedward/SistemaSupermercado.git
 
-<<<<<<< HEAD
                         $('.fixed-plugin a').click(function(event) {
                             // Alex if we click on switch, stop propagation of the event, so the dropdown will not be hide, otherwise we set the  section active
                             if ($(this).hasClass('switch-trigger')) {
@@ -383,40 +293,14 @@
                                 }
                             }
                         });
-=======
-					<center>
-						<div>
-							<h:commandButton styleClass="buttons"
-								action="#{clienteMB.cargarDatos()}" value="Registrarse" />
-						</div>
->>>>>>> branch 'master' of https://github.com/Anedward/SistemaSupermercado.git
 
-<<<<<<< HEAD
                         $('.fixed-plugin .active-color span').click(function() {
                             $full_page_background = $('.full-page-background');
-=======
-					</center>
 
-					<!-- 
-		
-					
-							<h:commandButton styleClass="buttons"
-								action="#{clienteMB.listado()}" value="Listar" />
-				
-					</center
-					-->
-				</h:panelGrid>
->>>>>>> branch 'master' of https://github.com/Anedward/SistemaSupermercado.git
-
-<<<<<<< HEAD
                             $(this).siblings().removeClass('active');
                             $(this).addClass('active');
 
                             var new_color = $(this).data('color');
-=======
-			</h:form>
-		</ui:define>
->>>>>>> branch 'master' of https://github.com/Anedward/SistemaSupermercado.git
 
                             if ($sidebar.length != 0) {
                                 $sidebar.attr('data-color', new_color);
