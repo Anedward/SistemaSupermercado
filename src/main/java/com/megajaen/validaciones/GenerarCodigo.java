@@ -1,4 +1,4 @@
-package ec.edu.ups.validaciones;
+package com.megajaen.validaciones;
 
 public class GenerarCodigo {
 	private int dato;
@@ -11,19 +11,19 @@ public class GenerarCodigo {
 
 		if ((this.dato >= 1000) || (this.dato < 1000)) {
 			int can = cont + this.dato;
-			num = "PROD" + can;
+			num = "0000" + can;
 		}
 		if ((this.dato >= 100) || (this.dato < 100)) {
 			int can = cont + this.dato;
-			num = "PROD0" + can;
+			num = "00000" + can;
 		}
 		if ((this.dato >= 9) || (this.dato < 100)) {
 			int can = cont + this.dato;
-			num = "PROD00" + can;
+			num = "000000" + can;
 		}
 		if (this.dato < 9) {
 			int can = cont + this.dato;
-			num = "PROD000" + can;
+			num = "0000000" + can;
 		}
 	}
 	

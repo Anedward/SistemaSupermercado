@@ -303,6 +303,7 @@ public class FacturaDetalleController {
 				item.setProducto(producto);
 				item.setCantidad(1);
 				item.setPrecioVenta(producto.getPrecioVenta());
+				
 				// item.setPrecioTotal(producto.getPrecioVenta()* detalle.getCantidad());
 
 				detON.guardar(item);

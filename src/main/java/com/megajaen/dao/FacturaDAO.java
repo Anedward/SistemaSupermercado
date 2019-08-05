@@ -9,6 +9,7 @@ import javax.persistence.Query;
 
 import com.megajaen.entidades.DetalleFacturaEN;
 import com.megajaen.entidades.FacturaEN;
+import com.megajaen.validaciones.GenerarCodigo;
 
 @Stateless
 public class FacturaDAO {
@@ -114,12 +115,12 @@ public class FacturaDAO {
 		String x="";
 		String jpql = "SELECT fac.numFact FROM FacturaEN fac WHERE fac.codigo = (SELECT MAX(fac.codigo) FROM FacturaEN fac)";
 		Query q = em.createQuery(jpql,String.class);
-		Object obj = q.setMaxResults(1).getResultList();
-		//q.getResultList();
+		q.setMaxResults(1);
+		q.getResultList();
 		//q.getSingleResult();
-		String c = obj.toString();
+		String c = q.toString();
 
-		if (c != null) {
+		if (c == null) {
 			c = "00000001";
 			
 			

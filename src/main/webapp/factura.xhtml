@@ -17,7 +17,7 @@
 				<h:panelGrid columns="3">
 
 					<h:outputLabel value="N° Factura: " />
-					<h:outputText value="#{facturaDetalleController.lastIDFact()}"
+					<h:inputText value="#{facturaDetalleController.factura.numFact}"
 						id="txtNumFactura" />
 					<h:message for="txtNumFactura" />
 
@@ -52,7 +52,7 @@
 						styleClass="btn-success"
 						actionListener="#{facturaDetalleController.agregarDatosProductoCod()}"
 						update=":formFacturas:tablaProductos :formFacturas:TotalVenta" />
-					<p:commandButton value="....." icon="fa fa fa-edit"
+					<p:commandButton value="&#x1F50E; en Carrito" icon="fa fa fa-edit"
 						styleClass="OcularBotones btn-success"
 						oncomplete="PF('dialogoProducto').show();" />
 				</p:panelGrid>
