@@ -1,4 +1,4 @@
-package com.megajaen.controlador;
+/*package com.megajaen.controlador;
 
 
 import java.util.ArrayList;
@@ -156,4 +156,4 @@ public class CarritoController {
 		}
 		return "cart?face-redirect=true ";
 	}
-}
+}*/

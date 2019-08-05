@@ -25,23 +25,27 @@
 			<h:message for="txtCodigo" />
 
 			<h:outputLabel value="Nombre" />
-			<h:inputText value="#{proveedorController.proveedor.razonSocial}"
-				id="txtNombre" />
-			<h:message for="txtNombre" />
+			<h:inputText value="#{proveedorController.proveedor.razonSocial}" id="txtNombre" 
+			required="true" requiredMessage="*Campo Obligatorio">
+		<f:validator validatorId="vcaracter" /></h:inputText>
+			<h:message for="txtNombre" style="color: red" />
 
 			<h:outputLabel value="RUC" />
-			<h:inputText value="#{proveedorController.proveedor.ruc}" id="txtRUC" />
-			<h:message for="txtRUC" />
+			<h:inputText value="#{proveedorController.proveedor.ruc}" id="txtRUC"
+			required="true" requiredMessage="*Campo Obligatorio">
+			<f:validator validatorId="vnumero" /></h:inputText>
+			<h:message for="txtRUC" style="color: red" />
 
 			<h:outputLabel value="Direccion" />
 			<h:inputText value="#{proveedorController.proveedor.direccion}"
 				id="txtDireccion" />
-			<h:message for="txtDireccion" />
+			<h:message for="txtDireccion" style="color: red"/>
 
 			<h:outputLabel value="Telefono:" />
-			<h:inputText value="#{proveedorController.proveedor.telefono}"
-				id="txtTelefono" />
-			<h:message for="txtTelefono" />
+			<h:inputText value="#{proveedorController.proveedor.telefono}" id="txtTelefono" 
+			required="true" requiredMessage="*Campo Obligatorio">
+			<f:validator validatorId="vnumero" /></h:inputText>
+			<h:message for="txtTelefono" style="color: red"/>
 
 			<h:outputLabel value="Email" />
 			<h:inputText value="#{proveedorController.proveedor.email}"

@@ -51,6 +51,7 @@
                     </nav>
                     <!-- End Navbar -->
 
+<<<<<<< HEAD
                     <div class="content">
                         <div class="container-fluid">
                         
@@ -69,6 +70,53 @@
                                                 <h4 class="card-title">Registrar productos</h4>
                                             </div>
                                             <div class="card-body ">
+=======
+<h:form enctype="multipart/form-data">
+  <p:growl id="messages" showDetail="true" />
+  
+	<h:panelGrid columns="3">
+		<h:outputLabel value="Codigo" />
+		<h:inputText value="#{productoController.producto.codigo}" id="txtCodigo"
+		/>
+		<h:message for="txtCodigo" style="color: red"/>
+		
+		<h:outputLabel value="Codigo Barras" />
+		<h:inputText value="#{productoController.producto.codBarra}" id="txtCodBarra" />
+		<h:message for="txtCodBarra"/>
+		
+		<h:outputLabel value="Nombre" />
+		<h:inputText value="#{productoController.producto.nombre}" id="txtNombre" 
+		>
+		<f:validator validatorId="vcaracter" /></h:inputText>
+		<h:message for="txtNombre" style="color: red"/>
+		
+		<h:outputLabel value="Descripcion" />
+		<h:inputText value="#{productoController.producto.descripcion}" id="txtDescripcion" 
+		/>
+		<h:message for="txtDescripcion" style="color: red"/>
+		
+		<h:outputLabel value="Precio de Compra" />
+		<h:inputText value="#{productoController.producto.precioCompra}" id="txtPC"
+		/>
+		<h:message for="txtPC" style="color: red"/>
+		
+		<h:outputLabel value="Precio de Venta" />
+		<h:inputText value="#{productoController.producto.precioVenta}" id="txtPV" 
+		/>
+		<h:message for="txtPC" style="color: red"/>
+		
+		<h:outputLabel value="Stock" />
+		<h:inputText value="#{productoController.producto.stock}" id="txtStock"
+		>
+		<f:validator validatorId="vnumero" /></h:inputText>
+		<h:message for="txtStock" style="color: red"/>
+		
+		<h:outputLabel value="Calificacion" />
+		<h:inputText value="#{productoController.producto.calificacion}" id="txtCali" />
+		<h:message for="txtCali"/>
+		
+		<h:outputLabel value="Categoria" />
+>>>>>>> branch 'master' of https://github.com/Anedward/SistemaSupermercado.git
 
                                                
                                                 <div class="row">
