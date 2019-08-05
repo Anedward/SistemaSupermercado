@@ -20,7 +20,15 @@ public class ProductoDAO {
 		em.persist(producto);
 	}
 
-	public List<ProductoEN> listP() {
+	
+
+public ProductoEN buscarFoto (int id) {
+		ProductoEN foto = em.find(ProductoEN.class, id);
+		return foto;
+	}
+
+public List<ProductoEN> listP(){
+
 		String jpql = "SELECT cat FROM ProductoEN cat ";
 		Query q = em.createQuery(jpql, ProductoEN.class);
 		List<ProductoEN> productos = q.getResultList();
@@ -39,6 +47,7 @@ public class ProductoDAO {
 	public ProductoEN buscarProducto(int id) {
 		ProductoEN producto = em.find(ProductoEN.class, id);
 		return producto;
+
 	}
 
 	/*
@@ -75,6 +84,7 @@ public class ProductoDAO {
 		return productos;
 
 	}
+
 
 	public ProductoEN read(int id) {
 		return em.find(ProductoEN.class, id);

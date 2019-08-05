@@ -23,9 +23,6 @@ public class DetalleFacturaEN {
 	@Column(name="detFac_precioVenta")
 	private double precioVenta;
 	
-	@Column(name="detFac_preTot")
-	private double precioTotal;
-	
 	//Relacion con la entidad Producto
 	@ManyToOne
 	@JoinColumn(name="det_producto")
@@ -73,14 +70,6 @@ public class DetalleFacturaEN {
 		this.cantidad = cantidad;
 	}
 
-	public double getPrecioTotal() {
-		return precioTotal;
-	}
-
-	public void setPrecioTotal(double precioTotal) {
-		this.precioTotal = precioTotal;
-	}
-
 	public ProductoEN getProducto() {
 		return producto;
 	}
@@ -124,9 +113,15 @@ public class DetalleFacturaEN {
 	@Override
 	public String toString() {
 		return "DetalleFacturaEN [codigo=" + codigo + ", codigoBarras=" 
-				+ ", cantidad=" + cantidad + ", precioVenta=" + precioVenta + ", precioTotal=" + precioTotal
+				+ ", cantidad=" + cantidad + ", precioVenta=" + precioVenta
 				+ ", producto=" + producto + ", factura=" + factura + ", idFacturaTemp=" + idFacturaTemp
 				+ ", idProductoTemp=" + idProductoTemp + "]";
+	}
+
+	public DetalleFacturaEN(ProductoEN producto, int cantidad) {
+		super();
+		this.producto = producto;
+		this.cantidad = cantidad;
 	}
 
 	
