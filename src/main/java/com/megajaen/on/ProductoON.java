@@ -36,17 +36,17 @@ public class ProductoON {
 	@Inject
 	private EntityManager em;
 
-	public String guardarProductoImg(ProductoEN producto, UploadedFile file) throws IOException  {
-		String redirect ="";
+	public String guardarProductoImg(ProductoEN producto, UploadedFile file) throws IOException {
+		String redirect = "";
 		System.out.println("llego");
 		System.out.println(producto);
 		System.out.println(file);
 		producto.setImagen(IOUtils.toByteArray(file.getInputstream()));
-		
+
 		daoProducto.insertarProducto(producto);
-		//em.persist(producto);
+		// em.persist(producto);
 		return redirect;
-				
+
 	}
 
 	public void guardarProducto(ProductoEN producto) {
@@ -76,11 +76,15 @@ public class ProductoON {
 		return daoCategoria.getProductos2();
 
 	}
-	
-	/*public List<ProductoEN> listadoFotos() {
-		return daoProducto.listarFotos();
 
-	}*/
+//	public List<ProductoEN> listadoFotos() {
+
+//public List<ProductoEN> listadoFotos() {
+
+		//return daoProducto.listarFotos();
+	//}
+
+
 
 	public ProductoEN getProducto(int codigo) {
 
@@ -88,9 +92,8 @@ public class ProductoON {
 
 		return aux;
 	}
-	
 
-	public ProductoEN buscarProducto (int id) {
+	public ProductoEN buscarProducto(int id) {
 		ProductoEN producto = daoProducto.buscarProducto(id);
 		return producto;
 	}
@@ -107,7 +110,6 @@ public class ProductoON {
 	public List<ProductoEN> getListadoNombre(ProductoEN prod) {
 		return daoCategoria.getProductosPorNombre(prod.getNombre());
 	}
-	
 
 	public List<ProductoEN> getListadoProd() {
 		return daoProducto.listP();
@@ -116,11 +118,10 @@ public class ProductoON {
 	public String verProducto(ProductoEN producto, int id) {
 		String redirect = null;
 		producto = daoProducto.buscarProducto(id);
-		
-			redirect = "verProducto?faces-redirect=true&id=" + producto.getCodigo();
+
+		redirect = "verProducto?faces-redirect=true&id=" + producto.getCodigo();
 		return redirect;
 	}
-	
 
 	public ProductoEN obtenerProducto( String codBarra) throws Exception {
 		ProductoEN producto = daoProducto.obtenerProducto(codBarra);
@@ -151,4 +152,3 @@ public class ProductoON {
 	
 
 }
-
