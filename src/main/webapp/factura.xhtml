@@ -16,12 +16,12 @@
 				<p:panel>
 				<h:panelGrid columns="3">
 
-					<h:outputLabel value="N° Factura" />
+					<h:outputLabel value="N° Factura: " />
 					<h:inputText value="#{facturaDetalleController.factura.numFact}"
-						id="txtFactura" />
-					<h:message for="txtFactura" />
+						id="txtNumFactura" />
+					<h:message for="txtNumFactura" />
 
-					<h:outputLabel value="Fecha" />
+					<h:outputLabel value="Fecha: " />
 					<h:outputText
 						value="#{facturaDetalleController.factura.fechaEmision}"
 						id="txttFecha" />
@@ -52,7 +52,7 @@
 						styleClass="btn-success"
 						actionListener="#{facturaDetalleController.agregarDatosProductoCod()}"
 						update=":formFacturas:tablaProductos :formFacturas:TotalVenta" />
-					<p:commandButton value="....." icon="fa fa fa-edit"
+					<p:commandButton value="&#x1F50E; en Carrito" icon="fa fa fa-edit"
 						styleClass="OcularBotones btn-success"
 						oncomplete="PF('dialogoProducto').show();" />
 				</p:panelGrid>
@@ -157,7 +157,7 @@
 						styleClass="btn-success"
 						action="#{facturaDetalleController.orderBy(pro)}"
 						onclick="PF('dialogoProducto').hide();"
-						update=":formFacturas:tablaProductos :formFacturas:txtTotal :formFacturas:TotalVenta">
+						update=":formFacturas:tablaProductos :formFacturas:txtTotal :formFacturas:TotalVenta :formFacturas:txtNumFactura">
 
 					</p:commandButton>
 				</p:column>

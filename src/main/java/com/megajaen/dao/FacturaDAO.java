@@ -9,7 +9,7 @@ import javax.persistence.Query;
 
 import com.megajaen.entidades.DetalleFacturaEN;
 import com.megajaen.entidades.FacturaEN;
-
+import com.megajaen.validaciones.GenerarCodigo;
 
 @Stateless
 public class FacturaDAO {
@@ -49,7 +49,7 @@ public class FacturaDAO {
 
 		Query q = em.createQuery(jpql, FacturaEN.class);
 		q.setParameter("a", id);
-	    FacturaEN fac = (FacturaEN) q.getSingleResult();
+		FacturaEN fac = (FacturaEN) q.getSingleResult();
 
 		return fac;
 
@@ -95,22 +95,48 @@ public class FacturaDAO {
 		return fac;
 
 	}
-	
+
 	public FacturaEN obtenerUltimoRegistro() {
 		String jpql = "SELECT fac FROM FacturaEN ORDER BY fac.numFact DESC";
 		Query q = em.createQuery(jpql, FacturaEN.class).setMaxResults(1);
 		FacturaEN fac = (FacturaEN) q.getSingleResult();
 		return fac;
 	}
-	
+
 	public Long obtenerTotalRegistrosFactura() {
 		String jpql = "SELECT COUNT(*) FROM FacturaEN";
 		Query q = em.createQuery(jpql, FacturaEN.class);
 		Long fac = (Long) q.getSingleResult();
 		return fac;
-		
+
 	}
-	
+
+	public String getultimoRegistro() {
+		String x="";
+		String jpql = "SELECT fac.numFact FROM FacturaEN fac WHERE fac.codigo = (SELECT MAX(fac.codigo) FROM FacturaEN fac)";
+		Query q = em.createQuery(jpql,String.class);
+		q.setMaxResults(1);
+		q.getResultList();
+		//q.getSingleResult();
+		String c = q.toString();
+
+		if (c == null) {
+			c = "00000001";
+			
+			
+		}else {
+            char r1 = c.charAt(4);
+            char r2 = c.charAt(5);
+            char r3 = c.charAt(6);
+            char r4 = c.charAt(7);
+            String juntar = "" + r1 + r2 + r3 + r4;
+            int j = Integer.parseInt(juntar);
+            GenerarCodigo gnum = new GenerarCodigo();
+            gnum.GenerarCodigoProd(j);
+            c= gnum.serie();
+        }
+		return c;
+	}
 
 	// public String idIncrement() {
 	// String jpql = "SELECT AUTO_INCREMENT FROM INFORMATION_SCHEMA.TABLES WHERE
@@ -119,38 +145,31 @@ public class FacturaDAO {
 	// List id =
 	// return;
 	// }
-/*
-	public String getPK() {
-		// String jpql = "SELECT MAX(fac.codigo) FROM ClienteEN fac";
-		String jpql = "SELECT fac.numFact FROM FacturaEN fac ORDER BY fac.codigo DESC";
-		// --> vale String jpql = "SELECT fac.numFact FROM FacturaEN fac WHERE
-		// fac.codigo = (SELECT MAX(fac.codigo) FROM FacturaEN fac)";
-		
-		// String jpql = "SELECT fac.numFact FROM FacturaEn fac";
 
-		// Query q = em.createQuery(jpql);
-		// FacturaEN fac = (FacturaEN) q.getSingleResult();
-		// int id = (Integer) q.getSingleResult(entityManager =
-		// this.entityManagerFactory.createEntityManager();;
-		// return entityManager.createQuery("select max(u.id) from User u",
-		// Integer.class).getSingleResult()
-		Query codiFac = em.createQuery(jpql, String.class);
-		Object obj = codiFac.setMaxResults(1).getResultList();
-		String c = obj.toString();
-		c.replace("[", "").replace("]", "");
-		// return (Integer) em.createQuery(jpql).getSingleResult() <--- este vale;
+	/*
+	 * public String getPK() { // String jpql =
+	 * "SELECT MAX(fac.codigo) FROM ClienteEN fac"; String jpql =
+	 * "SELECT fac.numFact FROM FacturaEN fac ORDER BY fac.codigo DESC"; // --> vale
+	 * String jpql = "SELECT fac.numFact FROM FacturaEN fac WHERE // fac.codigo =
+	 * (SELECT MAX(fac.codigo) FROM FacturaEN fac)";
+	 * 
+	 * // String jpql = "SELECT fac.numFact FROM FacturaEn fac";
+	 * 
+	 * // Query q = em.createQuery(jpql); // FacturaEN fac = (FacturaEN)
+	 * q.getSingleResult(); // int id = (Integer) q.getSingleResult(entityManager =
+	 * // this.entityManagerFactory.createEntityManager();; // return
+	 * entityManager.createQuery("select max(u.id) from User u", //
+	 * Integer.class).getSingleResult() Query codiFac = em.createQuery(jpql,
+	 * String.class); Object obj = codiFac.setMaxResults(1).getResultList(); String
+	 * c = obj.toString(); c.replace("[", "").replace("]", ""); // return (Integer)
+	 * em.createQuery(jpql).getSingleResult() <--- este vale;
+	 * 
+	 * // --String c =(String) em.createQuery(jpql).getSingleResult(); // String c =
+	 * codiFac.getSingleResult().toString(); // String fac // return
+	 * em.createQuery(jpql); if (c.isEmpty()) { c = "S0000001";
+	 * System.out.println("Ingreso" + c); }
+	 * 
+	 * return c; }
+	 */
 
-		// --String c =(String) em.createQuery(jpql).getSingleResult();
-		// String c = codiFac.getSingleResult().toString();
-		// String fac
-		// return em.createQuery(jpql);
-		if (c.isEmpty()) {
-			c = "S0000001";
-			System.out.println("Ingreso" + c);
-		}
-
-		return c;
-	}
-*/
 }
-
