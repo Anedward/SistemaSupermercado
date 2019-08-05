@@ -1,39 +1,55 @@
 package com.megajaen.entidades;
 
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class DetalleFacturaEN {
 	@Id
+	@GeneratedValue
 	@Column(name="detFac_codigo")
 	private int codigo;
 	
 	@Column(name="detFac_cantidad")
 	private int cantidad;
-
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
-	@JoinColumn(name="fac_codigo", unique = true)
+	
+	@Column(name="detFac_precioVenta")
+	private double precioVenta;
+	
+	//Relacion con la entidad Producto
+	@ManyToOne
+	@JoinColumn(name="det_producto")
+	@JsonIgnore
+	private ProductoEN producto;
+	
+	//Relacion con la entidad Factura
+	@ManyToOne
+	@JoinColumn(name="det_factura")
+	@JsonIgnore
 	private FacturaEN factura;
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
-	@JoinColumn(name="prod_codigo", unique = true)
-	private ProductoEN producto = new ProductoEN();
+	@Transient
+	private int idFacturaTemp;
+	
+	@Transient
+	private int idProductoTemp;
 
-	
-	
-	public FacturaEN getFactura() {
-		return factura;
+	//Constructor
+	public DetalleFacturaEN() {
+		super();
 	}
-
-	public void setFactura(FacturaEN factura) {
-		this.factura = factura;
+    
+  //Constructor
+	public DetalleFacturaEN(ProductoEN producto) {
+	super();
+	this.producto = producto;
 	}
 
 
@@ -44,6 +60,7 @@ public class DetalleFacturaEN {
 	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
+
 
 	public int getCantidad() {
 		return cantidad;
@@ -61,20 +78,52 @@ public class DetalleFacturaEN {
 		this.producto = producto;
 	}
 
+	public FacturaEN getFactura() {
+		return factura;
+	}
+
+	public void setFactura(FacturaEN factura) {
+		this.factura = factura;
+	}
+
+	public int getIdFacturaTemp() {
+		return idFacturaTemp;
+	}
+
+	public void setIdFacturaTemp(int idFacturaTemp) {
+		this.idFacturaTemp = idFacturaTemp;
+	}
+
+	public int getIdProductoTemp() {
+		return idProductoTemp;
+	}
+
+	public void setIdProductoTemp(int idProductoTemp) {
+		this.idProductoTemp = idProductoTemp;
+	}
+
+	public double getPrecioVenta() {
+		return precioVenta;
+	}
+
+	public void setPrecioVenta(double precioVenta) {
+		this.precioVenta = precioVenta;
+	}
+
+	@Override
+	public String toString() {
+		return "DetalleFacturaEN [codigo=" + codigo + ", codigoBarras=" 
+				+ ", cantidad=" + cantidad + ", precioVenta=" + precioVenta
+				+ ", producto=" + producto + ", factura=" + factura + ", idFacturaTemp=" + idFacturaTemp
+				+ ", idProductoTemp=" + idProductoTemp + "]";
+	}
+
 	public DetalleFacturaEN(ProductoEN producto, int cantidad) {
 		super();
 		this.producto = producto;
 		this.cantidad = cantidad;
 	}
-	
-	public DetalleFacturaEN() {
-		
-	}
 
-	
-	
-	
-	
 	
 
 	

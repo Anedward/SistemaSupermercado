@@ -19,6 +19,10 @@ import com.megajaen.entidades.ProveedorEN;
 
 @Stateless
 public class ProductoON {
+	
+	private ProductoEN producto;
+	private UploadedFile file;
+	private int idB;
 
 	@Inject
 	private CategoriaDAO daoCategoria;
@@ -49,6 +53,7 @@ public class ProductoON {
 		em.persist(producto);
 	}
 
+	
 	public CategoriaEN consultaCategoria(int codigoCategoria) throws Exception {
 
 		CategoriaEN cat = daoCategoria.read(codigoCategoria);
@@ -72,10 +77,14 @@ public class ProductoON {
 
 	}
 
-	public List<ProductoEN> listadoFotos() {
-		return daoProducto.listarFotos();
+//	public List<ProductoEN> listadoFotos() {
 
-	}
+//public List<ProductoEN> listadoFotos() {
+
+		//return daoProducto.listarFotos();
+	//}
+
+
 
 	public ProductoEN getProducto(int codigo) {
 
@@ -113,5 +122,33 @@ public class ProductoON {
 		redirect = "verProducto?faces-redirect=true&id=" + producto.getCodigo();
 		return redirect;
 	}
+
+	public ProductoEN obtenerProducto( String codBarra) throws Exception {
+		ProductoEN producto = daoProducto.obtenerProducto(codBarra);
+		return producto;
+	} 
+	
+	public byte[] getBytes(int id) {
+		producto = daoProducto.buscarProducto(id);
+		//System.out.println(producto);
+		System.out.println(producto.getCodigo());
+		System.out.println(producto.getNombre());
+		return producto.getImagen();
+	}
+	
+	public String verProducto(int id) {
+		return verProducto(id);	
+	}
+	
+	public void buscarProducto() {
+		producto = daoProducto.buscarProducto(idB);
+		//System.out.println("holaaaaa"+idB);
+		//System.out.println("holaaaaa"+producto);
+		//System.out.println(producto.getCodigo());
+		//System.out.println(producto.getNombre());
+	//	System.out.println(producto.getImagen());
+		
+	}
+	
 
 }
