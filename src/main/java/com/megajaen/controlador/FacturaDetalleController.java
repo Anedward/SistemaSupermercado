@@ -65,6 +65,7 @@ public class FacturaDetalleController {
 
 		factura = new FacturaEN();
 		detalle = new DetalleFacturaEN();
+		facON.getLastNumFact();
 
 		// listaFacturas = facON.getListadoFacturas();
 		// listaProductos = proON.getListadoProductos();

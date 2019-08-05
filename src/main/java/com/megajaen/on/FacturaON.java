@@ -114,4 +114,7 @@ public class FacturaON {
 		return fac;
 	}
 	
+	public String getLastNumFact() {
+		return facdao.getultimoRegistro();
+	}
 }
