@@ -10,23 +10,17 @@ import javax.inject.Inject;
 import com.megajaen.controlador.preferencias;
 import com.megajaen.dao.ClienteDAO;
 import com.megajaen.entidades.ClienteEN;
-import com.megajaen.entidades.UsuarioEN;
 
 
 @Stateless
 public class ClienteON {
 
 	@Inject
-	private ClienteDAO dao; // lo q tenga el servidor
+	private ClienteDAO dao;
 
-	//@Inject
-	//private instalacion init; // lo q tenga el servidor
-	
 	@Inject
 	private preferencias pre;
 	
-	private List<UsuarioEN> usuarios;
-	private UsuarioEN usuario;
 
 	public void guardar(ClienteEN c) throws Exception {
 
@@ -38,6 +32,11 @@ public class ClienteON {
 
 	public List<ClienteEN> getListadoClientes() {
 		return dao.getClientes2();
+
+	}
+	
+	public ClienteEN getClienteCedula(String nombre) {
+		return dao.getClienteCedula(nombre);
 
 	}
 
@@ -62,48 +61,9 @@ public class ClienteON {
 		return aux;
 	}
 	
-	
-	
-	public List<UsuarioEN> listadousuarioLog(String un, String pass) {
-		
-		return dao.listadousuarioLog(un, pass);
-		
-	}
-	
-	
-public List<UsuarioEN> listadousuario() {
-		
-		return dao.listadousuario();
-		
-	}
+	public ClienteEN Iniciar(String usua, String pass) {	
 
-/**public List<UsuarioEN> ingreso(String email) {
-	return dao.ingresoLogin(email);
-}**/
-	
-public UsuarioEN Iniciar(String usua, String pass) {	
-	try {
-		if(usua!=null && pass!=null) {
-			System.out.println("hola ");
-			 usuarios = dao.listadousuarioLog(usua, pass);
-			if(usuarios.size()>0) {
-				usuario=usuarios.get(0);
-				pre.setUsuario(usuarios.get(0));
-				System.out.println("hola "+usuario.getEmailusuario());
-				
-			}else {
-				FacesContext.getCurrentInstance().addMessage(
-		                 null,
-		                 new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuário no encontrado!",
-		                   "Error no Login!"));
-		              return null;
-		              	
-			}			
-		}
-	}catch (Exception e) {
-			System.out.println("error");
-	}
-	return usuario;
+	return dao.usuario(usua, pass);
 	
 }
 	

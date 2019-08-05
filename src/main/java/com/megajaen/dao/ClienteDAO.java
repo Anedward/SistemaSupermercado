@@ -9,7 +9,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import com.megajaen.entidades.ClienteEN;
-import com.megajaen.entidades.UsuarioEN;
 @Stateful
 public class ClienteDAO {
 
@@ -98,24 +97,41 @@ public class ClienteDAO {
 
 	}
 	
-	public List<UsuarioEN> listadousuarioLog(String un, String pass) {
-		String  jpql = "SELECT u FROM UsuarioEN u WHERE u.emailusuario=:un AND u.contrasenia=:pass";
-		Query query = em.createQuery(jpql, UsuarioEN.class);
-		query.setParameter("un", un);
-		query.setParameter("pass", pass);
-		List<UsuarioEN> listado = query.getResultList();
-		return listado;
-	}
+//	public List<UsuarioEN> listadousuarioLog(String un, String pass) {
+//		String  jpql = "SELECT u FROM UsuarioEN u WHERE u.emailusuario=:un AND u.contrasenia=:pass";
+//		Query query = em.createQuery(jpql, UsuarioEN.class);
+//		query.setParameter("un", un);
+//		query.setParameter("pass", pass);
+//		List<UsuarioEN> listado = query.getResultList();
+//		return listado;
+//	}
+//	
 	
+//	public ClienteEN usuarioLog(String usu, String pass) {
+//		String  jpql = "SELECT u FROM ClienteEN u WHERE u.email=?1 AND u.pass=?2";
+//		Query query = em.createQuery(jpql, UsuarioEN.class);
+//		query.setParameter(1, usu);
+//		query.setParameter(2, pass);
+//		UsuarioEN usuario = (UsuarioEN) query.getSingleResult();
+//		return usuario;
+//	}
 	
+	public ClienteEN usuario(String user,String pass) {
+		ClienteEN cli=null;
+
+			String jpql="SELECT c FROM ClienteEN c WHERE c.email =: user AND c.pass =: pass";
+			Query q = em.createQuery(jpql, ClienteEN.class);
+			q.setParameter("user", user);
+			q.setParameter("pass", pass);
+			List<ClienteEN> clienteLista = q.getResultList();
+			if(!clienteLista.isEmpty()) {
+				cli=clienteLista.get(0);
+			}else {
+				cli=null;
+			}
+		return cli;
+		}
 	
-	public List<UsuarioEN> listadousuario() {
-		String  jpql = "SELECT u FROM UsuarioEN u";
-		Query query = em.createQuery(jpql, UsuarioEN.class);
-		
-		List<UsuarioEN> listado = query.getResultList();
-		return listado;
-	}
 	
 	/**public List<UsuarioEN> ingresoLogin(String email) {
 		String jpql="SELECT u.usu_emailusuario FROM UsuarioEN u WHERE u.usu_emailusuario LIKE :filtro";
@@ -127,6 +143,13 @@ public class ClienteDAO {
 		
 	}**/
 	
-	
+	public ClienteEN getClienteCedula(String nombre) {
+		String jpql = "SELECT  c FROM ClienteEN c WHERE c.nombre LIKE ?1 ";
+		Query q = em.createQuery(jpql, ClienteEN.class);
+		q.setParameter(1, nombre);
+		ClienteEN cliente = (ClienteEN) q.getSingleResult();
+		return cliente;
+
+	}
 
 }

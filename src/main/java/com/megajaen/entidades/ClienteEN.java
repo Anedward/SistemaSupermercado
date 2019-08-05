@@ -7,10 +7,12 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "CLIENTEEN")
@@ -38,12 +40,14 @@ public class ClienteEN {
 	@Column(name="cli_direccion")
 	private String direccion;
 	
-
-	@JoinColumn(name = "usr_codigo", unique = true)
-	@OneToOne(cascade = CascadeType.ALL)
-	private UsuarioEN usuario;
-
+	@Column(name="cli_email")
+	@NotNull
+	private String email;
 	
+	@Column(name="cli_pass")
+	@NotNull
+	private String pass;
+
 	public int getCodigo() {
 		return codigo;
 	}
@@ -60,23 +64,20 @@ public class ClienteEN {
 		this.nombre = nombre;
 	}
 
-	public String getFechaRegistro() {
-		
-	return new SimpleDateFormat("dd-MMMM-yyyy").format(new Date());
-	
-	}
-
-	public void setFechaRegistro(String fechaRegistro) {
-		this.fechaRegistro = fechaRegistro;
-	}
-
-	
 	public String getApellido() {
 		return apellido;
 	}
 
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
+	}
+
+	public String getFechaRegistro() {
+		return fechaRegistro;
+	}
+
+	public void setFechaRegistro(String fechaRegistro) {
+		this.fechaRegistro = fechaRegistro;
 	}
 
 	public String getSexo() {
@@ -103,25 +104,27 @@ public class ClienteEN {
 		this.direccion = direccion;
 	}
 
-	public UsuarioEN getUsuario() {
-		return usuario;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setUsuario(UsuarioEN usuario) {
-		this.usuario = usuario;
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPass() {
+		return pass;
+	}
+
+	public void setPass(String pass) {
+		this.pass = pass;
 	}
 
 	@Override
 	public String toString() {
-		return "ClienteEN [codigo=" + codigo + ", nombre=" + nombre + ", fechaRegistro=" + fechaRegistro + ", usuario="
-				+ usuario + "]";
-	}
-
-	public void agregarUsuario(UsuarioEN user) {
-		if (usuario == null) {
-			usuario = new UsuarioEN();
-		}
-		this.usuario = user;
+		return "ClienteEN [codigo=" + codigo + ", nombre=" + nombre + ", apellido=" + apellido + ", fechaRegistro="
+				+ fechaRegistro + ", sexo=" + sexo + ", telefono=" + telefono + ", direccion=" + direccion + ", email="
+				+ email + ", pass=" + pass + "]";
 	}
 
 }

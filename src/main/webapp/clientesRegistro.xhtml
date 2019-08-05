@@ -276,12 +276,26 @@
 
                         fixed_plugin_open = $('.sidebar .sidebar-wrapper .nav li.active a p').html();
 
+
+						<h:outputLabel value="Email" />
+						<h:inputText styleClass="inputText"
+							value="#{clienteMB.cliente.email}" id="txtUserEmail" />
+						<h:message for="txtUserEmail" />
+
                         if (window_width > 767 &amp;&amp; fixed_plugin_open == 'Dashboard') {
                             if ($('.fixed-plugin .dropdown').hasClass('show-dropdown')) {
                                 $('.fixed-plugin .dropdown').addClass('open');
                             }
 
+
+
+						<h:outputLabel value="Contraseña" />
+						<h:inputSecret styleClass="inputText"
+							value="#{clienteMB.cliente.pass}" id="txtUserPwd" />
+						<h:message for="txtUserPwd" />
+
                         }
+
 
                         $('.fixed-plugin a').click(function(event) {
                             // Alex if we click on switch, stop propagation of the event, so the dropdown will not be hide, otherwise we set the  section active

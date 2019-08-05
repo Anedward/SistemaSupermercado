@@ -20,7 +20,6 @@ import javax.ws.rs.core.Response;
 
 import com.megajaen.entidades.ClienteEN;
 import com.megajaen.entidades.ProductoEN;
-import com.megajaen.entidades.UsuarioEN;
 import com.megajaen.on.ClienteON;
 import com.megajaen.on.ProductoON;
 
@@ -38,15 +37,6 @@ public class operacionesServiceRest {
 	private ProductoON prodON;
 
 	@GET
-	@Path("listar")
-	@Produces("application/json")
-
-	public List<UsuarioEN> ge() {
-		return clienteON.listadousuario();
-
-	}
-
-	@GET
 	@Path("listarP")
 	@Produces("application/json")
 
@@ -57,17 +47,14 @@ public class operacionesServiceRest {
 	}
 
 	@GET
-	@Path("listarU")
+	@Path("log")
 	@Produces("application/json")
-	public UsuarioEN listadousuarioLog(@QueryParam("un") String un, @QueryParam("pass") String pass) {
+	public ClienteEN usuarioLog(@QueryParam("un") String un, @QueryParam("pass") String pass) {
 		System.out.println("usuarios");
-		System.out.println(clienteON.listadousuarioLog(un, pass));
+		//System.out.println(clienteON.listadousuarioLog(un, pass));
 		return clienteON.Iniciar(un, pass);
 		
 		
-		
-		
-	
 		
 
 	}
@@ -89,6 +76,17 @@ public class operacionesServiceRest {
 		prod=prodON.buscarProducto(codigo);
 		System.out.println("Paso el codigo "+codigo);
 		return prod;
+	}
+	
+	@GET
+	@Path("ImagenProductoCat")
+	@Produces("application/json")
+	public List<ProductoEN> mostrarProducto(@QueryParam("cod") String categoria) {
+	
+		System.out.println("Llegando el cod "+categoria);
+		
+		System.out.println("Paso el codigo "+categoria);
+		return prodON.buscarProducto(categoria);
 	}
 	
 	@POST
@@ -133,12 +131,13 @@ public class operacionesServiceRest {
 	 *      ingreso(String email) { return clienteON.ingreso(email); }
 	 **/
 	
+
+	
 	@GET
-	@Path("login")
+	@Path("cliente")
 	@Produces("application/json")
-	public UsuarioEN login(@QueryParam("email") String email, @QueryParam("clave") String clave){
-		return clienteON.Iniciar(email, clave);
-		
+	public ClienteEN mostrarCliente(@QueryParam("nombre") String nombre ) {
+		return clienteON.getClienteCedula(nombre);
 	}
 
 }

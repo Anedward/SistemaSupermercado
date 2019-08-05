@@ -1,11 +1,21 @@
 package com.megajaen.controlador;
 
+import java.util.List;
+
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import javax.inject.Inject;
+
+import com.megajaen.dao.ClienteDAO;
+import com.megajaen.entidades.ClienteEN;
+import com.megajaen.on.ClienteON;
+
 
 @ManagedBean
 @ViewScoped
-public class UsuarioControlador {
+public class AdministradorControlador {
 	
 //		private List<UsuarioEN> usuarios;
 //		private String nombreusuario;
