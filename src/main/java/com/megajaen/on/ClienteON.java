@@ -40,6 +40,11 @@ public class ClienteON {
 		return dao.getClientes2();
 
 	}
+	
+	public ClienteEN getClienteCedula(String nombre) {
+		return dao.getClienteCedula(nombre);
+
+	}
 
 	public List<ClienteEN> getListadoNombre(ClienteEN c) {
 		return dao.getClientesPorNombre(c.getNombre());

@@ -66,9 +66,6 @@ public class operacionesServiceRest {
 		
 		
 		
-		
-	
-		
 
 	}
 	
@@ -89,6 +86,17 @@ public class operacionesServiceRest {
 		prod=prodON.buscarProducto(codigo);
 		System.out.println("Paso el codigo "+codigo);
 		return prod;
+	}
+	
+	@GET
+	@Path("ImagenProductoCat")
+	@Produces("application/json")
+	public List<ProductoEN> mostrarProducto(@QueryParam("cod") String categoria) {
+	
+		System.out.println("Llegando el cod "+categoria);
+		
+		System.out.println("Paso el codigo "+categoria);
+		return prodON.buscarProducto(categoria);
 	}
 	
 	@POST
@@ -139,6 +147,13 @@ public class operacionesServiceRest {
 	public UsuarioEN login(@QueryParam("email") String email, @QueryParam("clave") String clave){
 		return clienteON.Iniciar(email, clave);
 		
+	}
+	
+	@GET
+	@Path("cliente")
+	@Produces("application/json")
+	public ClienteEN mostrarCliente(@QueryParam("nombre") String nombre ) {
+		return clienteON.getClienteCedula(nombre);
 	}
 
 }

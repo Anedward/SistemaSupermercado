@@ -94,6 +94,11 @@ public class ProductoON {
 		ProductoEN producto = daoProducto.buscarProducto(id);
 		return producto;
 	}
+	
+	public List<ProductoEN> buscarProducto (String categoria) {
+		List<ProductoEN> producto = daoProducto.listProductosCategoria(categoria);
+		return producto;
+	}
 
 	public void borrar(int codigo) throws Exception {
 		try {

@@ -127,6 +127,13 @@ public class ClienteDAO {
 		
 	}**/
 	
-	
+	public ClienteEN getClienteCedula(String nombre) {
+		String jpql = "SELECT  c FROM ClienteEN c WHERE c.nombre LIKE ?1 ";
+		Query q = em.createQuery(jpql, ClienteEN.class);
+		q.setParameter(1, nombre);
+		ClienteEN cliente = (ClienteEN) q.getSingleResult();
+		return cliente;
+
+	}
 
 }
