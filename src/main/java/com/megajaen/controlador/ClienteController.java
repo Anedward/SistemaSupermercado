@@ -8,7 +8,6 @@ import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
 import com.megajaen.entidades.ClienteEN;
-import com.megajaen.entidades.UsuarioEN;
 import com.megajaen.on.ClienteON;
 
 
@@ -53,7 +52,7 @@ public class ClienteController {
 	@PostConstruct
 	public void init() {
 		cliente = new ClienteEN();
-		cliente.agregarUsuario(new UsuarioEN());
+		//cliente.agregarUsuario(new UsuarioEN());
 		listadoClientes = pON.getListadoClientes();
 	}
 
