@@ -60,7 +60,7 @@ public class UsuarioControlador {
 					usuario=usuarios.get(0);
 					pre.setUsuario(usuarios.get(0));
 					System.out.println("hola "+usuario.getEmailusuario());
-					return"listaProductos";
+					return"principal";
 				}else {
 					FacesContext.getCurrentInstance().addMessage(
 			                 null,
