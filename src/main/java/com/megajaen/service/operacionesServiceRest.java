@@ -18,8 +18,10 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
+import com.megajaen.entidades.AdministradorEN;
 import com.megajaen.entidades.ClienteEN;
 import com.megajaen.entidades.ProductoEN;
+import com.megajaen.on.AdministradorON;
 import com.megajaen.on.ClienteON;
 import com.megajaen.on.ProductoON;
 
@@ -35,6 +37,9 @@ public class operacionesServiceRest {
 
 	@Inject
 	private ProductoON prodON;
+	
+	@Inject
+	private AdministradorON adminON;
 
 	@GET
 	@Path("listarP")
@@ -139,5 +144,14 @@ public class operacionesServiceRest {
 	public ClienteEN mostrarCliente(@QueryParam("nombre") String nombre ) {
 		return clienteON.getClienteCedula(nombre);
 	}
+	
+	@GET
+	@Path("admin")
+	@Produces("application/json")
+	public AdministradorEN admin(@QueryParam("usuario") String usu, @QueryParam("password") String pws) {
+		return adminON.getUsuario(usu, pws);
+
+	}
+
 
 }

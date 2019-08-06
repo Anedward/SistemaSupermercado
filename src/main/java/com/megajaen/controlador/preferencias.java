@@ -5,6 +5,8 @@ import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
+import com.megajaen.entidades.AdministradorEN;
+
 
 
 
@@ -13,18 +15,16 @@ import javax.inject.Named;
 public class preferencias implements Serializable{
 	
 	
-//	private UsuarioEN usuario;
-//	
-//
-//	public UsuarioEN getUsuario() {
-//		return usuario;
-//	}
-//
-//	public void setUsuario(UsuarioEN usuario) {
-//		this.usuario = usuario;
-//	}
-	
-	
+private AdministradorEN usuario;
+
+public AdministradorEN getUsuario() {
+	return usuario;
+}
+
+public void setUsuario(AdministradorEN usuario) {
+	this.usuario = usuario;
+}
+
 	
 
 	
