@@ -44,6 +44,11 @@ public class FacturaEN {
 
 	@OneToMany(mappedBy = "factura", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<DetalleFacturaEN> listaDetalles;
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name="cli_factura")
+	@JsonIgnore
+	private List<ClienteEN> cliente;
 
 
 	public int getCodigo() {
@@ -109,14 +114,18 @@ public class FacturaEN {
 		this.detalle.add(det);
 	}
 
+	public List<ClienteEN> getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(List<ClienteEN> cliente) {
+		this.cliente = cliente;
+	}
+
 	@Override
 	public String toString() {
 		return "FacturaEN [codigo=" + codigo + ", numFact=" + numFact + ", fechaEmision=" + fechaEmision + ", iva="
-				+ iva + ", total=" + total + ", detalle=" + detalle + ", listaDetalles=" + listaDetalles + "]";
+				+ iva + ", total=" + total + ", detalle=" + detalle + ", listaDetalles=" + listaDetalles + ", cliente="
+				+ cliente + "]";
 	}
-
-	
-
-	
-
 }

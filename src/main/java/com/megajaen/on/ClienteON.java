@@ -18,10 +18,6 @@ public class ClienteON {
 	@Inject
 	private ClienteDAO dao;
 
-	@Inject
-	private preferencias pre;
-	
-
 	public void guardar(ClienteEN c) throws Exception {
 
 		if (c.getNombre() == null)

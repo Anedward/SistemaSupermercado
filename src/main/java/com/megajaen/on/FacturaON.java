@@ -9,10 +9,12 @@ import javax.persistence.EntityManager;
 
 import com.megajaen.controlador.FacturaDetalleController;
 import com.megajaen.dao.CategoriaDAO;
+import com.megajaen.dao.ClienteDAO;
 import com.megajaen.dao.DetalleFacturaDAO;
 import com.megajaen.dao.FacturaDAO;
 import com.megajaen.dao.ProductoDAO;
 import com.megajaen.entidades.CategoriaEN;
+import com.megajaen.entidades.ClienteEN;
 import com.megajaen.entidades.DetalleFacturaEN;
 import com.megajaen.entidades.FacturaEN;
 import com.megajaen.entidades.ProductoEN;
@@ -27,6 +29,9 @@ public class FacturaON {
 
 	@Inject
 	private ProductoDAO daoProd;
+	
+	@Inject
+	private ClienteDAO daoClient;
 
 	@Inject
 	private EntityManager em;
@@ -50,11 +55,23 @@ public class FacturaON {
 
 	public String guardarDet(DetalleFacturaEN detalle){	
 		String redirect="";
-		System.out.println("Hola detalle estas AHI " + detalle);
+		System.out.println("Hola " + detalle);
 		//System.out.println(producto);
 		//detalle.setProducto(producto);
 		
 		daoDetFac.save(detalle);
+		//em.persist(producto);
+		return redirect;
+		
+	}
+	
+	public String guardarCli(ClienteEN cliente){	
+		String redirect="";
+		System.out.println("Hola " + cliente);
+		//System.out.println(producto);
+		//detalle.setProducto(producto);
+		
+		daoClient.save(cliente);
 		//em.persist(producto);
 		return redirect;
 		

@@ -10,9 +10,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "CLIENTEEN")
@@ -24,29 +27,35 @@ public class ClienteEN {
 
 	@Column(name = "cli_nombre")
 	private String nombre;
-	
-	@Column(name="cli_apellido")
+
+	@Column(name = "cli_apellido")
 	private String apellido;
 
 	@Column(name = "cli_fechaRegistro")
 	private String fechaRegistro;
-	
-	@Column(name="cli_sexo")
+
+	@Column(name = "cli_sexo")
 	private String sexo;
-	
-	@Column(name="cli_telefono")
+
+	@Column(name = "cli_telefono")
 	private String telefono;
-	
-	@Column(name="cli_direccion")
+
+	@Column(name = "cli_direccion")
 	private String direccion;
-	
-	@Column(name="cli_email")
+
+	@Column(name = "cli_email")
 	@NotNull
 	private String email;
-	
-	@Column(name="cli_pass")
+
+	@Column(name = "cli_pass")
 	@NotNull
 	private String pass;
+
+	// Relacion con la entidad Factura
+	@ManyToOne
+	@JoinColumn(name = "cli_factura")
+	@JsonIgnore
+	private FacturaEN factura;
 
 	public int getCodigo() {
 		return codigo;
@@ -120,12 +129,20 @@ public class ClienteEN {
 		this.pass = pass;
 	}
 
+	public FacturaEN getFactura() {
+		return factura;
+	}
+
+	public void setFactura(FacturaEN factura) {
+		this.factura = factura;
+	}
+
 	@Override
 	public String toString() {
 		return "ClienteEN [codigo=" + codigo + ", nombre=" + nombre + ", apellido=" + apellido + ", fechaRegistro="
 				+ fechaRegistro + ", sexo=" + sexo + ", telefono=" + telefono + ", direccion=" + direccion + ", email="
-				+ email + ", pass=" + pass + "]";
+				+ email + ", pass=" + pass + ", factura=" + factura + "]";
 	}
+	
 
 }
-

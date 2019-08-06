@@ -27,13 +27,13 @@
 			<h:outputLabel value="Nombre" />
 			<h:inputText value="#{proveedorController.proveedor.razonSocial}" id="txtNombre" 
 			required="true" requiredMessage="*Campo Obligatorio">
-		<f:validator validatorId="vcaracter" /></h:inputText>
+		</h:inputText>
 			<h:message for="txtNombre" style="color: red" />
 
 			<h:outputLabel value="RUC" />
 			<h:inputText value="#{proveedorController.proveedor.ruc}" id="txtRUC"
 			required="true" requiredMessage="*Campo Obligatorio">
-			<f:validator validatorId="vnumero" /></h:inputText>
+			</h:inputText>
 			<h:message for="txtRUC" style="color: red" />
 
 			<h:outputLabel value="Direccion" />
@@ -44,7 +44,7 @@
 			<h:outputLabel value="Telefono:" />
 			<h:inputText value="#{proveedorController.proveedor.telefono}" id="txtTelefono" 
 			required="true" requiredMessage="*Campo Obligatorio">
-			<f:validator validatorId="vnumero" /></h:inputText>
+			</h:inputText>
 			<h:message for="txtTelefono" style="color: red"/>
 
 			<h:outputLabel value="Email" />
