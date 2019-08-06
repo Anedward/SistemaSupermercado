@@ -16,6 +16,7 @@ public class AdministradorEN {
 	
 	@NotNull
 	private String password;
+	
 	public String getUsuario() {
 		return usuario;
 	}
