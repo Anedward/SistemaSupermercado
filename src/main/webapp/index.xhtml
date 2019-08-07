@@ -1,35 +1,143 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
-	
-	<h:head>
-	<link rel="stylesheet" type="text/css" href="css/registration.css" />
-	<link rel="stylesheet" type="text/css" href="../css/main.css" />
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:h="http://java.sun.com/jsf/html"
+       xmlns:o="http://omnifaces.org/ui"> 
+
+<h:head>
+  <meta charset="utf-8"/>
+  <title>MEGAJEAN</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <!-- styles -->
+  <link rel="stylesheet" href="assetso/css/fancybox/jquery.fancybox.css"/>
+  <link href="assetso/css/bootstrap.css" rel="stylesheet" />
+  <link href="assetso/css/bootstrap-theme.css" rel="stylesheet" />
+  <link rel="stylesheet" href="assetso/css/slippry.css"/>
+  <link href="assetso/css/style.css" rel="stylesheet" />
+  <link rel="stylesheet" href="assetso/color/default.css"/>
+  <script src="assetso/js/modernizr.custom.js"></script>
 </h:head>
-<h:body>
-	<div id="contentedor">
-		<div id="cabecera">
-			<ui:insert name="header">
-				<ui:include src="/comun/cabecera.xhtml" />
-			</ui:insert>
-		</div>
 
-		<div id="cuerpo">
-			<ui:insert name="body">
-				<ui:include src="/comun/cuerpo.xhtml" />
-			</ui:insert>
-		</div>
+<body style="background-image: url('resources/assets/img/10.jpg'">
+  <header>
 
-		<div id="pie">
-			<ui:insert name="foorter">
-				<ui:include src="/comun/pie.xhtml" />
-			</ui:insert>
-		</div>
-	</div>
+    <div id="navigation" class="navbar navbar-inverse navbar-fixed-top default" role="navigation">
+      <div class="container">
 
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.xhtml">MEGA JEAN SUPERMERCADOS</a>
+        </div>
 
-</h:body>
+        <div class="navigation">
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <nav>
+              <ul class="nav navbar-nav navbar-right">
+                <li class="current"><a href="#contact">Registrate</a></li>
+                
+              </ul>
+            </nav>
+          </div>
+         
+        </div>
 
+      </div>
+    </div>
+
+  </header>
+  
+  <section id="contact" class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <div class="heading">
+            <h3><span>BIENVENIDO SUPERMERDADOS MEGA JEAN S.A.</span></h3>
+          </div>
+          <div class="sub-heading">
+            <p>
+              MANTENIMIENTO Y ADMINISTRACION.
+            </p>
+           <h:form role="form"> 
+         
+             
+          
+          <!-- start contact form -->
+          
+                	
+                	
+             <div class="text-center">
+             		<h:commandButton action="login" value="INICIAR SESION"  class="btn btn-lg btn-theme"/>
+             </div> 
+             
+		</h:form>    
+          </div>
+        </div>
+      </div>
+    </div>
+
+   
+    
+    
+    
+    
+    
+    
+  </section>
+  
+  <!-- end section contact -->
+  
+  <a href="#" class="scrollup"><i class="fa fa-angle-up fa-2x"></i></a>
+  <!-- javascript -->
+  <script src="assetso/js/jquery-1.9.1.min.js"></script>
+  <script src="assetso/js/jquery.easing.js"></script>
+  <script src="assetso/js/classie.js"></script>
+  <script src="assetso/js/bootstrap.js"></script>
+  <script src="assetso/js/slippry.min.js"></script>
+  <script src="assetso/js/nagging-menu.js"></script>
+  <script src="assetso/js/jquery.nav.js"></script>
+  <script src="assetso/js/jquery.scrollTo.js"></script>
+  <script src="assetso/js/jquery.fancybox.pack.js"></script>
+  <script src="assetso/js/jquery.fancybox-media.js"></script>
+  <script src="assetso/js/masonry.pkgd.min.js"></script>
+  <script src="assetso/js/imagesloaded.js"></script>
+  <script src="assetso/js/jquery.nicescroll.min.js"></script>
+  <script src="assetso/js/AnimOnScroll.js"></script>
+  <script>
+    new AnimOnScroll(document.getElementById('grid'), {
+      minDuration: 0.4,
+      maxDuration: 0.7,
+      viewportFactor: 0.2
+    });
+  </script>
+  <script>
+    $(document).ready(function () {
+      $('#slippry-slider').slippry(
+        defaults = {
+          transition: 'vertical',
+          useCSS: true,
+          speed: 5000,
+          pause: 3000,
+          initSingle: false,
+          auto: true,
+          preload: 'visible',
+          pager: false,
+        }
+      )
+    });
+  </script>
+
+  <script src="assetso/js/custom.js"></script>
+  <script src="contactform/contactform.js"></script>
+
+</body>
 </html>

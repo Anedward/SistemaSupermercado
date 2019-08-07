@@ -39,8 +39,8 @@ public class ProductoON {
 	public String guardarProductoImg(ProductoEN producto, UploadedFile file) throws IOException {
 		String redirect = "";
 		System.out.println("llego");
-		System.out.println(producto);
-		System.out.println(file);
+		//System.out.println(producto);
+		//System.out.println(file);
 		producto.setImagen(IOUtils.toByteArray(file.getInputstream()));
 
 		daoProducto.insertarProducto(producto);

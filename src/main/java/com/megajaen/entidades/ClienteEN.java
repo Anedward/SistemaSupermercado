@@ -82,7 +82,8 @@ public class ClienteEN {
 	}
 
 	public String getFechaRegistro() {
-		return fechaRegistro;
+		
+		return  new SimpleDateFormat("dd-MMMM-yyyy").format(new Date());
 	}
 
 	public void setFechaRegistro(String fechaRegistro) {

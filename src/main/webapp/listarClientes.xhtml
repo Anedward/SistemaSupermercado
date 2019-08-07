@@ -117,13 +117,13 @@
 			<h:column>
 
 				<f:facet name="header">Email</f:facet>
-			#{cliente.usuario.emailusuario}
+			#{cliente.email}
 		</h:column>
 
 			<h:column>
 
 				<f:facet name="header">Contrasenia</f:facet>
-			#{cliente.usuario.contrasenia}
+			#{cliente.pass}
 		</h:column>
 
 			<h:column>
@@ -149,6 +149,7 @@
                                                         <div >
                                                
 		                     <h:commandButton action="#{clienteMB.nuevo()}" class="btn btn-fill btn-info" immediate="true" value="Nuevo" />
+		                     <h:link value="Principal" outcome="principal" class="btn btn-fill btn-info"></h:link>
                                                             
                                                         </div>
                                                     </div>
