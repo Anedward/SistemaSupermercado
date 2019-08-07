@@ -110,10 +110,10 @@ public class ProductoController {
 
 	public String guardarDatos() throws IOException {
 		upload();
-		System.out.println("Holaaa+++++"+file);
-		System.out.println("Holaaa ++++++ "+producto);
+		//System.out.println("Holaaa+++++"+file);
+		//System.out.println("Holaaa ++++++ "+producto);
 		prodON.guardarProductoImg(producto, file);
-		System.out.println(producto);
+		//System.out.println(producto);
 		System.out.println(file);
 		init();
 		return "productos";
