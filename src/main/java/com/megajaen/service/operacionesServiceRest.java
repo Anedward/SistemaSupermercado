@@ -19,10 +19,12 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
 import com.megajaen.entidades.AdministradorEN;
+import com.megajaen.entidades.CategoriaEN;
 import com.megajaen.entidades.ClienteEN;
 import com.megajaen.entidades.ProductoEN;
 import com.megajaen.on.AdministradorON;
 import com.megajaen.on.ClienteON;
+import com.megajaen.on.DetalleFacturaON;
 import com.megajaen.on.ProductoON;
 
 
@@ -40,6 +42,9 @@ public class operacionesServiceRest {
 	
 	@Inject
 	private AdministradorON adminON;
+	
+	@Inject
+	private DetalleFacturaON detON;
 
 	@GET
 	@Path("listarP")
@@ -152,6 +157,27 @@ public class operacionesServiceRest {
 		return adminON.getUsuario(usu, pws);
 
 	}
+	
+	/*@GET
+	@Path("/agregarCarrito")
+	@Produces("application/json")
+	public String carritoCompras(@QueryParam("codBarra") String codigo) {
+		return detON.orderBy(codigo);
+
+	}*/
+	
+	/*@GET
+	@Path("ImagenProductoCat")
+	@Produces("application/json")
+	public List<CategoriaEN> categoria(@QueryParam("cod") String categoria) {
+		return prodON.buscarCategoria(categoria);
+	}*/
+	
+	
+	
+	
+
+	
 
 
 }
