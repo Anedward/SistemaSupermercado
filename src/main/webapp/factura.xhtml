@@ -7,7 +7,7 @@
 
 <h:head>
 </h:head>
-<body>
+<body style="background-image: url('resources/assets/img/10.jpg'">
 
 	<h:form id="formFacturas" styleClass="formularios">
 		<p:panel id="panelFac" styleClass="panel">
@@ -52,6 +52,7 @@
 						styleClass="btn-success"
 						actionListener="#{facturaDetalleController.agregarDatosProductoCod()}"
 						update=":formFacturas:tablaProductos :formFacturas:TotalVenta" />
+						
 					<p:commandButton value="&#x1F50E; en Carrito" icon="fa fa fa-edit"
 						styleClass="OcularBotones btn-success"
 						oncomplete="PF('dialogoProducto').show();" />

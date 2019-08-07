@@ -62,7 +62,7 @@ public String Iniciar() {
 if(nombreusuario!=null && password!=null) {
 		System.out.println("hola ");
 			 con.getUsuario(nombreusuario, password);
-			 return"listaProductos";	
+			 return"principal";	
 		}
 		}catch (Exception e) {
 				System.out.println("error"+e);
